@@ -37,15 +37,21 @@ dependencies:
   get_it: ^8.0.0
   injectable: ^2.5.0
 
+  # Data modeling (M02 / T02.2)
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.12.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^6.0.0
 
-  # Code generation (M02 / T02.1)
+  # Code generation (M02 / T02.1 + T02.2)
   build_runner: ^2.4.13
   injectable_generator: ^2.6.2
+  freezed: ^3.0.0
+  json_serializable: ^6.8.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

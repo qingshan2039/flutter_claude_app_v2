@@ -5,9 +5,8 @@ project: flutter_claude_app_v2
 project_path: /Users/ben/ai_project/flutter_claude_app_v2
 last_updated: 2026-05-18
 total_tasks_in_spec: 180
-completed_tasks: [T01.1, T01.2, T01.3, T02.1]
-completed_modules: [M01]
-in_progress_modules: [M02]
+completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3]
+completed_modules: [M01, M02]
 audience: [human_developers, ai_agents, rag_systems]
 ---
 
@@ -101,12 +100,12 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 | T01.2 | 搭建目录结构 | M01 | P0 | ✅ completed | 2026-05-18 | [T01.2.md](./T01.2.md) |
 | T01.3 | 配置 .gitignore 与 .gitattributes | M01 | P0 | ✅ completed | 2026-05-18 | [T01.3.md](./T01.3.md) |
 | T02.1 | 集成 get_it + injectable | M02 | P0 | ✅ completed | 2026-05-18 | [T02.1.md](./T02.1.md) |
-| T02.2 | 集成 freezed + json_serializable | M02 | P0 | ⏳ pending | — | — |
-| T02.3 | 编写 DI 注册示例 | M02 | P0 | ⏳ pending | — | — |
+| T02.2 | 集成 freezed + json_serializable | M02 | P0 | ✅ completed | 2026-05-18 | [T02.2.md](./T02.2.md) |
+| T02.3 | 编写 DI 注册示例 | M02 | P0 | ✅ completed | 2026-05-18 | [T02.3.md](./T02.3.md) |
 
 **模块进度**：
 - M01 项目骨架与目录结构 ✅ 已完成（3/3）
-- M02 依赖注入与数据建模 🚧 进行中（1/3）
+- M02 依赖注入与数据建模 ✅ 已完成（3/3）
 
 ## 工作流
 
