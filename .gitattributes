@@ -1,0 +1,215 @@
+# ==============================================================================
+# .gitattributes — flutter_claude_app_v2
+# ------------------------------------------------------------------------------
+# 任务来源: T01.3 配置 .gitignore 与 .gitattributes
+# 设计目标:
+#   1. 统一换行符 (LF) — 避免 macOS / Linux / Windows 之间因换行符差异导致
+#      diff 噪声 / shell 脚本无法执行
+#   2. 明确二进制文件 — 让 git 不尝试 diff / merge 二进制资源
+#   3. 标记生成文件 (linguist-generated) — GitHub PR Review 默认折叠生成文件
+#      diff，减少视觉噪声
+#   4. 帮助 export-ignore — `git archive` 时排除测试 / CI 等文件
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 默认: 自动检测文本并统一为 LF
+# ------------------------------------------------------------------------------
+# checkout 时使用 LF，commit 时也是 LF。Windows 用户的编辑器需配置兼容 LF。
+* text=auto eol=lf
+
+# ------------------------------------------------------------------------------
+# 源代码 — 强制 LF
+# ------------------------------------------------------------------------------
+*.dart       text eol=lf
+*.kt         text eol=lf
+*.kts        text eol=lf
+*.java       text eol=lf
+*.swift      text eol=lf
+*.m          text eol=lf
+*.h          text eol=lf
+*.mm         text eol=lf
+*.c          text eol=lf
+*.cpp        text eol=lf
+*.js         text eol=lf
+*.ts         text eol=lf
+
+# ------------------------------------------------------------------------------
+# 配置文件 — LF
+# ------------------------------------------------------------------------------
+*.yaml       text eol=lf
+*.yml        text eol=lf
+*.json       text eol=lf
+*.toml       text eol=lf
+*.xml        text eol=lf
+*.plist      text eol=lf
+*.gradle     text eol=lf
+*.properties text eol=lf
+*.pbxproj    text eol=lf merge=union
+*.xcconfig   text eol=lf
+
+# ------------------------------------------------------------------------------
+# 脚本 — LF（在 macOS / Linux 上可执行）
+# ------------------------------------------------------------------------------
+*.sh         text eol=lf
+*.bash       text eol=lf
+*.zsh        text eol=lf
+*.fish       text eol=lf
+gradlew      text eol=lf
+
+# ------------------------------------------------------------------------------
+# Windows 专用脚本 — CRLF
+# ------------------------------------------------------------------------------
+*.bat        text eol=crlf
+*.cmd        text eol=crlf
+*.ps1        text eol=crlf
+gradlew.bat  text eol=crlf
+
+# ------------------------------------------------------------------------------
+# 文档 — LF
+# ------------------------------------------------------------------------------
+*.md         text eol=lf
+*.txt        text eol=lf
+LICENSE      text eol=lf
+README       text eol=lf
+CHANGELOG    text eol=lf
+*.arb        text eol=lf
+
+# ------------------------------------------------------------------------------
+# 图片 — 二进制
+# ------------------------------------------------------------------------------
+*.png        binary
+*.jpg        binary
+*.jpeg       binary
+*.gif        binary
+*.ico        binary
+*.webp       binary
+*.bmp        binary
+*.tiff       binary
+*.psd        binary
+*.ai         binary
+*.sketch     binary
+*.fig        binary
+# 注：*.svg 是文本（XML），保持默认 text=auto
+
+# ------------------------------------------------------------------------------
+# 字体 — 二进制
+# ------------------------------------------------------------------------------
+*.ttf        binary
+*.otf        binary
+*.woff       binary
+*.woff2      binary
+*.eot        binary
+
+# ------------------------------------------------------------------------------
+# 音视频 — 二进制
+# ------------------------------------------------------------------------------
+*.mp3        binary
+*.mp4        binary
+*.wav        binary
+*.aac        binary
+*.ogg        binary
+*.m4a        binary
+*.mov        binary
+*.webm       binary
+*.flac       binary
+
+# ------------------------------------------------------------------------------
+# 文档与压缩 — 二进制
+# ------------------------------------------------------------------------------
+*.pdf        binary
+*.zip        binary
+*.gz         binary
+*.tgz        binary
+*.tar        binary
+*.7z         binary
+*.rar        binary
+*.bz2        binary
+
+# ------------------------------------------------------------------------------
+# Android 二进制
+# ------------------------------------------------------------------------------
+*.apk        binary
+*.aab        binary
+*.dex        binary
+*.so         binary
+*.aar        binary
+*.jar        binary
+*.jks        binary
+*.keystore   binary
+
+# ------------------------------------------------------------------------------
+# iOS / macOS 二进制
+# ------------------------------------------------------------------------------
+*.car        binary
+*.icns       binary
+*.ipa        binary
+*.framework  binary
+*.xcframework binary
+*.dSYM       binary
+*.mobileprovision binary
+
+# ------------------------------------------------------------------------------
+# Lottie / Rive / 动画资源
+# ------------------------------------------------------------------------------
+*.lottie     binary
+*.riv        binary
+# 注：*.json 是文本（Lottie 的 JSON 形态保持文本以便 diff）
+
+# ------------------------------------------------------------------------------
+# 数据库 / 存储 — 二进制
+# ------------------------------------------------------------------------------
+*.db         binary
+*.sqlite     binary
+*.sqlite3    binary
+*.realm      binary
+*.isar       binary
+*.hive       binary
+
+# ------------------------------------------------------------------------------
+# 生成代码 — 标记为 linguist-generated（GitHub PR 默认折叠）
+# ------------------------------------------------------------------------------
+# 这些文件由 build_runner / freezed / json_serializable / injectable 等生成。
+# 仍随源码提交（见 .gitignore 说明），但在 PR review 中默认折叠 diff，减少噪声。
+*.g.dart           linguist-generated=true
+*.freezed.dart     linguist-generated=true
+*.config.dart      linguist-generated=true
+*.gr.dart          linguist-generated=true
+*.mocks.dart       linguist-generated=true
+*.chopper.dart     linguist-generated=true
+*.gen.dart         linguist-generated=true
+**/generated_plugin_registrant.dart linguist-generated=true
+**/GeneratedPluginRegistrant.java   linguist-generated=true
+**/GeneratedPluginRegistrant.h      linguist-generated=true
+**/GeneratedPluginRegistrant.m      linguist-generated=true
+**/GeneratedPluginRegistrant.swift  linguist-generated=true
+**/Flutter/Generated.xcconfig       linguist-generated=true
+**/Flutter/flutter_export_environment.sh linguist-generated=true
+
+# Flutter intl 生成产物（T08 国际化）
+**/l10n/app_localizations*.dart  linguist-generated=true
+**/generated/intl/**             linguist-generated=true
+
+# Lock 文件 — 仍追踪，但 PR 折叠
+pubspec.lock      linguist-generated=true
+ios/Podfile.lock  linguist-generated=true
+
+# ------------------------------------------------------------------------------
+# Linguist overrides — GitHub 语言统计
+# ------------------------------------------------------------------------------
+# 排除 Pods / build 产物对仓库语言统计的污染
+ios/Pods/**       linguist-vendored=true
+**/build/**       linguist-generated=true
+.dart_tool/**     linguist-generated=true
+
+# 文档目录不计入语言统计
+docs/**           linguist-documentation=true
+
+# ------------------------------------------------------------------------------
+# export-ignore — git archive 时排除（不需打包给下游的内容）
+# ------------------------------------------------------------------------------
+.github/         export-ignore
+.gitignore       export-ignore
+.gitattributes   export-ignore
+docs/verification/ export-ignore
+test/            export-ignore
+integration_test/ export-ignore

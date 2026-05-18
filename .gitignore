@@ -1,48 +1,200 @@
-# Miscellaneous
-*.class
+# ==============================================================================
+# .gitignore — flutter_claude_app_v2
+# ------------------------------------------------------------------------------
+# 任务来源: T01.3 配置 .gitignore 与 .gitattributes
+# 设计原则:
+#   1. 保留 Flutter 默认规则不删除（仅扩充）
+#   2. 平台敏感文件（key.properties、Pods/、xcuserdata 等）由 android/.gitignore
+#      与 ios/.gitignore 处理，本文件不重复
+#   3. 生成代码（*.g.dart、*.freezed.dart 等）**不**在此忽略，保持随源码提交，
+#      让 clone 后无需先跑 build_runner 即可 `flutter run`。如需改策略，请
+#      取消第 「Build Runner generated code (opt-in ignore)」 节注释。
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Flutter / Dart / Pub
+# ------------------------------------------------------------------------------
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication & Obfuscation
+app.*.symbols
+app.*.map.json
+
+# Android Studio build artifacts
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# ------------------------------------------------------------------------------
+# Generated code (build_runner) — opt-in ignore
+# ------------------------------------------------------------------------------
+# Uncomment the following lines if your team prefers to NOT commit generated
+# files (you must then ensure CI runs `dart run build_runner build` before
+# analyze/test). Default behavior: commit generated files for zero-setup clones.
+#
+# *.g.dart
+# *.freezed.dart
+# *.gr.dart
+# *.config.dart
+# *.mocks.dart
+
+# ------------------------------------------------------------------------------
+# Test & Coverage
+# ------------------------------------------------------------------------------
+/coverage/
+*.lcov
+test/.test_coverage.dart
+.test_coverage/
+
+# ------------------------------------------------------------------------------
+# Logs & temp
+# ------------------------------------------------------------------------------
 *.log
 *.pyc
 *.swp
-.DS_Store
+*.swo
+*~
+.history
 .atom/
 .build/
 .buildlog/
-.history
 .svn/
 .swiftpm/
 migrate_working_dir/
 
-# IntelliJ related
+# Compiled class files
+*.class
+
+# ------------------------------------------------------------------------------
+# IDE — IntelliJ / Android Studio
+# ------------------------------------------------------------------------------
 *.iml
 *.ipr
 *.iws
 .idea/
 
-# Claude Code local settings
+# ------------------------------------------------------------------------------
+# IDE — VS Code
+# ------------------------------------------------------------------------------
+# 默认忽略 .vscode/ 下用户私有配置，但保留团队共享的 launch.json / tasks.json /
+# extensions.json（T15.4 会提交三套环境的 launch.json）
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+!.vscode/settings.template.json
+
+# ------------------------------------------------------------------------------
+# IDE — Other
+# ------------------------------------------------------------------------------
+# Fleet
+.fleet/
+# Zed
+.zed/
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+Session.vim
+.netrwhist
+tags
+
+# ------------------------------------------------------------------------------
+# Claude Code / Cursor / AI assistant local settings
+# ------------------------------------------------------------------------------
 .claude/
+.cursor/
+.aider*
+.continue/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# ------------------------------------------------------------------------------
+# Operating System — macOS
+# ------------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Icon?
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
-/coverage/
+# ------------------------------------------------------------------------------
+# Operating System — Windows
+# ------------------------------------------------------------------------------
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
 
-# Symbolication related
-app.*.symbols
+# ------------------------------------------------------------------------------
+# Operating System — Linux
+# ------------------------------------------------------------------------------
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
 
-# Obfuscation related
-app.*.map.json
+# ------------------------------------------------------------------------------
+# Secrets & Local config — NEVER commit these
+# ------------------------------------------------------------------------------
+# 通用 .env 家族（M15 / envied / dart-define-from-file）
+.env
+.env.*
+!.env.example
+!.env.template
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# 通用密钥与凭证文件
+*.pem
+*.key
+*.p12
+*.p8
+*.cer
+*.mobileprovision
+
+# Service account / Firebase / 推送服务密钥
+**/serviceAccountKey.json
+**/firebase-adminsdk-*.json
+
+# 注：Android 的 key.properties 与 keystore 已由 android/.gitignore 处理
+# 注：iOS 的 .xcconfig 不忽略，但用户私有 *.local.xcconfig 需忽略
+**/*.local.xcconfig
+
+# ------------------------------------------------------------------------------
+# Profiling / Debug
+# ------------------------------------------------------------------------------
+*.cpuprofile
+*.heapsnapshot
+.flutter-devtools/
+
+# ------------------------------------------------------------------------------
+# Misc local-only
+# ------------------------------------------------------------------------------
+*.bak
+*.tmp
+.local/
+local/
+scratch/
+TODO.local.md
+NOTES.local.md
