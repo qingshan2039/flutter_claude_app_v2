@@ -66,5 +66,24 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<!-- M07/T07.5 让 Flutter / go_router 处理深链 -->
+	<key>FlutterDeepLinkingEnabled</key>
+	<true/>
+	<!-- M07/T07.5 自定义 scheme 深链：fcaapp://detail/42 -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.ben.claude_flutter_v2</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fcaapp</string>
+			</array>
+		</dict>
+	</array>
+	<!-- M07/T07.5 Universal Links 由 Runner.entitlements 的 com.apple.developer.associated-domains
+	     条目配置（applinks:app.example.com）；详见 docs/router/DEEP_LINKING.md -->
 </dict>
 </plist>

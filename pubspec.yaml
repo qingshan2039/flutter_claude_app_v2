@@ -55,6 +55,9 @@ dependencies:
   # State management (M06 / T06.x)
   flutter_riverpod: ^2.6.0
 
+  # Routing (M07 / T07.x)
+  go_router: ^15.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,6 +72,7 @@ dev_dependencies:
   retrofit_generator: ^10.0.0
   # riverpod_generator 与当前 json_serializable / freezed / retrofit 版本链不兼容；
   # 改用手写 Provider 模式（与 codegen 等价），完整说明见 docs/verification/T06.1.md
+  go_router_builder: ^4.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

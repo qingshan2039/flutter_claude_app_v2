@@ -31,6 +31,9 @@ import 'package:flutter_claude_app_v2/core/network/interceptors/retry_intercepto
     as _i260;
 import 'package:flutter_claude_app_v2/core/observer/provider_observer.dart'
     as _i666;
+import 'package:flutter_claude_app_v2/core/router/app_router.dart' as _i1006;
+import 'package:flutter_claude_app_v2/core/router/router_log_observer.dart'
+    as _i273;
 import 'package:flutter_claude_app_v2/core/storage/database/app_database.dart'
     as _i920;
 import 'package:flutter_claude_app_v2/core/storage/key_value_storage.dart'
@@ -78,6 +81,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i666.AppProviderObserver>(
       () => _i666.AppProviderObserver(),
     );
+    gh.lazySingleton<_i273.RouterLogObserver>(() => _i273.RouterLogObserver());
     await gh.lazySingletonAsync<_i920.AppDatabase>(
       () => databaseModule.provideAppDatabase(),
       preResolve: true,
@@ -87,6 +91,9 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.lazySingleton<_i642.AppInfo>(() => _i642.AppInfo());
+    gh.lazySingleton<_i1006.RouterDeps>(
+      () => _i1006.RouterDeps(gh<_i273.RouterLogObserver>()),
+    );
     gh.lazySingleton<_i1015.TokenRefresher>(
       () => const _i1015.StubTokenRefresher(),
     );
