@@ -5,8 +5,8 @@ project: flutter_claude_app_v2
 project_path: /Users/ben/ai_project/flutter_claude_app_v2
 last_updated: 2026-05-18
 total_tasks_in_spec: 180
-completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5]
-completed_modules: [M01, M02, M03]
+completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5, T04.1, T04.2, T04.3, T04.4, T04.5, T04.6, T04.7, T04.8, T04.9]
+completed_modules: [M01, M02, M03, M04]
 audience: [human_developers, ai_agents, rag_systems]
 ---
 
@@ -107,11 +107,21 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 | T03.3 | 定义 Result 类型 | M03 | P0 | ✅ completed | 2026-05-18 | [T03.3.md](./T03.3.md) |
 | T03.4 | 实现 Exception → Failure 转换器 | M03 | P0 | ✅ completed | 2026-05-18 | [T03.4.md](./T03.4.md) |
 | T03.5 | 注册全局异常捕获 | M03 | P0 | ✅ completed | 2026-05-18 | [T03.5.md](./T03.5.md) |
+| T04.1 | 配置 dio 基础实例 | M04 | P0 | ✅ completed | 2026-05-18 | [T04.1.md](./T04.1.md) |
+| T04.2 | 实现 LogInterceptor | M04 | P0 | ✅ completed | 2026-05-18 | [T04.2.md](./T04.2.md) |
+| T04.3 | 实现 AuthInterceptor | M04 | P0 | ✅ completed | 2026-05-18 | [T04.3.md](./T04.3.md) |
+| T04.4 | 实现 ErrorInterceptor | M04 | P0 | ✅ completed | 2026-05-18 | [T04.4.md](./T04.4.md) |
+| T04.5 | 实现 RetryInterceptor | M04 | P0 | ✅ completed | 2026-05-18 | [T04.5.md](./T04.5.md) |
+| T04.6 | 集成 retrofit | M04 | P0 | ✅ completed | 2026-05-18 | [T04.6.md](./T04.6.md) |
+| T04.7 | 封装 CancelToken 管理 | M04 | P0 | ✅ completed | 2026-05-18 | [T04.7.md](./T04.7.md) |
+| T04.8 | 统一响应解包 | M04 | P0 | ✅ completed | 2026-05-18 | [T04.8.md](./T04.8.md) |
+| T04.9 | SSL Pinning（可选） | M04 | P0 | ✅ completed | 2026-05-18 | [T04.9.md](./T04.9.md) |
 
 **模块进度**：
 - M01 项目骨架与目录结构 ✅ 已完成（3/3）
 - M02 依赖注入与数据建模 ✅ 已完成（3/3）
 - M03 错误处理体系 ✅ 已完成（5/5）
+- M04 网络层 ✅ 已完成（9/9）
 
 ## 工作流
 
