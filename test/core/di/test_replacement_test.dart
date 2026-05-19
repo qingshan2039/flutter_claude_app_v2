@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter_claude_app_v2/core/di/examples/environment_aware_service.dart';
 import 'package:flutter_claude_app_v2/core/di/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../../_helpers/storage_test_setup.dart';
 
 /// 测试专用的 [ApiClient] 替身：无副作用、返回固定值，方便断言。
 class FakeApiClient implements ApiClient {
@@ -20,7 +24,16 @@ class FakeApiClient implements ApiClient {
 }
 
 void main() {
-  tearDown(() async => getIt.reset());
+  late Directory tempDir;
+
+  setUp(() async {
+    tempDir = await setupStorageMocks();
+  });
+
+  tearDown(() async {
+    await getIt.reset();
+    await tearDownStorageMocks(tempDir);
+  });
 
   group('测试场景：手动替换依赖', () {
     test('configure 前手动注册 fake，跳过 injectable', () async {

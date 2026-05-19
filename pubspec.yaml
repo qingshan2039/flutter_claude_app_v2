@@ -45,6 +45,13 @@ dependencies:
   dio: ^5.7.0
   retrofit: ^4.4.0
 
+  # Storage (M05 / T05.x)
+  shared_preferences: ^2.3.0
+  flutter_secure_storage: ^9.2.0
+  hive_ce: ^2.10.0
+  hive_ce_flutter: ^2.0.0
+  path_provider: ^2.1.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

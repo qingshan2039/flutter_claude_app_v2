@@ -1,9 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter_claude_app_v2/core/di/examples/environment_aware_service.dart';
 import 'package:flutter_claude_app_v2/core/di/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../_helpers/storage_test_setup.dart';
+
 void main() {
-  tearDown(() async => getIt.reset());
+  late Directory tempDir;
+
+  setUp(() async {
+    tempDir = await setupStorageMocks();
+  });
+
+  tearDown(() async {
+    await getIt.reset();
+    await tearDownStorageMocks(tempDir);
+  });
 
   group('按环境注册（@dev / @prod / @test）', () {
     test('environment="dev" → ApiClient 解析为 MockApiClient', () async {

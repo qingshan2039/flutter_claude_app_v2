@@ -1,15 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter_claude_app_v2/core/di/injection.dart';
 import 'package:flutter_claude_app_v2/core/utils/app_info.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../_helpers/storage_test_setup.dart';
+
 void main() {
+  late Directory tempDir;
+
   setUp(() async {
+    tempDir = await setupStorageMocks();
     await getIt.reset();
     await configureDependencies();
   });
 
   tearDown(() async {
     await getIt.reset();
+    await tearDownStorageMocks(tempDir);
   });
 
   group('configureDependencies()', () {

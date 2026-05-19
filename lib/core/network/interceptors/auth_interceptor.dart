@@ -24,8 +24,10 @@ abstract class AuthEvents {
   void onForcedLogout({Object? cause});
 }
 
-/// 内存版 token 存储；T04.3 默认绑定。M05/T05.2 完成后替换为 secure storage 实现。
-@LazySingleton(as: TokenStorage)
+/// 内存版 [TokenStorage]，仅供测试 / 桌面端没有 secure storage 时手工注入。
+///
+/// **不**注册到 DI：M05/T05.2 完成后由 `SecureTokenStorage` 通过
+/// `@LazySingleton(as: TokenStorage)` 提供生产实现。
 class InMemoryTokenStorage implements TokenStorage {
   InMemoryTokenStorage();
 

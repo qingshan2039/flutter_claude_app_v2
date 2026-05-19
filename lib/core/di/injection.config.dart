@@ -29,20 +29,31 @@ import 'package:flutter_claude_app_v2/core/network/interceptors/log_interceptor.
     as _i860;
 import 'package:flutter_claude_app_v2/core/network/interceptors/retry_interceptor.dart'
     as _i260;
+import 'package:flutter_claude_app_v2/core/storage/database/app_database.dart'
+    as _i920;
+import 'package:flutter_claude_app_v2/core/storage/key_value_storage.dart'
+    as _i858;
+import 'package:flutter_claude_app_v2/core/storage/secure_storage.dart'
+    as _i830;
+import 'package:flutter_claude_app_v2/core/storage/secure_token_storage.dart'
+    as _i8;
 import 'package:flutter_claude_app_v2/core/utils/app_info.dart' as _i642;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
-  _i174.GetIt init({
+  Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) {
+  }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final databaseModule = _$DatabaseModule();
+    final sharedPreferencesModule = _$SharedPreferencesModule();
     final networkModule = _$NetworkModule();
     final exampleApiModule = _$ExampleApiModule();
     gh.factory<_i237.FactoryService>(() => _i237.FactoryService());
@@ -56,9 +67,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i942.ApiErrorInterceptor>(
       () => const _i942.ApiErrorInterceptor(),
     );
+    await gh.lazySingletonAsync<_i920.AppDatabase>(
+      () => databaseModule.provideAppDatabase(),
+      preResolve: true,
+    );
+    await gh.lazySingletonAsync<_i460.SharedPreferences>(
+      () => sharedPreferencesModule.prefs,
+      preResolve: true,
+    );
     gh.lazySingleton<_i642.AppInfo>(() => _i642.AppInfo());
     gh.lazySingleton<_i1015.TokenRefresher>(
       () => const _i1015.StubTokenRefresher(),
+    );
+    gh.lazySingleton<_i830.SecureStorage>(
+      () => _i830.FlutterSecureStorageImpl(),
     );
     gh.lazySingleton<_i260.RetryInterceptor>(
       () => _i260.RetryInterceptor(
@@ -71,13 +93,22 @@ extension GetItInjectableX on _i174.GetIt {
       registerFor: {_dev},
     );
     gh.lazySingleton<_i1015.AuthEvents>(() => const _i1015.NoopAuthEvents());
-    gh.lazySingleton<_i1015.TokenStorage>(() => _i1015.InMemoryTokenStorage());
     gh.lazySingleton<_i860.LoggingInterceptor>(
       () => _i860.LoggingInterceptor(
         enabled: gh<bool>(),
         extraSensitiveHeaders: gh<Set<String>>(),
         extraSensitiveBodyKeys: gh<Set<String>>(),
       ),
+    );
+    gh.lazySingleton<_i767.ApiClient>(
+      () => _i767.RealApiClient(),
+      registerFor: {_prod},
+    );
+    gh.lazySingleton<_i858.KeyValueStorage>(
+      () => _i858.SharedPreferencesStorage(gh<_i460.SharedPreferences>()),
+    );
+    gh.lazySingleton<_i1015.TokenStorage>(
+      () => _i8.SecureTokenStorage(gh<_i830.SecureStorage>()),
     );
     gh.lazySingleton<_i361.Dio>(
       () => networkModule.provideDio(
@@ -89,16 +120,16 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i942.ApiErrorInterceptor>(),
       ),
     );
-    gh.lazySingleton<_i767.ApiClient>(
-      () => _i767.RealApiClient(),
-      registerFor: {_prod},
-    );
     gh.lazySingleton<_i958.ExampleApiService>(
       () => exampleApiModule.exampleApi(gh<_i361.Dio>()),
     );
     return this;
   }
 }
+
+class _$DatabaseModule extends _i920.DatabaseModule {}
+
+class _$SharedPreferencesModule extends _i858.SharedPreferencesModule {}
 
 class _$NetworkModule extends _i29.NetworkModule {}
 
