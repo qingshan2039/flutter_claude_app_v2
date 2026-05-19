@@ -52,18 +52,23 @@ dependencies:
   hive_ce_flutter: ^2.0.0
   path_provider: ^2.1.4
 
+  # State management (M06 / T06.x)
+  flutter_riverpod: ^2.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^6.0.0
 
-  # Code generation (M02 / T02.1 + T02.2, M04 / T04.6)
+  # Code generation (M02 / T02.1 + T02.2, M04 / T04.6, M06 / T06.x)
   build_runner: ^2.4.13
   injectable_generator: ^2.6.2
   freezed: ^3.0.0
   json_serializable: ^6.8.0
   retrofit_generator: ^10.0.0
+  # riverpod_generator 与当前 json_serializable / freezed / retrofit 版本链不兼容；
+  # 改用手写 Provider 模式（与 codegen 等价），完整说明见 docs/verification/T06.1.md
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

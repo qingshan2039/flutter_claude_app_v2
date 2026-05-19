@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_claude_app_v2/core/observer/provider_observer.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  // T06.1: 包裹 ProviderScope，所有 Riverpod provider 共享一个根 container。
+  // T06.3: AppProviderObserver 监听全局状态变更；调试期把变更日志打到 stdout。
+  //
+  // M13/T13.1 启动流程编排完成后，main 会被重写为：
+  // 1. WidgetsFlutterBinding.ensureInitialized()
+  // 2. registerGlobalErrorHandlers()（T03.5）
+  // 3. await configureDependencies()（T02.1）
+  // 4. runApp(ProviderScope(observers: [getIt<AppProviderObserver>()], child: ...))
+  runApp(
+    ProviderScope(
+      observers: <ProviderObserver>[AppProviderObserver()],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

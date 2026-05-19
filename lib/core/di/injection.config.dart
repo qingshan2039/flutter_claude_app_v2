@@ -29,6 +29,8 @@ import 'package:flutter_claude_app_v2/core/network/interceptors/log_interceptor.
     as _i860;
 import 'package:flutter_claude_app_v2/core/network/interceptors/retry_interceptor.dart'
     as _i260;
+import 'package:flutter_claude_app_v2/core/observer/provider_observer.dart'
+    as _i666;
 import 'package:flutter_claude_app_v2/core/storage/database/app_database.dart'
     as _i920;
 import 'package:flutter_claude_app_v2/core/storage/key_value_storage.dart'
@@ -38,6 +40,12 @@ import 'package:flutter_claude_app_v2/core/storage/secure_storage.dart'
 import 'package:flutter_claude_app_v2/core/storage/secure_token_storage.dart'
     as _i8;
 import 'package:flutter_claude_app_v2/core/utils/app_info.dart' as _i642;
+import 'package:flutter_claude_app_v2/features/auth/data/repositories/auth_repository_impl.dart'
+    as _i56;
+import 'package:flutter_claude_app_v2/features/auth/domain/repositories/auth_repository.dart'
+    as _i1049;
+import 'package:flutter_claude_app_v2/features/auth/domain/use_cases/get_current_user_use_case.dart'
+    as _i5;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
@@ -67,6 +75,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i942.ApiErrorInterceptor>(
       () => const _i942.ApiErrorInterceptor(),
     );
+    gh.lazySingleton<_i666.AppProviderObserver>(
+      () => _i666.AppProviderObserver(),
+    );
     await gh.lazySingletonAsync<_i920.AppDatabase>(
       () => databaseModule.provideAppDatabase(),
       preResolve: true,
@@ -78,6 +89,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i642.AppInfo>(() => _i642.AppInfo());
     gh.lazySingleton<_i1015.TokenRefresher>(
       () => const _i1015.StubTokenRefresher(),
+    );
+    gh.lazySingleton<_i1049.AuthRepository>(
+      () => _i56.AuthRepositoryImpl(gh<_i20.ErrorMapper>()),
     );
     gh.lazySingleton<_i830.SecureStorage>(
       () => _i830.FlutterSecureStorageImpl(),
@@ -93,6 +107,9 @@ extension GetItInjectableX on _i174.GetIt {
       registerFor: {_dev},
     );
     gh.lazySingleton<_i1015.AuthEvents>(() => const _i1015.NoopAuthEvents());
+    gh.factory<_i5.GetCurrentUserUseCase>(
+      () => _i5.GetCurrentUserUseCase(gh<_i1049.AuthRepository>()),
+    );
     gh.lazySingleton<_i860.LoggingInterceptor>(
       () => _i860.LoggingInterceptor(
         enabled: gh<bool>(),
