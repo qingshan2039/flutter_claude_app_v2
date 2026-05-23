@@ -5,8 +5,8 @@ project: flutter_claude_app_v2
 project_path: /Users/ben/ai_project/flutter_claude_app_v2
 last_updated: 2026-05-18
 total_tasks_in_spec: 180
-completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5, T04.1, T04.2, T04.3, T04.4, T04.5, T04.6, T04.7, T04.8, T04.9, T05.1, T05.2, T05.3, T05.4, T06.1, T06.2, T06.3, T06.4, T07.1, T07.2, T07.3, T07.4, T07.5, T07.6, T07.7, T07.8, T08.1, T08.2, T08.3, T08.4, T08.5, T08.6, T09.1, T09.2, T09.3, T09.4, T10.1, T10.2, T10.3, T10.4, T10.5]
-completed_modules: [M01, M02, M03, M04, M05, M06, M07, M08, M09, M10]
+completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5, T04.1, T04.2, T04.3, T04.4, T04.5, T04.6, T04.7, T04.8, T04.9, T05.1, T05.2, T05.3, T05.4, T06.1, T06.2, T06.3, T06.4, T07.1, T07.2, T07.3, T07.4, T07.5, T07.6, T07.7, T07.8, T08.1, T08.2, T08.3, T08.4, T08.5, T08.6, T09.1, T09.2, T09.3, T09.4, T10.1, T10.2, T10.3, T10.4, T10.5, T11.1, T11.2, T11.3, T11.4, T11.5, T12.1, T12.2, T12.3, T12.4, T12.5, T12.6, T12.7, T13.1, T13.2, T13.3, T13.4, T13.5]
+completed_modules: [M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13]
 audience: [human_developers, ai_agents, rag_systems]
 ---
 
@@ -147,6 +147,23 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 | T10.3 | 自定义 ThemeExtension | M10 | P0 | ✅ completed | 2026-05-18 | [T10.3.md](./T10.3.md) |
 | T10.4 | 主题切换 | M10 | P0 | ✅ completed | 2026-05-18 | [T10.4.md](./T10.4.md) |
 | T10.5 | 状态栏样式适配 | M10 | P0 | ✅ completed | 2026-05-18 | [T10.5.md](./T10.5.md) |
+| T11.1 | 集成 logger | M11 | P0 | ✅ completed | 2026-05-18 | [T11.1.md](./T11.1.md) |
+| T11.2 | 日志文件落盘 | M11 | P0 | ✅ completed | 2026-05-18 | [T11.2.md](./T11.2.md) |
+| T11.3 | 敏感字段脱敏 | M11 | P0 | ✅ completed | 2026-05-18 | [T11.3.md](./T11.3.md) |
+| T11.4 | 集成 Sentry | M11 | P0 | ✅ completed | 2026-05-18 | [T11.4.md](./T11.4.md) |
+| T11.5 | 性能监控埋点 | M11 | P0 | ✅ completed | 2026-05-18 | [T11.5.md](./T11.5.md) |
+| T12.1 | 定义断点系统 | M12 | P0 | ✅ completed | 2026-05-18 | [T12.1.md](./T12.1.md) |
+| T12.2 | 实现 ResponsiveBuilder | M12 | P0 | ✅ completed | 2026-05-18 | [T12.2.md](./T12.2.md) |
+| T12.3 | 字体缩放策略 | M12 | P0 | ✅ completed | 2026-05-18 | [T12.3.md](./T12.3.md) |
+| T12.4 | 平板 Master-Detail 布局 | M12 | P0 | ✅ completed | 2026-05-18 | [T12.4.md](./T12.4.md) |
+| T12.5 | 折叠屏支持 | M12 | P0 | ✅ completed | 2026-05-18 | [T12.5.md](./T12.5.md) |
+| T12.6 | 安全区域处理 | M12 | P0 | ✅ completed | 2026-05-18 | [T12.6.md](./T12.6.md) |
+| T12.7 | 横竖屏处理 | M12 | P0 | ✅ completed | 2026-05-18 | [T12.7.md](./T12.7.md) |
+| T13.1 | 编写 bootstrap.dart | M13 | P0 | ✅ completed | 2026-05-18 | [T13.1.md](./T13.1.md) |
+| T13.2 | 多环境入口 | M13 | P0 | ✅ completed | 2026-05-18 | [T13.2.md](./T13.2.md) |
+| T13.3 | 异步并行初始化优化 | M13 | P0 | ✅ completed | 2026-05-18 | [T13.3.md](./T13.3.md) |
+| T13.4 | 原生启动页配置 | M13 | P0 | ✅ completed | 2026-05-18 | [T13.4.md](./T13.4.md) |
+| T13.5 | App 生命周期监听 | M13 | P0 | ✅ completed | 2026-05-18 | [T13.5.md](./T13.5.md) |
 
 **模块进度**：
 - M01 项目骨架与目录结构 ✅ 已完成（3/3）
@@ -159,6 +176,9 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 - M08 国际化 ✅ 已完成（6/6）
 - M09 权限管理 ✅ 已完成（4/4）
 - M10 主题与设计系统 ✅ 已完成（5/5）
+- M11 日志与监控 ✅ 已完成（5/5）
+- M12 多屏幕适配 ✅ 已完成（7/7）
+- M13 启动流程编排 ✅ 已完成（5/5）— **Phase 1 基础架构收尾**
 
 ## 工作流
 

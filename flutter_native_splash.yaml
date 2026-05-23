@@ -1,0 +1,25 @@
+# M13/T13.4 — flutter_native_splash 配置
+#
+# 生成原生启动页（衔接 Flutter 首帧前的空白）。运行：
+#   dart run flutter_native_splash:create
+# 修改本文件后需重新 create。移除：dart run flutter_native_splash:remove
+#
+# 这里用纯背景色（品牌 seed 色），无需额外图片资源即可生效。
+# 接入真实 logo 时取消 image 注释并提供 assets/splash/logo.png。
+flutter_native_splash:
+  # 浅色 / 暗色背景（对齐 M10 ColorTokens.brandSeed / 暗色 surface）
+  color: "#6750A4"
+  color_dark: "#1C1B1F"
+
+  # image: assets/splash/logo.png
+  # image_dark: assets/splash/logo_dark.png
+
+  # Android 12+ 用专门的 SplashScreen API
+  android_12:
+    color: "#6750A4"
+    color_dark: "#1C1B1F"
+    # image: assets/splash/android12_logo.png
+
+  android: true
+  ios: true
+  web: false

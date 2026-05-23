@@ -17,6 +17,10 @@ import 'package:flutter_claude_app_v2/core/di/examples/environment_aware_service
 import 'package:flutter_claude_app_v2/core/di/examples/factory_service.dart'
     as _i237;
 import 'package:flutter_claude_app_v2/core/error/error_mapper.dart' as _i20;
+import 'package:flutter_claude_app_v2/core/logger/app_logger.dart' as _i236;
+import 'package:flutter_claude_app_v2/core/logger/crash_reporter.dart' as _i13;
+import 'package:flutter_claude_app_v2/core/logger/performance_monitor.dart'
+    as _i851;
 import 'package:flutter_claude_app_v2/core/network/api_service.dart' as _i958;
 import 'package:flutter_claude_app_v2/core/network/cancel_token_manager.dart'
     as _i462;
@@ -96,9 +100,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1006.RouterDeps>(
       () => _i1006.RouterDeps(gh<_i273.RouterLogObserver>()),
     );
+    gh.lazySingleton<_i13.CrashReporter>(() => const _i13.NoopCrashReporter());
     gh.lazySingleton<_i1015.TokenRefresher>(
       () => const _i1015.StubTokenRefresher(),
     );
+    gh.lazySingleton<_i236.AppLogger>(() => _i236.LoggerImpl());
     gh.lazySingleton<_i1049.AuthRepository>(
       () => _i56.AuthRepositoryImpl(gh<_i20.ErrorMapper>()),
     );
@@ -135,6 +141,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i858.KeyValueStorage>(
       () => _i858.SharedPreferencesStorage(gh<_i460.SharedPreferences>()),
+    );
+    gh.lazySingleton<_i851.PerformanceMonitor>(
+      () => _i851.PerformanceMonitorImpl(gh<_i236.AppLogger>()),
     );
     gh.lazySingleton<_i1015.TokenStorage>(
       () => _i8.SecureTokenStorage(gh<_i830.SecureStorage>()),

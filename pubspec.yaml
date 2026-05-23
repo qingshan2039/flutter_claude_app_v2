@@ -66,6 +66,10 @@ dependencies:
   # Permissions (M09 / T09.x)
   permission_handler: ^11.3.0
 
+  # Logging & monitoring (M11 / T11.x)
+  logger: ^2.4.0
+  sentry_flutter: ^9.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -82,6 +86,9 @@ dev_dependencies:
   # 改用手写 Provider 模式（与 codegen 等价），完整说明见 docs/verification/T06.1.md
   go_router_builder: ^4.3.0
 
+  # Native splash (M13 / T13.4)
+  flutter_native_splash: ^2.4.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -95,6 +102,19 @@ flutter:
 
   # M08/T08.1: 启用 flutter gen-l10n 在 lib/l10n/ 下生成 AppLocalizations
   generate: true
+
+  # 项目级固定使用 CocoaPods（关闭 Swift Package Manager）。
+  # 原因：permission_handler_apple（M09）与 flutter_secure_storage（M05）目前仅提供
+  # podspec、未适配 SPM。固定 CocoaPods 可避免在开启 SPM 的机器上发生意外的 SPM 迁移。
+  #
+  # 注意：iOS 相关命令时 flutter_tools 仍会无条件打印一行
+  #   "The following plugins do not support Swift Package Manager for ios: ..."
+  # 这是 macOS 上检测到「仅 CocoaPods」插件时的信息性提示（见 flutter_tools
+  # darwin_dependency_management.dart，仅受 host==macOS 限制，与本开关无关），
+  # 无法通过配置消除，且无害——两个插件有 podspec，iOS 始终用 CocoaPods 正常构建。
+  # 待两个插件适配 SPM 后删除本段即可切回 SPM。
+  config:
+    enable-swift-package-manager: false
 
   # To add assets to your application, add an assets section, like this:
   # assets:
