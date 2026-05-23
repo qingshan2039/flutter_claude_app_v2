@@ -1,0 +1,75 @@
+{
+  "//": "M15 / T15.4 三套环境启动配置。每个 flavor 对应 main_<env>.dart 入口 +",
+  "//2": "--flavor + --dart-define-from-file=env/<env>.json（缺文件时回退 EnvConfig 默认值）。",
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "dev (debug)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart",
+      "args": [
+        "--flavor",
+        "dev",
+        "--dart-define-from-file=env/dev.json"
+      ]
+    },
+    {
+      "name": "staging (debug)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_staging.dart",
+      "args": [
+        "--flavor",
+        "staging",
+        "--dart-define-from-file=env/staging.json"
+      ]
+    },
+    {
+      "name": "prod (debug)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_prod.dart",
+      "args": [
+        "--flavor",
+        "prod",
+        "--dart-define-from-file=env/prod.json"
+      ]
+    },
+    {
+      "name": "prod (profile)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "program": "lib/main_prod.dart",
+      "args": [
+        "--flavor",
+        "prod",
+        "--dart-define-from-file=env/prod.json"
+      ]
+    },
+    {
+      "name": "prod (release)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "program": "lib/main_prod.dart",
+      "args": [
+        "--flavor",
+        "prod",
+        "--dart-define-from-file=env/prod.json"
+      ]
+    },
+    {
+      "name": "showcase (dev flavor)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_showcase.dart",
+      "args": [
+        "--flavor",
+        "dev",
+        "--dart-define-from-file=env/dev.json"
+      ]
+    }
+  ]
+}

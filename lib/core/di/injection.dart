@@ -1,3 +1,5 @@
+import 'package:flutter_claude_app_v2/core/env/app_environment.dart';
+import 'package:flutter_claude_app_v2/core/env/env_config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -20,4 +22,18 @@ final GetIt getIt = GetIt.instance;
 @InjectableInit()
 Future<GetIt> configureDependencies({String? environment}) async {
   return getIt.init(environment: environment);
+}
+
+/// 把当前环境的 [EnvConfig] 注册到 getIt（T15.1 / T15.3）。
+///
+/// 在各入口（bootstrap / main_showcase）`configureDependencies` 之后调用，
+/// 供非 widget 层（拦截器 / Service）`getIt<EnvConfig>()` 读取；UI 层用
+/// `envConfigProvider`（在 ProviderScope 用 [EnvConfig] 覆盖）。
+EnvConfig registerEnvConfig(AppEnvironment environment) {
+  final config = EnvConfig.resolve(environment);
+  if (getIt.isRegistered<EnvConfig>()) {
+    getIt.unregister<EnvConfig>();
+  }
+  getIt.registerSingleton<EnvConfig>(config);
+  return config;
 }

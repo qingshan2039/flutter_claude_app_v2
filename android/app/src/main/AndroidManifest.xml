@@ -15,8 +15,10 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
 
+    <!-- M15/T15.2：android:label 取 flavor 注入的 ${appName}（见 build.gradle.kts
+         productFlavors 的 manifestPlaceholders）。 -->
     <application
-        android:label="flutter_claude_app_v2"
+        android:label="${appName}"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

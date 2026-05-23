@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_claude_app_v2/core/di/injection.dart';
+import 'package:flutter_claude_app_v2/core/env/app_environment.dart';
+import 'package:flutter_claude_app_v2/core/env/env_config.dart';
 import 'package:flutter_claude_app_v2/core/error/global_error_handler.dart';
 import 'package:flutter_claude_app_v2/core/logger/app_logger.dart';
 import 'package:flutter_claude_app_v2/core/observer/provider_observer.dart';
@@ -20,6 +22,7 @@ void main() {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       await configureDependencies(environment: 'dev');
+      final envConfig = registerEnvConfig(AppEnvironment.dev);
       final logger = getIt<AppLogger>();
       registerGlobalErrorHandlers(
         reporter: (error, stack) =>
@@ -29,6 +32,9 @@ void main() {
       runApp(
         ProviderScope(
           observers: <ProviderObserver>[getIt<AppProviderObserver>()],
+          overrides: <Override>[
+            envConfigProvider.overrideWithValue(envConfig),
+          ],
           child: const ShowcaseApp(),
         ),
       );

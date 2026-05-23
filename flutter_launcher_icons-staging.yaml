@@ -1,0 +1,9 @@
+# M15/T15.5 staging flavor 应用图标配置。
+#   dart run flutter_launcher_icons -f flutter_launcher_icons-staging.yaml
+# 需准备：assets/flavorizr/staging/icon.png（1024×1024 无透明边距）。
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/flavorizr/staging/icon.png"
+  min_sdk_android: 24
+  remove_alpha_ios: true

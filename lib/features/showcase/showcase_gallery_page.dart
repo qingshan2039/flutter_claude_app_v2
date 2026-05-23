@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_claude_app_v2/core/theme/tokens/spacing_tokens.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/di_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/env_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/error_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/i18n_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/logging_demo_page.dart';
@@ -117,6 +118,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '状态组件 · AsyncValue · 刷新 · Toast/Sheet · AppScaffold',
     icon: Icons.widgets_outlined,
     builder: (_) => const UiKitDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M15',
+    title: '多环境配置',
+    subtitle: 'EnvConfig · flavor · dart-define · flutter_gen',
+    icon: Icons.tune,
+    builder: (_) => const EnvDemoPage(),
   ),
 ];
 

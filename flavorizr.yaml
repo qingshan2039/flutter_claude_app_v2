@@ -1,0 +1,43 @@
+# flutter_flavorizr 配置（M15 / T15.2）—— 三套环境 flavor 的声明式来源。
+#
+# ⚠️ 重要：本项目**未**直接运行 `dart run flutter_flavorizr`（其处理器会重写
+# android/ios 原生工程，覆盖本项目既有的手工配置：深链 host、权限声明、
+# CocoaPods 固定、原生启动页、minSdk=24/iOS 13.0）。
+#
+# 因此：
+# - Android 端的 flavor 已在 `android/app/build.gradle.kts` 的 productFlavors 中
+#   按本文件**手工实现**（等价结果，且不破坏既有配置）。
+# - iOS 端请参考 docs/env/ENVIRONMENTS.md 的「iOS flavor（scheme + xcconfig）」
+#   一节手工配置 scheme；或在**全新工程**上用本文件跑 flutter_flavorizr。
+#
+# 在全新工程上一次性生成：
+#   dart pub global activate flutter_flavorizr
+#   flutter_flavorizr -p flavorizr.yaml -f assets/flavorizr/
+
+flavors:
+  dev:
+    app:
+      name: "CCD Dev"
+    android:
+      applicationId: "com.ben.claude_flutter_v2.flutter_claude_app_v2.dev"
+      # icon: "assets/flavorizr/dev/icon.png"
+    ios:
+      bundleId: "com.ben.claudeFlutterV2.flutterClaudeAppV2.dev"
+
+  staging:
+    app:
+      name: "CCD Staging"
+    android:
+      applicationId: "com.ben.claude_flutter_v2.flutter_claude_app_v2.staging"
+      # icon: "assets/flavorizr/staging/icon.png"
+    ios:
+      bundleId: "com.ben.claudeFlutterV2.flutterClaudeAppV2.staging"
+
+  prod:
+    app:
+      name: "CCD"
+    android:
+      applicationId: "com.ben.claude_flutter_v2.flutter_claude_app_v2"
+      # icon: "assets/flavorizr/prod/icon.png"
+    ios:
+      bundleId: "com.ben.claudeFlutterV2.flutterClaudeAppV2"

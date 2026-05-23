@@ -20,10 +20,11 @@ related_code:
 
 ```bash
 # 任意已连接的设备 / 模拟器
-flutter run -t lib/main_showcase.dart
+# 注意：M15 起加了 Android flavor，原生运行/构建必须带 --flavor。
+flutter run --flavor dev -t lib/main_showcase.dart
 
 # 仅构建调试包
-flutter build apk --debug -t lib/main_showcase.dart
+flutter build apk --flavor dev --debug -t lib/main_showcase.dart
 ```
 
 启动后进入画廊首页，点任一卡片进入对应模块的 demo 页。Showcase 用普通
@@ -49,6 +50,7 @@ flutter build apk --debug -t lib/main_showcase.dart
 | M11 日志与监控 | `logging_demo_page.dart` | 分级日志；脱敏实时演示；性能埋点计时 |
 | M12 多屏幕适配 | `responsive_demo_page.dart` | 实时断点 / ScreenType；ResponsiveBuilder；Master-Detail |
 | M14 通用 UI 组件 | `ui_kit_demo_page.dart` | 状态组件 / AsyncValueWidget / AppImage / 下拉刷新 / Toast / Dialog / BottomSheet / 键盘 / AppScaffold |
+| M15 多环境配置 | `env_demo_page.dart` | 当前 EnvConfig（环境/包名/API/开关）· flavor · dart-define · flutter_gen 资源 |
 
 ## 3. 结构
 

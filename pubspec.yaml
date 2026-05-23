@@ -90,6 +90,8 @@ dev_dependencies:
 
   # Native splash (M13 / T13.4)
   flutter_native_splash: ^2.4.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_gen_runner: ^5.14.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -117,6 +119,10 @@ flutter:
   # 待两个插件适配 SPM 后删除本段即可切回 SPM。
   config:
     enable-swift-package-manager: false
+
+  # M15/T15.5: 资源目录（flutter_gen 据此生成 lib/gen/assets.gen.dart 类型安全引用）
+  assets:
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -148,3 +154,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# M15/T15.5: flutter_gen 配置（顶层键）。
+# `dart run build_runner build` 会据 flutter.assets 生成 lib/gen/assets.gen.dart，
+# 用 Assets.images.placeholder 取代裸字符串路径（编译期校验、可重构）。
+# 如需 SVG 渲染集成，添加 flutter_svg 依赖后在 integrations 下打开 flutter_svg: true。
+flutter_gen:
+  output: lib/gen/
+  line_length: 80

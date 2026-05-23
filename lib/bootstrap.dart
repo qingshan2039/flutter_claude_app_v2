@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_claude_app_v2/app.dart';
 import 'package:flutter_claude_app_v2/core/di/injection.dart';
 import 'package:flutter_claude_app_v2/core/env/app_environment.dart';
+import 'package:flutter_claude_app_v2/core/env/env_config.dart';
 import 'package:flutter_claude_app_v2/core/error/global_error_handler.dart';
 import 'package:flutter_claude_app_v2/core/logger/app_logger.dart';
 import 'package:flutter_claude_app_v2/core/logger/crash_reporter.dart';
@@ -29,6 +30,9 @@ void bootstrap(AppEnvironment environment) {
       // ── 关键路径 1：依赖注入（含存储 @preResolve）──
       await configureDependencies(environment: environment.injectableName);
 
+      // M15/T15.1：注册当前环境配置（dart-define 覆盖默认值）。
+      final envConfig = registerEnvConfig(environment);
+
       final logger = getIt<AppLogger>();
       final crashReporter = getIt<CrashReporter>();
 
@@ -48,6 +52,9 @@ void bootstrap(AppEnvironment environment) {
       runApp(
         ProviderScope(
           observers: <ProviderObserver>[getIt<AppProviderObserver>()],
+          overrides: <Override>[
+            envConfigProvider.overrideWithValue(envConfig),
+          ],
           child: const App(),
         ),
       );

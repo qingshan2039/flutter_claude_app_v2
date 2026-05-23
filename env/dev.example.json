@@ -1,0 +1,7 @@
+{
+  "API_BASE_URL": "https://dev-api.example.com",
+  "SENTRY_DSN": "",
+  "APP_NAME": "CCD Dev",
+  "ENABLE_LOGGING": true,
+  "ENABLE_CRASH_REPORTING": false
+}

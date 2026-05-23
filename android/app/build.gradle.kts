@@ -34,6 +34,31 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    // M15/T15.2 多环境 flavor：dev / staging / prod。
+    // - applicationIdSuffix：dev/staging 改包名，便于三套并存安装；prod 用基础包名。
+    // - manifestPlaceholders["appName"]：AndroidManifest 的 android:label="${appName}" 取此值。
+    // 说明：未跑破坏性的 `flutter_flavorizr` 处理器（会覆盖本项目既有原生配置：
+    // 深链 host、权限、CocoaPods 固定、启动页）；此处手写等价配置。声明式来源见
+    // 项目根 flavorizr.yaml。构建需带 --flavor，如：
+    //   flutter build apk --flavor dev -t lib/main_dev.dart
+    flavorDimensions += "env"
+    productFlavors {
+        create("dev") {
+            dimension = "env"
+            applicationIdSuffix = ".dev"
+            manifestPlaceholders["appName"] = "CCD Dev"
+        }
+        create("staging") {
+            dimension = "env"
+            applicationIdSuffix = ".staging"
+            manifestPlaceholders["appName"] = "CCD Staging"
+        }
+        create("prod") {
+            dimension = "env"
+            manifestPlaceholders["appName"] = "CCD"
+        }
+    }
 }
 
 flutter {
