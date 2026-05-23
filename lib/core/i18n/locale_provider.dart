@@ -1,22 +1,16 @@
 import 'dart:ui' show Locale;
 
-import 'package:flutter_claude_app_v2/core/di/injection.dart';
-import 'package:flutter_claude_app_v2/core/storage/key_value_storage.dart';
+import 'package:flutter_claude_app_v2/core/storage/storage_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+export 'package:flutter_claude_app_v2/core/storage/storage_providers.dart'
+    show keyValueStorageProvider;
 
 /// 支持的语言（T08.4 / T08.5）。新增语言时在此追加并补 ARB 文件。
 const List<Locale> kSupportedLocales = <Locale>[
   Locale('en'),
   Locale('zh'),
 ];
-
-/// 桥接：把 DI 容器中的 [KeyValueStorage] 暴露给 Riverpod 树。
-/// 测试中 override 此 provider 即可注入内存实现，无需触碰 getIt。
-final Provider<KeyValueStorage> keyValueStorageProvider =
-    Provider<KeyValueStorage>(
-      (ref) => getIt<KeyValueStorage>(),
-      name: 'keyValueStorageProvider',
-    );
 
 /// 应用语言状态（T08.4 运行时切换 + T08.5 持久化）。
 ///
