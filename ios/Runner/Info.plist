@@ -1,103 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDisplayName</key>
-	<string>Flutter Claude App V2</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>flutter_claude_app_v2</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UIApplicationSceneManifest</key>
 	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-		<key>UISceneConfigurations</key>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
+		<true/>
+		<key>CFBundleDevelopmentRegion</key>
+		<string>$(DEVELOPMENT_LANGUAGE)</string>
+		<key>CFBundleDisplayName</key>
+		<string>Flutter Claude App V2</string>
+		<key>CFBundleExecutable</key>
+		<string>$(EXECUTABLE_NAME)</string>
+		<key>CFBundleIdentifier</key>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+		<key>CFBundleName</key>
+		<string>flutter_claude_app_v2</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleShortVersionString</key>
+		<string>$(FLUTTER_BUILD_NAME)</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundleVersion</key>
+		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>LSRequiresIPhoneOS</key>
+		<true/>
+		<key>UIApplicationSceneManifest</key>
 		<dict>
-			<key>UIWindowSceneSessionRoleApplication</key>
-			<array>
-				<dict>
-					<key>UISceneClassName</key>
-					<string>UIWindowScene</string>
-					<key>UISceneConfigurationName</key>
-					<string>flutter</string>
-					<key>UISceneDelegateClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
-				</dict>
-			</array>
+			<key>UIApplicationSupportsMultipleScenes</key>
+			<false/>
+			<key>UISceneConfigurations</key>
+			<dict>
+				<key>UIWindowSceneSessionRoleApplication</key>
+				<array>
+					<dict>
+						<key>UISceneClassName</key>
+						<string>UIWindowScene</string>
+						<key>UISceneConfigurationName</key>
+						<string>flutter</string>
+						<key>UISceneDelegateClassName</key>
+						<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+						<key>UISceneStoryboardFile</key>
+						<string>Main</string>
+					</dict>
+				</array>
+			</dict>
 		</dict>
-	</dict>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<!-- M07/T07.5 让 Flutter / go_router 处理深链 -->
-	<key>FlutterDeepLinkingEnabled</key>
-	<true/>
-	<!-- M07/T07.5 自定义 scheme 深链：fcaapp://detail/42 -->
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>com.ben.claude_flutter_v2</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fcaapp</string>
-			</array>
-		</dict>
-	</array>
-	<!-- M07/T07.5 Universal Links 由 Runner.entitlements 的 com.apple.developer.associated-domains
+		<key>UIApplicationSupportsIndirectInputEvents</key>
+		<true/>
+		<key>UILaunchStoryboardName</key>
+		<string>LaunchScreen</string>
+		<key>UIMainStoryboardFile</key>
+		<string>Main</string>
+		<key>UISupportedInterfaceOrientations</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>UISupportedInterfaceOrientations~ipad</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationPortraitUpsideDown</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<!-- M07/T07.5 让 Flutter / go_router 处理深链 -->
+		<key>FlutterDeepLinkingEnabled</key>
+		<true/>
+		<!-- M07/T07.5 自定义 scheme 深链：fcaapp://detail/42 -->
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLName</key>
+				<string>com.ben.claude_flutter_v2</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>fcaapp</string>
+				</array>
+			</dict>
+		</array>
+		<!-- M07/T07.5 Universal Links 由 Runner.entitlements 的 com.apple.developer.associated-domains
 	     条目配置（applinks:app.example.com）；详见 docs/router/DEEP_LINKING.md -->
-	<!-- M09/T09.4 权限用途说明（iOS 必须，缺失会导致 App Store 审核拒绝 / 运行崩溃）。
+		<!-- M09/T09.4 权限用途说明（iOS 必须，缺失会导致 App Store 审核拒绝 / 运行崩溃）。
 	     按需裁剪：删除 app 实际不用的权限说明。文案需面向终端用户、说明用途。 -->
-	<key>NSCameraUsageDescription</key>
-	<string>This app uses the camera to take photos and scan codes.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app accesses your photo library to let you pick and upload images.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This app uses the microphone to record audio.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app uses your location to provide nearby content.</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>This app uses Bluetooth to connect with nearby devices.</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>This app uses Bluetooth to connect with nearby devices.</string>
-</dict>
+		<key>NSCameraUsageDescription</key>
+		<string>This app uses the camera to take photos and scan codes.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>This app accesses your photo library to let you pick and upload images.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>This app uses the microphone to record audio.</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>This app uses your location to provide nearby content.</string>
+		<key>NSBluetoothAlwaysUsageDescription</key>
+		<string>This app uses Bluetooth to connect with nearby devices.</string>
+		<key>NSBluetoothPeripheralUsageDescription</key>
+		<string>This app uses Bluetooth to connect with nearby devices.</string>
+		<key>UIStatusBarHidden</key>
+		<false/>
+	</dict>
 </plist>

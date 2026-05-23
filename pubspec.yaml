@@ -86,6 +86,9 @@ dev_dependencies:
   # 改用手写 Provider 模式（与 codegen 等价），完整说明见 docs/verification/T06.1.md
   go_router_builder: ^4.3.0
 
+  # Native splash (M13 / T13.4)
+  flutter_native_splash: ^2.4.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
