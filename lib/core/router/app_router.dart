@@ -31,8 +31,12 @@ import 'package:injectable/injectable.dart';
 GoRouter createAppRouter({
   required ProviderContainer container,
   required RouterLogObserver observer,
+  GlobalKey<NavigatorState>? rootNavigatorKey,
 }) {
-  final rootKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+  // 允许外部传入根 NavigatorKey（M14/T14.5：OverlayService 用它脱离 context 弹
+  // Dialog / BottomSheet）；未传则内部新建。
+  final rootKey =
+      rootNavigatorKey ?? GlobalKey<NavigatorState>(debugLabel: 'root');
 
   return GoRouter(
     navigatorKey: rootKey,

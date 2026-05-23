@@ -9,6 +9,7 @@ import 'package:flutter_claude_app_v2/core/router/router_log_observer.dart';
 import 'package:flutter_claude_app_v2/core/theme/app_theme.dart';
 import 'package:flutter_claude_app_v2/core/theme/theme_mode_provider.dart';
 import 'package:flutter_claude_app_v2/l10n/app_localizations.dart';
+import 'package:flutter_claude_app_v2/shared/utils/overlay_utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,9 +36,11 @@ class _AppState extends ConsumerState<App> {
   void initState() {
     super.initState();
     // 路由需要 ProviderContainer（守卫读 isLoggedInProvider）+ 日志 observer。
+    // 把 OverlayService 的根 NavigatorKey 交给 go_router，使其能脱离 context 弹窗。
     _router = createAppRouter(
       container: ProviderScope.containerOf(context, listen: false),
       observer: getIt<RouterLogObserver>(),
+      rootNavigatorKey: getIt<OverlayService>().navigatorKey,
     );
     // 生命周期监听（T13.5）
     _lifecycleObserver = AppLifecycleObserver(logger: getIt<AppLogger>());
@@ -56,6 +59,7 @@ class _AppState extends ConsumerState<App> {
     final locale = ref.watch(localeProvider);
 
     return MaterialApp.router(
+      scaffoldMessengerKey: getIt<OverlayService>().scaffoldMessengerKey,
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,

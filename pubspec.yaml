@@ -69,6 +69,8 @@ dependencies:
   # Logging & monitoring (M11 / T11.x)
   logger: ^2.4.0
   sentry_flutter: ^9.0.0
+  cached_network_image: ^3.4.1
+  easy_refresh: ^3.5.0
 
 dev_dependencies:
   flutter_test:

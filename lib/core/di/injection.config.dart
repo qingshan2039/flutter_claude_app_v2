@@ -55,6 +55,7 @@ import 'package:flutter_claude_app_v2/features/auth/domain/repositories/auth_rep
     as _i1049;
 import 'package:flutter_claude_app_v2/features/auth/domain/use_cases/get_current_user_use_case.dart'
     as _i5;
+import 'package:flutter_claude_app_v2/shared/utils/overlay_utils.dart' as _i364;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
@@ -103,6 +104,7 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.lazySingleton<_i642.AppInfo>(() => _i642.AppInfo());
+    gh.lazySingleton<_i364.OverlayService>(() => _i364.OverlayService());
     gh.lazySingleton<_i1006.RouterDeps>(
       () => _i1006.RouterDeps(gh<_i273.RouterLogObserver>()),
     );

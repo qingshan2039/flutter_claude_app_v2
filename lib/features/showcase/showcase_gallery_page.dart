@@ -11,6 +11,7 @@ import 'package:flutter_claude_app_v2/features/showcase/pages/routing_demo_page.
 import 'package:flutter_claude_app_v2/features/showcase/pages/state_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/storage_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/theme_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/ui_kit_demo_page.dart';
 
 /// 单个模块在画廊中的条目。
 class ShowcaseEntry {
@@ -109,6 +110,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '断点 · ResponsiveBuilder · Master-Detail',
     icon: Icons.devices,
     builder: (_) => const ResponsiveDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M14',
+    title: '通用 UI 组件',
+    subtitle: '状态组件 · AsyncValue · 刷新 · Toast/Sheet · AppScaffold',
+    icon: Icons.widgets_outlined,
+    builder: (_) => const UiKitDemoPage(),
   ),
 ];
 

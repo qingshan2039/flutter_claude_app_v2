@@ -33,11 +33,11 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('画廊列出全部 11 个模块（M02-M12）', (tester) async {
+  testWidgets('画廊列出全部 12 个模块（M02-M12, M14）', (tester) async {
     await pumpApp(tester);
 
     expect(find.byType(ShowcaseGalleryPage), findsOneWidget);
-    expect(kShowcaseEntries.length, 11);
+    expect(kShowcaseEntries.length, 12);
     // 抽查若干模块标题可见（ListView 顶部）
     expect(find.textContaining('M02'), findsOneWidget);
     expect(find.textContaining('M03'), findsOneWidget);
@@ -102,7 +102,16 @@ void main() {
       final tile = find.text('${entry.moduleId} · ${entry.title}');
       await tester.scrollUntilVisible(tile, 120);
       await tester.tap(tile);
-      await tester.pumpAndSettle();
+
+      if (entry.moduleId == 'M14') {
+        // M14 含异步加载（AsyncValueWidget 400ms）与网络图片（CachedNetworkImage），
+        // 不能 pumpAndSettle（会等永不停止的加载/动画）。用有界 pump 完成转场即可，
+        // 仍能捕获渲染期布局异常（本守卫的核心目的）。
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 700));
+      } else {
+        await tester.pumpAndSettle();
+      }
 
       // 进入了某个 demo 页（DemoScaffold），且画廊已被覆盖。
       expect(find.byType(DemoScaffold), findsOneWidget);

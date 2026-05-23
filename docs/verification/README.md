@@ -3,10 +3,10 @@ doc_type: verification_index
 spec_doc: /Users/ben/Downloads/flutter_template_v3.md
 project: flutter_claude_app_v2
 project_path: /Users/ben/ai_project/flutter_claude_app_v2
-last_updated: 2026-05-18
+last_updated: 2026-05-23
 total_tasks_in_spec: 180
-completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5, T04.1, T04.2, T04.3, T04.4, T04.5, T04.6, T04.7, T04.8, T04.9, T05.1, T05.2, T05.3, T05.4, T06.1, T06.2, T06.3, T06.4, T07.1, T07.2, T07.3, T07.4, T07.5, T07.6, T07.7, T07.8, T08.1, T08.2, T08.3, T08.4, T08.5, T08.6, T09.1, T09.2, T09.3, T09.4, T10.1, T10.2, T10.3, T10.4, T10.5, T11.1, T11.2, T11.3, T11.4, T11.5, T12.1, T12.2, T12.3, T12.4, T12.5, T12.6, T12.7, T13.1, T13.2, T13.3, T13.4, T13.5]
-completed_modules: [M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13]
+completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5, T04.1, T04.2, T04.3, T04.4, T04.5, T04.6, T04.7, T04.8, T04.9, T05.1, T05.2, T05.3, T05.4, T06.1, T06.2, T06.3, T06.4, T07.1, T07.2, T07.3, T07.4, T07.5, T07.6, T07.7, T07.8, T08.1, T08.2, T08.3, T08.4, T08.5, T08.6, T09.1, T09.2, T09.3, T09.4, T10.1, T10.2, T10.3, T10.4, T10.5, T11.1, T11.2, T11.3, T11.4, T11.5, T12.1, T12.2, T12.3, T12.4, T12.5, T12.6, T12.7, T13.1, T13.2, T13.3, T13.4, T13.5, T14.1, T14.2, T14.3, T14.4, T14.5, T14.6, T14.7, T14.8]
+completed_modules: [M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14]
 audience: [human_developers, ai_agents, rag_systems]
 ---
 
@@ -164,6 +164,14 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 | T13.3 | 异步并行初始化优化 | M13 | P0 | ✅ completed | 2026-05-18 | [T13.3.md](./T13.3.md) |
 | T13.4 | 原生启动页配置 | M13 | P0 | ✅ completed | 2026-05-18 | [T13.4.md](./T13.4.md) |
 | T13.5 | App 生命周期监听 | M13 | P0 | ✅ completed | 2026-05-18 | [T13.5.md](./T13.5.md) |
+| T14.1 | 状态组件集 | M14 | P0 | ✅ completed | 2026-05-23 | [T14.1.md](./T14.1.md) |
+| T14.2 | 异步状态封装 | M14 | P0 | ✅ completed | 2026-05-23 | [T14.2.md](./T14.2.md) |
+| T14.3 | 图片组件 | M14 | P0 | ✅ completed | 2026-05-23 | [T14.3.md](./T14.3.md) |
+| T14.4 | 下拉刷新 / 上拉加载 | M14 | P0 | ✅ completed | 2026-05-23 | [T14.4.md](./T14.4.md) |
+| T14.5 | Toast / Dialog 工具 | M14 | P0 | ✅ completed | 2026-05-23 | [T14.5.md](./T14.5.md) |
+| T14.6 | BottomSheet 工具 | M14 | P0 | ✅ completed | 2026-05-23 | [T14.6.md](./T14.6.md) |
+| T14.7 | 键盘处理 | M14 | P0 | ✅ completed | 2026-05-23 | [T14.7.md](./T14.7.md) |
+| T14.8 | 统一 Scaffold 封装 | M14 | P0 | ✅ completed | 2026-05-23 | [T14.8.md](./T14.8.md) |
 
 **模块进度**：
 - M01 项目骨架与目录结构 ✅ 已完成（3/3）
@@ -179,6 +187,7 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 - M11 日志与监控 ✅ 已完成（5/5）
 - M12 多屏幕适配 ✅ 已完成（7/7）
 - M13 启动流程编排 ✅ 已完成（5/5）— **Phase 1 基础架构收尾**
+- M14 通用 UI 组件 ✅ 已完成（8/8）
 
 ## 工作流
 

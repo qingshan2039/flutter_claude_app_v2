@@ -48,6 +48,7 @@ flutter build apk --debug -t lib/main_showcase.dart
 | M10 主题与设计系统 | `theme_demo_page.dart` | 亮/暗/跟随系统切换；Design Tokens 色板与间距 |
 | M11 日志与监控 | `logging_demo_page.dart` | 分级日志；脱敏实时演示；性能埋点计时 |
 | M12 多屏幕适配 | `responsive_demo_page.dart` | 实时断点 / ScreenType；ResponsiveBuilder；Master-Detail |
+| M14 通用 UI 组件 | `ui_kit_demo_page.dart` | 状态组件 / AsyncValueWidget / AppImage / 下拉刷新 / Toast / Dialog / BottomSheet / 键盘 / AppScaffold |
 
 ## 3. 结构
 
