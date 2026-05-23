@@ -49,6 +49,8 @@ import 'package:flutter_claude_app_v2/core/storage/secure_storage.dart'
 import 'package:flutter_claude_app_v2/core/storage/secure_token_storage.dart'
     as _i8;
 import 'package:flutter_claude_app_v2/core/utils/app_info.dart' as _i642;
+import 'package:flutter_claude_app_v2/features/auth/data/datasources/auth_remote_data_source.dart'
+    as _i143;
 import 'package:flutter_claude_app_v2/features/auth/data/repositories/auth_repository_impl.dart'
     as _i56;
 import 'package:flutter_claude_app_v2/features/auth/domain/repositories/auth_repository.dart'
@@ -105,6 +107,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i642.AppInfo>(() => _i642.AppInfo());
     gh.lazySingleton<_i364.OverlayService>(() => _i364.OverlayService());
+    gh.lazySingleton<_i143.AuthRemoteDataSource>(
+      () => const _i143.AuthRemoteDataSourceImpl(),
+    );
     gh.lazySingleton<_i1006.RouterDeps>(
       () => _i1006.RouterDeps(gh<_i273.RouterLogObserver>()),
     );
@@ -113,9 +118,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => const _i1015.StubTokenRefresher(),
     );
     gh.lazySingleton<_i236.AppLogger>(() => _i236.LoggerImpl());
-    gh.lazySingleton<_i1049.AuthRepository>(
-      () => _i56.AuthRepositoryImpl(gh<_i20.ErrorMapper>()),
-    );
     gh.lazySingleton<_i830.SecureStorage>(
       () => _i830.FlutterSecureStorageImpl(),
     );
@@ -127,6 +129,12 @@ extension GetItInjectableX on _i174.GetIt {
       registerFor: {_dev},
     );
     gh.lazySingleton<_i1015.AuthEvents>(() => const _i1015.NoopAuthEvents());
+    gh.lazySingleton<_i1049.AuthRepository>(
+      () => _i56.AuthRepositoryImpl(
+        gh<_i143.AuthRemoteDataSource>(),
+        gh<_i20.ErrorMapper>(),
+      ),
+    );
     gh.factory<_i5.GetCurrentUserUseCase>(
       () => _i5.GetCurrentUserUseCase(gh<_i1049.AuthRepository>()),
     );

@@ -19,6 +19,9 @@ related_code:
 # 代码质量与 CI/CD（M16）
 
 > 静态分析、git hooks、CI、打包、混淆、协作模板一站式说明。
+>
+> 🔰 **第一次接触 git hooks / CI/CD / 打包？** 请先看手把手教程
+> [`BEGINNER_GUIDE.md`](./BEGINNER_GUIDE.md)（含每步命令、预期输出、排错）。本文是给熟手的速查版。
 
 ## 1. 静态分析（T16.1）
 

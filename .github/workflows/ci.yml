@@ -36,8 +36,20 @@ jobs:
       - name: Analyze (very_good_analysis)
         run: flutter analyze
 
-      - name: Test
-        run: flutter test --reporter expanded
+      - name: Test（含覆盖率，T17.5）
+        run: flutter test --coverage --reporter expanded
+
+      - name: 上传覆盖率（lcov）
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-lcov
+          path: coverage/lcov.info
+          if-no-files-found: warn
+
+      # 集成测试（integration_test/）需要真机/模拟器，不在此基础 job 跑（否则会
+      # 卡在「等待设备」）。请在带 Android 模拟器的独立 job 用
+      #   flutter test integration_test
+      # 运行（如 reactivecircus/android-emulator-runner）。
 
       - name: Codegen 校验（生成物应已随源码提交，无 diff）
         run: |

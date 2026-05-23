@@ -94,6 +94,9 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_gen_runner: ^5.14.1
   very_good_analysis: ^10.2.0
+  mocktail: ^1.0.5
+  integration_test:
+    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
