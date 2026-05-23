@@ -62,3 +62,16 @@ sealed class Failure with _$Failure {
     @Default('Unknown error') String message,
   }) = UnknownFailure;
 }
+
+/// 从 sealed [Failure] 基类取面向用户的 [message]（各变体都带 message 字段，
+/// 但基类不暴露；此扩展统一取出，便于 UI 直接 `failure.message`）。
+extension FailureMessageX on Failure {
+  String get message => switch (this) {
+    NetworkFailure(:final message) => message,
+    ServerFailure(:final message) => message,
+    CacheFailure(:final message) => message,
+    UnauthorizedFailure(:final message) => message,
+    ValidationFailure(:final message) => message,
+    UnknownFailure(:final message) => message,
+  };
+}

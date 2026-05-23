@@ -3,6 +3,9 @@ import 'package:flutter_claude_app_v2/core/router/app_router.dart';
 import 'package:flutter_claude_app_v2/core/router/auth_redirect.dart';
 import 'package:flutter_claude_app_v2/core/router/router_log_observer.dart';
 import 'package:flutter_claude_app_v2/core/router/typed_routes.dart';
+import 'package:flutter_claude_app_v2/features/auth/presentation/pages/login_page.dart';
+import 'package:flutter_claude_app_v2/features/detail/presentation/pages/detail_page.dart';
+import 'package:flutter_claude_app_v2/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -44,7 +47,7 @@ void main() {
 
       await pumpApp(tester, container: container, router: router);
 
-      expect(find.text('Home Page (router demo)'), findsOneWidget);
+      expect(find.byType(HomePage), findsOneWidget);
       expect(find.byType(NavigationBar), findsOneWidget);
     });
 
@@ -70,7 +73,8 @@ void main() {
       router.go('/detail/42');
       await tester.pumpAndSettle();
 
-      expect(find.text('Detail Page for id=42'), findsOneWidget);
+      expect(find.byType(DetailPage), findsOneWidget);
+      expect(find.text('详情 #42'), findsOneWidget);
       expect(find.byType(NavigationBar), findsNothing);
     });
 
@@ -108,7 +112,7 @@ void main() {
 
       await pumpApp(tester, container: container, router: router);
 
-      expect(find.text('Login Page (router demo)'), findsOneWidget);
+      expect(find.byType(LoginPage), findsOneWidget);
     });
   });
 }

@@ -61,6 +61,16 @@ import 'package:flutter_claude_app_v2/features/auth/domain/repositories/auth_rep
     as _i1049;
 import 'package:flutter_claude_app_v2/features/auth/domain/use_cases/get_current_user_use_case.dart'
     as _i5;
+import 'package:flutter_claude_app_v2/features/auth/domain/use_cases/sign_in_use_case.dart'
+    as _i790;
+import 'package:flutter_claude_app_v2/features/detail/data/repositories/detail_repository_impl.dart'
+    as _i476;
+import 'package:flutter_claude_app_v2/features/detail/domain/repositories/detail_repository.dart'
+    as _i426;
+import 'package:flutter_claude_app_v2/features/home/data/repositories/home_repository_impl.dart'
+    as _i275;
+import 'package:flutter_claude_app_v2/features/home/domain/repositories/home_repository.dart'
+    as _i749;
 import 'package:flutter_claude_app_v2/shared/utils/overlay_utils.dart' as _i364;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -111,6 +121,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i642.AppInfo>(() => _i642.AppInfo());
     gh.lazySingleton<_i364.OverlayService>(() => _i364.OverlayService());
+    gh.lazySingleton<_i426.DetailRepository>(
+      () => const _i476.DetailRepositoryImpl(),
+    );
     gh.lazySingleton<_i143.AuthRemoteDataSource>(
       () => const _i143.AuthRemoteDataSourceImpl(),
     );
@@ -122,6 +135,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => const _i1015.StubTokenRefresher(),
     );
     gh.lazySingleton<_i236.AppLogger>(() => _i236.LoggerImpl());
+    gh.lazySingleton<_i749.HomeRepository>(
+      () => const _i275.HomeRepositoryImpl(),
+    );
     gh.lazySingleton<_i878.DeviceIntegrityService>(
       () => const _i878.DeviceIntegrityServiceImpl(),
     );
@@ -139,15 +155,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => const _i737.ScreenSecurityImpl(),
     );
     gh.lazySingleton<_i1015.AuthEvents>(() => const _i1015.NoopAuthEvents());
-    gh.lazySingleton<_i1049.AuthRepository>(
-      () => _i56.AuthRepositoryImpl(
-        gh<_i143.AuthRemoteDataSource>(),
-        gh<_i20.ErrorMapper>(),
-      ),
-    );
-    gh.factory<_i5.GetCurrentUserUseCase>(
-      () => _i5.GetCurrentUserUseCase(gh<_i1049.AuthRepository>()),
-    );
     gh.lazySingleton<_i767.ApiClient>(
       () => _i767.RealApiClient(),
       registerFor: {_prod},
@@ -174,8 +181,21 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i942.ApiErrorInterceptor>(),
       ),
     );
+    gh.lazySingleton<_i1049.AuthRepository>(
+      () => _i56.AuthRepositoryImpl(
+        gh<_i143.AuthRemoteDataSource>(),
+        gh<_i1015.TokenStorage>(),
+        gh<_i20.ErrorMapper>(),
+      ),
+    );
     gh.lazySingleton<_i958.ExampleApiService>(
       () => exampleApiModule.exampleApi(gh<_i361.Dio>()),
+    );
+    gh.factory<_i5.GetCurrentUserUseCase>(
+      () => _i5.GetCurrentUserUseCase(gh<_i1049.AuthRepository>()),
+    );
+    gh.factory<_i790.SignInUseCase>(
+      () => _i790.SignInUseCase(gh<_i1049.AuthRepository>()),
     );
     return this;
   }

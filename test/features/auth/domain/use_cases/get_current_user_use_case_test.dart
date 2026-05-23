@@ -17,6 +17,15 @@ class _FakeAuthRepo implements AuthRepository {
     lastUserId = userId;
     return _result;
   }
+
+  @override
+  Future<Result<User>> signIn({
+    required String email,
+    required String password,
+  }) async => _result;
+
+  @override
+  Future<void> signOut() async {}
 }
 
 void main() {

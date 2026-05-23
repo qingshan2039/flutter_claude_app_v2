@@ -13,6 +13,15 @@ class _FakeRepo implements AuthRepository {
 
   @override
   Future<Result<User>> getCurrentUser({String? userId}) async => result;
+
+  @override
+  Future<Result<User>> signIn({
+    required String email,
+    required String password,
+  }) async => result;
+
+  @override
+  Future<void> signOut() async {}
 }
 
 void main() {

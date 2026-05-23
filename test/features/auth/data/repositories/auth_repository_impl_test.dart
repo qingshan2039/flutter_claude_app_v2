@@ -14,11 +14,13 @@ import '../../../../_helpers/mocks.dart';
 /// 只验证 Repository 自己的职责：调用数据源 → mapper 转换 → 错误归一化。
 void main() {
   late MockAuthRemoteDataSource dataSource;
+  late MockTokenStorage tokenStorage;
   late AuthRepositoryImpl repository;
 
   setUp(() {
     dataSource = MockAuthRemoteDataSource();
-    repository = AuthRepositoryImpl(dataSource, const ErrorMapper());
+    tokenStorage = MockTokenStorage();
+    repository = AuthRepositoryImpl(dataSource, tokenStorage, const ErrorMapper());
   });
 
   group('AuthRepositoryImpl.getCurrentUser (T17.1)', () {

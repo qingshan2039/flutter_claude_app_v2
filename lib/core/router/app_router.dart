@@ -4,13 +4,14 @@ import 'package:flutter_claude_app_v2/core/router/page_transitions.dart';
 import 'package:flutter_claude_app_v2/core/router/route_names.dart';
 import 'package:flutter_claude_app_v2/core/router/router_log_observer.dart';
 import 'package:flutter_claude_app_v2/core/router/typed_routes.dart';
-import 'package:flutter_claude_app_v2/features/examples/router_demo/pages/detail_page.dart';
-import 'package:flutter_claude_app_v2/features/examples/router_demo/pages/home_page.dart';
-import 'package:flutter_claude_app_v2/features/examples/router_demo/pages/login_page.dart';
+import 'package:flutter_claude_app_v2/features/auth/presentation/pages/login_page.dart';
+import 'package:flutter_claude_app_v2/features/detail/presentation/pages/detail_page.dart';
 import 'package:flutter_claude_app_v2/features/examples/router_demo/pages/not_found_page.dart';
 import 'package:flutter_claude_app_v2/features/examples/router_demo/pages/scaffold_with_nav_bar.dart';
 import 'package:flutter_claude_app_v2/features/examples/router_demo/pages/search_page.dart';
-import 'package:flutter_claude_app_v2/features/examples/router_demo/pages/settings_page.dart';
+import 'package:flutter_claude_app_v2/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_claude_app_v2/features/permission_demo/presentation/pages/permission_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/settings/presentation/pages/settings_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
@@ -104,6 +105,13 @@ GoRouter createAppRouter({
           state: state,
           child: const LoginPage(),
         ),
+      ),
+      // M19/T19.5 权限演示页（从设置页进入）
+      GoRoute(
+        path: '/permissions',
+        name: RouteNames.permissions,
+        parentNavigatorKey: rootKey,
+        builder: (context, state) => const PermissionDemoPage(),
       ),
       // ───────────────── 类型安全示例（T07.2） ─────────────────
       // go_router_builder 在 typed_routes.dart 上生成 $appRoutes。

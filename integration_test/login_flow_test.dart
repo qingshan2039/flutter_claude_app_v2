@@ -5,6 +5,8 @@ import 'package:flutter_claude_app_v2/app.dart';
 import 'package:flutter_claude_app_v2/core/di/injection.dart';
 import 'package:flutter_claude_app_v2/core/env/app_environment.dart';
 import 'package:flutter_claude_app_v2/core/env/env_config.dart';
+import 'package:flutter_claude_app_v2/features/auth/presentation/pages/login_page.dart';
+import 'package:flutter_claude_app_v2/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -48,16 +50,17 @@ void main() {
     await tester.pumpAndSettle();
 
     // 1) 未登录：go_router 守卫把 `/` 重定向到 `/login`
-    expect(find.widgetWithText(AppBar, 'Login'), findsOneWidget);
-    expect(find.text('Sign in (demo)'), findsOneWidget);
-    expect(find.text('Home Page (router demo)'), findsNothing);
+    expect(find.byType(LoginPage), findsOneWidget);
+    expect(find.widgetWithText(AppBar, '登录'), findsOneWidget);
+    expect(find.byType(HomePage), findsNothing);
 
-    // 2) 点击「登录」：isLoggedIn 置 true，并跳转首页
-    await tester.tap(find.text('Sign in (demo)'));
+    // 2) 点击「登录」按钮（表单已预填 demo@example.com / password）：
+    //    SignInUseCase → 存 token → isLoggedIn 置 true → 跳转首页
+    await tester.tap(find.widgetWithText(FilledButton, '登录'));
     await tester.pumpAndSettle();
 
     // 3) 已进入首页
-    expect(find.widgetWithText(AppBar, 'Home'), findsOneWidget);
-    expect(find.text('Home Page (router demo)'), findsOneWidget);
+    expect(find.byType(HomePage), findsOneWidget);
+    expect(find.widgetWithText(AppBar, '首页'), findsOneWidget);
   });
 }

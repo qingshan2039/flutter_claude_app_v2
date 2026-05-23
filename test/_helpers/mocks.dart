@@ -1,3 +1,5 @@
+import 'package:flutter_claude_app_v2/core/network/interceptors/auth_interceptor.dart'
+    show TokenStorage;
 import 'package:flutter_claude_app_v2/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:flutter_claude_app_v2/features/auth/data/models/user_model.dart';
 import 'package:flutter_claude_app_v2/features/auth/domain/entities/user.dart';
@@ -22,6 +24,8 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 
 class MockGetCurrentUserUseCase extends Mock
     implements GetCurrentUserUseCase {}
+
+class MockTokenStorage extends Mock implements TokenStorage {}
 
 /// 注册 mocktail `any()`/`captureAny()` 用到的非基元类型「兜底值」。
 ///

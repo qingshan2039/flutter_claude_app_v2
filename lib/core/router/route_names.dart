@@ -10,6 +10,7 @@ abstract final class RouteNames {
   static const String settings = 'settings';
   static const String detail = 'detail';
   static const String login = 'login';
+  static const String permissions = 'permissions';
   static const String notFound = 'not-found';
 }
 
@@ -20,4 +21,5 @@ abstract final class RoutePaths {
   static const String settings = '/settings';
   static const String detail = '/detail/:id';
   static const String login = '/login';
+  static const String permissions = '/permissions';
 }

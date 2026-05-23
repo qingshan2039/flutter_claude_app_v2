@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_claude_app_v2/app.dart';
 import 'package:flutter_claude_app_v2/core/di/injection.dart';
 import 'package:flutter_claude_app_v2/core/observer/provider_observer.dart';
+import 'package:flutter_claude_app_v2/features/auth/presentation/pages/login_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -33,7 +34,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // 默认 isLoggedIn=false → authRedirect 跳 /login → LoginPage
-    expect(find.text('Login Page (router demo)'), findsOneWidget);
+    expect(find.byType(LoginPage), findsOneWidget);
   });
 
   testWidgets('App 装配 MaterialApp.router（标题来自 l10n）', (tester) async {
