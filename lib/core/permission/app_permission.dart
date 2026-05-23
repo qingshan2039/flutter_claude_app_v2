@@ -1,3 +1,5 @@
+import 'package:flutter_claude_app_v2/core/permission/permission_service.dart' show PermissionService;
+
 /// 应用层权限枚举（T09.1 / T09.2）。
 ///
 /// 这是**平台无关**的抽象：业务代码只认 [AppPermission]，由 [PermissionService]

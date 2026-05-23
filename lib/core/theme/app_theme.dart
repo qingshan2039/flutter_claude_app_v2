@@ -33,7 +33,7 @@ abstract final class AppTheme {
       colorScheme: colorScheme,
       scaffoldBackgroundColor: colorScheme.surface,
       extensions: <ThemeExtension<dynamic>>[
-        isDark ? AppColorsExtension.dark : AppColorsExtension.light,
+        if (isDark) AppColorsExtension.dark else AppColorsExtension.light,
       ],
     );
 

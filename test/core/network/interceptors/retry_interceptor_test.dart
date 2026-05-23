@@ -70,7 +70,6 @@ void main() {
       });
 
       final retry = RetryInterceptor(
-        maxRetries: 3,
         baseDelay: const Duration(milliseconds: 1),
       );
       final dio = Dio(BaseOptions(baseUrl: 'https://test.local'))
@@ -107,7 +106,6 @@ void main() {
       final adapter = MockAdapter((options, idx) => jsonResponse(400, {}));
 
       final retry = RetryInterceptor(
-        maxRetries: 3,
         baseDelay: const Duration(milliseconds: 1),
       );
       final dio = Dio(BaseOptions(baseUrl: 'https://test.local'))

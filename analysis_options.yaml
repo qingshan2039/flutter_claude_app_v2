@@ -1,36 +1,49 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
+# M16/T16.1 静态分析配置 —— 基于 very_good_analysis（比 flutter_lints 严格得多）。
 #
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
-
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
-include: package:flutter_lints/flutter.yaml
+# 策略：默认采用 very_good_analysis 全量规则；下方 linter.rules 仅关掉对本「务实
+# 模板」噪声过大、或与既有设计冲突的少数规则（每条都注明原因），其余保持开启。
+include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
   exclude:
-    # 生成代码不在 lint 范围内（freezed / json_serializable / injectable /
-    # retrofit_generator / go_router_builder 的产物）
+    # 生成代码不纳入 lint（freezed / json_serializable / injectable /
+    # retrofit_generator / go_router_builder / flutter_gen 产物）
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/*.config.dart"
+    - "**/*.gen.dart"
+    # flutter gen-l10n 生成的本地化类（无 ignore 头，单独排除）
+    - "lib/l10n/app_localizations*.dart"
 
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+    # 不强制对所有 public 成员写文档注释（务实模板，按需补文档）
+    public_member_api_docs: false
+    # 不强制 80 列硬换行（dart format 已统一风格；个别长链/URL 允许超出）
+    lines_longer_than_80_chars: false
+    # pubspec 依赖按「模块」分组并加注释，不按字母排序
+    sort_pub_dependencies: false
+    # TODO 不强制 very_good 的 `// TODO(user):` 格式
+    flutter_style_todos: false
+    # 抽象「单方法」网关是有意设计（便于 seam + fake 测试）
+    one_member_abstracts: false
+    # Design Tokens（SpacingTokens/RadiusTokens 等）有意是「只含静态成员」的容器
+    avoid_classes_with_only_static_members: false
+    # 级联 `..` 是风格偏好，不强制
+    cascade_invocations: false
+    # 文档里的 [Symbol] 引用不强制可解析（很多引用跨库/未 import）
+    comment_references: false
+    # UI 回调里「即发即忘」异步很常见，不强制处理返回的 Future
+    discarded_futures: false
+    # 错误处理/兜底处有意写 catch-all（无 on 子句）
+    avoid_catches_without_on_clauses: false
+    # bool 位置参数：setter（如 setBool(key, value)）保持位置参数更自然
+    avoid_positional_boolean_parameters: false
+    # 关闭：该规则 + `dart fix` 会把「编译期常量折叠成默认值」的实参误删，
+    # 曾导致 EnvConfig dart-define 覆盖被静默移除（详见 docs/verification/T16.1.md）
+    avoid_redundant_argument_values: false
+    # 中文文案常按行拆分（相邻字符串无空格是有意的，加空格反而错），关闭误报
+    missing_whitespace_between_adjacent_strings: false
+    # 关闭：对泛型方法调用 `() => getIt<T>()` 给出的「改 tearoff」建议会生成无法编译的
+    # 代码（getIt<T> 不能 tearoff），dart fix 据此曾改坏 injection_test
+    unnecessary_lambdas: false

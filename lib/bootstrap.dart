@@ -64,12 +64,11 @@ void bootstrap(AppEnvironment environment) {
         unawaited(_initDeferred(logger));
       });
     },
-    (Object error, StackTrace stackTrace) {
+    (error, stackTrace) {
       // zone 兜底：DI 可能尚未就绪，故防御性检查。
       if (getIt.isRegistered<AppLogger>()) {
         getIt<AppLogger>().e('Zone error', error: error, stackTrace: stackTrace);
       } else {
-        // ignore: avoid_print
         debugPrint('[bootstrap] zone error before DI ready: $error');
       }
       if (getIt.isRegistered<CrashReporter>()) {

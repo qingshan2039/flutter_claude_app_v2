@@ -128,9 +128,9 @@ class SkeletonLoader extends StatelessWidget {
       padding: SpacingTokens.pagePadding,
       itemCount: itemCount,
       separatorBuilder: (_, _) => SpacingTokens.gapMd,
-      itemBuilder: (_, _) => Row(
+      itemBuilder: (_, _) => const Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
+        children: <Widget>[
           SkeletonBox(width: 48, height: 48, borderRadius: RadiusTokens.allMd),
           SizedBox(width: SpacingTokens.md),
           Expanded(

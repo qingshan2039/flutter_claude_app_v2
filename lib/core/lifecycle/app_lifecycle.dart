@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_claude_app_v2/app.dart' show App;
 import 'package:flutter_claude_app_v2/core/logger/app_logger.dart';
 
 /// App 生命周期监听（T13.5）。

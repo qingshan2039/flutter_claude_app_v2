@@ -1,0 +1,23 @@
+# M16/T16.2 Git hooks（lefthook：https://github.com/evilmartians/lefthook）
+#
+# 安装：
+#   brew install lefthook          # 或：dart pub global activate lefthook
+#   lefthook install               # 写入 .git/hooks
+#
+# pre-commit：仅对暂存的 .dart 文件做格式化（自动回写并重新 stage），全项目静态分析。
+# commit-msg：校验 Conventional Commits。
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.dart"
+      run: dart format {staged_files}
+      stage_fixed: true
+    analyze:
+      run: flutter analyze
+
+commit-msg:
+  commands:
+    conventional-commits:
+      run: bash scripts/check_commit_msg.sh {1}

@@ -1,0 +1,87 @@
+# M16/T16.3 持续集成。
+# - 所有 PR / push：格式检查 + 静态分析 + 测试 + 代码生成校验
+# - push 到 main：额外构建 Android 产物（prod flavor AAB）
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# 同一分支新推送时取消旧运行。
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze-and-test:
+    name: Format · Analyze · Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          # 模板默认跟随 stable；如需固定版本改为 flutter-version: 3.x.y
+          channel: stable
+          cache: true
+
+      - run: flutter --version
+      - run: flutter pub get
+
+      - name: Format check
+        run: dart format --output=none --set-exit-if-changed lib test
+
+      - name: Analyze (very_good_analysis)
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test --reporter expanded
+
+      - name: Codegen 校验（生成物应已随源码提交，无 diff）
+        run: |
+          dart run build_runner build --delete-conflicting-outputs
+          git diff --exit-code || (echo "::error::生成代码与提交不一致，请提交 build_runner 产物" && exit 1)
+
+  build-android:
+    name: Build Android (prod AAB)
+    needs: analyze-and-test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+
+      # 真实流水线请用 GitHub Secrets 注入 env/prod.json 与签名（key.properties）；
+      # 这里用模板值跑通构建。
+      - name: Prepare env file
+        run: cp env/prod.example.json env/prod.json
+
+      - name: Build AAB (prod flavor)
+        run: >
+          flutter build appbundle
+          --flavor prod
+          -t lib/main_prod.dart
+          --dart-define-from-file=env/prod.json
+          --obfuscate
+          --split-debug-info=build/symbols/prod
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-prod-release
+          path: |
+            build/app/outputs/bundle/prodRelease/*.aab
+            build/symbols/prod
+          if-no-files-found: warn

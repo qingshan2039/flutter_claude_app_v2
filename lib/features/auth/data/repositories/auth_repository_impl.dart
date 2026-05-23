@@ -1,5 +1,7 @@
 import 'package:flutter_claude_app_v2/core/error/error_mapper.dart';
+import 'package:flutter_claude_app_v2/core/error/failures.dart' show Failure;
 import 'package:flutter_claude_app_v2/core/error/result.dart';
+import 'package:flutter_claude_app_v2/features/auth/data/models/user_model.dart' show UserModel;
 import 'package:flutter_claude_app_v2/features/auth/domain/entities/user.dart';
 import 'package:flutter_claude_app_v2/features/auth/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -17,7 +19,6 @@ import 'package:injectable/injectable.dart';
 class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl(this._errorMapper);
 
-  // ignore: unused_field
   final ErrorMapper _errorMapper;
 
   @override

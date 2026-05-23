@@ -28,8 +28,7 @@ abstract final class FontScaling {
 /// ```
 class ClampedTextScaling extends StatelessWidget {
   const ClampedTextScaling({
-    super.key,
-    required this.child,
+    required this.child, super.key,
     this.min = FontScaling.minScale,
     this.max = FontScaling.maxScale,
   });

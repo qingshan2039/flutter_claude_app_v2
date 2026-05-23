@@ -1,4 +1,5 @@
 import 'package:flutter_claude_app_v2/core/error/failures.dart';
+import 'package:meta/meta.dart';
 
 /// 双结果类型：成功时持有 [T] 值，失败时持有 [Failure]。
 ///
@@ -30,6 +31,7 @@ import 'package:flutter_claude_app_v2/core/error/failures.dart';
 ///   case Failed(:final failure): ...
 /// }
 /// ```
+@immutable
 sealed class Result<T> {
   const Result();
 }

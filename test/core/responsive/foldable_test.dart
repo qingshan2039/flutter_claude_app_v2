@@ -1,5 +1,5 @@
 import 'dart:ui'
-    show DisplayFeature, DisplayFeatureType, DisplayFeatureState;
+    show DisplayFeature, DisplayFeatureState, DisplayFeatureType;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_claude_app_v2/core/responsive/foldable.dart';
@@ -9,8 +9,8 @@ void main() {
   MediaQueryData mqWith(List<DisplayFeature> features) =>
       MediaQueryData(size: const Size(1000, 800), displayFeatures: features);
 
-  final verticalHinge = DisplayFeature(
-    bounds: const Rect.fromLTWH(490, 0, 20, 800), // 高 > 宽 → 垂直铰链
+  const verticalHinge = DisplayFeature(
+    bounds: Rect.fromLTWH(490, 0, 20, 800), // 高 > 宽 → 垂直铰链
     type: DisplayFeatureType.hinge,
     state: DisplayFeatureState.postureFlat,
   );
@@ -29,8 +29,8 @@ void main() {
     });
 
     test('fold 类型也算', () {
-      final fold = DisplayFeature(
-        bounds: const Rect.fromLTWH(0, 400, 1000, 0),
+      const fold = DisplayFeature(
+        bounds: Rect.fromLTWH(0, 400, 1000, 0),
         type: DisplayFeatureType.fold,
         state: DisplayFeatureState.postureHalfOpened,
       );
@@ -38,8 +38,8 @@ void main() {
     });
 
     test('cutout 类型不算铰链', () {
-      final cutout = DisplayFeature(
-        bounds: const Rect.fromLTWH(0, 0, 50, 30),
+      const cutout = DisplayFeature(
+        bounds: Rect.fromLTWH(0, 0, 50, 30),
         type: DisplayFeatureType.cutout,
         state: DisplayFeatureState.unknown,
       );
@@ -53,8 +53,8 @@ void main() {
     });
 
     test('宽 > 高 → 水平', () {
-      final horizontal = DisplayFeature(
-        bounds: const Rect.fromLTWH(0, 395, 1000, 10),
+      const horizontal = DisplayFeature(
+        bounds: Rect.fromLTWH(0, 395, 1000, 10),
         type: DisplayFeatureType.fold,
         state: DisplayFeatureState.postureFlat,
       );

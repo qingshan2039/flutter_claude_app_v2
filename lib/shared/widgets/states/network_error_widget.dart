@@ -31,7 +31,7 @@ class NetworkErrorWidget extends StatelessWidget {
 /// case Failed(failure: final f): return FailureView(failure: f, onRetry: reload);
 /// ```
 class FailureView extends StatelessWidget {
-  const FailureView({super.key, required this.failure, this.onRetry});
+  const FailureView({required this.failure, super.key, this.onRetry});
 
   final Failure failure;
   final VoidCallback? onRetry;

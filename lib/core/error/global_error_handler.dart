@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:flutter/cupertino.dart' show WidgetsFlutterBinding;
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart' show WidgetsFlutterBinding;
+import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 
 /// 全局未捕获异常回调签名。M11/T11.4 完成后会替换默认实现为 Sentry / Crashlytics 上报。
 typedef ErrorReporter = void Function(Object error, StackTrace stackTrace);
@@ -40,11 +43,11 @@ class GlobalErrorHandler {
 void registerGlobalErrorHandlers({ErrorReporter? reporter}) {
   final report = reporter ?? _defaultReporter;
 
-  FlutterError.onError = (FlutterErrorDetails details) {
+  FlutterError.onError = (details) {
     report(details.exception, details.stack ?? StackTrace.current);
   };
 
-  PlatformDispatcher.instance.onError = (Object error, StackTrace stackTrace) {
+  PlatformDispatcher.instance.onError = (error, stackTrace) {
     report(error, stackTrace);
     return true; // 已处理；阻止进一步传播
   };
@@ -88,7 +91,5 @@ ReceivePort listenIsolateErrors({ErrorReporter? reporter}) {
 /// - 两者协作覆盖全部异步错误路径
 void runAppGuarded(void Function() body, {ErrorReporter? reporter}) {
   final report = reporter ?? _defaultReporter;
-  runZonedGuarded(body, (error, stackTrace) {
-    report(error, stackTrace);
-  });
+  runZonedGuarded(body, report);
 }

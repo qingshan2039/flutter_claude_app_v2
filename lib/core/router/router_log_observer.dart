@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart' show GoRouter;
 import 'package:injectable/injectable.dart';
 
 /// 路由日志观察者（T07.8）。

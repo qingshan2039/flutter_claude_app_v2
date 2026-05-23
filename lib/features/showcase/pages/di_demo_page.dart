@@ -5,7 +5,6 @@ import 'package:flutter_claude_app_v2/core/di/injection.dart';
 import 'package:flutter_claude_app_v2/core/utils/app_info.dart';
 import 'package:flutter_claude_app_v2/features/auth/data/mappers/user_mapper.dart';
 import 'package:flutter_claude_app_v2/features/auth/data/models/user_model.dart';
-import 'package:flutter_claude_app_v2/features/auth/domain/entities/user.dart';
 import 'package:flutter_claude_app_v2/features/showcase/widgets/demo_scaffold.dart';
 
 /// M02 依赖注入与数据建模 — 可视化演示。
@@ -47,7 +46,7 @@ class _DiDemoPageState extends State<DiDemoPage> {
     const model = UserModel(id: '1', name: 'Alice', email: 'alice@example.com');
     final json = model.toJson();
     final parsed = UserModel.fromJson(json);
-    final User entity = model.toEntity();
+    final entity = model.toEntity();
 
     return DemoScaffold(
       title: '依赖注入与数据建模',

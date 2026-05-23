@@ -5,8 +5,8 @@ project: flutter_claude_app_v2
 project_path: /Users/ben/ai_project/flutter_claude_app_v2
 last_updated: 2026-05-23
 total_tasks_in_spec: 180
-completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5, T04.1, T04.2, T04.3, T04.4, T04.5, T04.6, T04.7, T04.8, T04.9, T05.1, T05.2, T05.3, T05.4, T06.1, T06.2, T06.3, T06.4, T07.1, T07.2, T07.3, T07.4, T07.5, T07.6, T07.7, T07.8, T08.1, T08.2, T08.3, T08.4, T08.5, T08.6, T09.1, T09.2, T09.3, T09.4, T10.1, T10.2, T10.3, T10.4, T10.5, T11.1, T11.2, T11.3, T11.4, T11.5, T12.1, T12.2, T12.3, T12.4, T12.5, T12.6, T12.7, T13.1, T13.2, T13.3, T13.4, T13.5, T14.1, T14.2, T14.3, T14.4, T14.5, T14.6, T14.7, T14.8, T15.1, T15.2, T15.3, T15.4, T15.5]
-completed_modules: [M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15]
+completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5, T04.1, T04.2, T04.3, T04.4, T04.5, T04.6, T04.7, T04.8, T04.9, T05.1, T05.2, T05.3, T05.4, T06.1, T06.2, T06.3, T06.4, T07.1, T07.2, T07.3, T07.4, T07.5, T07.6, T07.7, T07.8, T08.1, T08.2, T08.3, T08.4, T08.5, T08.6, T09.1, T09.2, T09.3, T09.4, T10.1, T10.2, T10.3, T10.4, T10.5, T11.1, T11.2, T11.3, T11.4, T11.5, T12.1, T12.2, T12.3, T12.4, T12.5, T12.6, T12.7, T13.1, T13.2, T13.3, T13.4, T13.5, T14.1, T14.2, T14.3, T14.4, T14.5, T14.6, T14.7, T14.8, T15.1, T15.2, T15.3, T15.4, T15.5, T16.1, T16.2, T16.3, T16.4, T16.5, T16.6, T16.7]
+completed_modules: [M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16]
 audience: [human_developers, ai_agents, rag_systems]
 ---
 
@@ -177,6 +177,13 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 | T15.3 | Dart Define 注入 | M15 | P0 | ✅ completed | 2026-05-23 | [T15.3.md](./T15.3.md) |
 | T15.4 | VSCode launch.json | M15 | P0 | ✅ completed | 2026-05-23 | [T15.4.md](./T15.4.md) |
 | T15.5 | 资源生成 | M15 | P0 | ✅ completed | 2026-05-23 | [T15.5.md](./T15.5.md) |
+| T16.1 | 配置 analysis_options | M16 | P0 | ✅ completed | 2026-05-23 | [T16.1.md](./T16.1.md) |
+| T16.2 | 配置 Git Hooks | M16 | P0 | ✅ completed | 2026-05-23 | [T16.2.md](./T16.2.md) |
+| T16.3 | GitHub Actions CI | M16 | P0 | ✅ completed | 2026-05-23 | [T16.3.md](./T16.3.md) |
+| T16.4 | Android 打包脚本 | M16 | P0 | ✅ completed | 2026-05-23 | [T16.4.md](./T16.4.md) |
+| T16.5 | iOS 打包脚本 | M16 | P0 | ✅ completed | 2026-05-23 | [T16.5.md](./T16.5.md) |
+| T16.6 | 代码混淆配置 | M16 | P0 | ✅ completed | 2026-05-23 | [T16.6.md](./T16.6.md) |
+| T16.7 | PR / Issue 模板 | M16 | P0 | ✅ completed | 2026-05-23 | [T16.7.md](./T16.7.md) |
 
 **模块进度**：
 - M01 项目骨架与目录结构 ✅ 已完成（3/3）
@@ -194,6 +201,7 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 - M13 启动流程编排 ✅ 已完成（5/5）— **Phase 1 基础架构收尾**
 - M14 通用 UI 组件 ✅ 已完成（8/8）
 - M15 多环境配置 ✅ 已完成（5/5）
+- M16 代码质量与 CI/CD ✅ 已完成（7/7）
 
 ## 工作流
 

@@ -17,10 +17,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 enum _StateKind { empty, loading, skeleton, error, network }
 
 /// 是否让 demo 的异步源报错（T14.2 demo）。
-final _failModeProvider = StateProvider.autoDispose<bool>((ref) => false);
+final AutoDisposeStateProvider<bool> _failModeProvider = StateProvider.autoDispose<bool>((ref) => false);
 
 /// demo 异步源：400ms 后返回数据或抛错。
-final _demoUserProvider = FutureProvider.autoDispose<String>((ref) async {
+final AutoDisposeFutureProvider<String> _demoUserProvider = FutureProvider.autoDispose<String>((ref) async {
   final fail = ref.watch(_failModeProvider);
   await Future<void>.delayed(const Duration(milliseconds: 400));
   if (fail) throw Exception('mock server error 500');
@@ -49,7 +49,6 @@ class _UiKitDemoPageState extends ConsumerState<UiKitDemoPage> {
   Widget _statePreview(_StateKind kind) {
     return switch (kind) {
       _StateKind.empty => EmptyWidget(
-        title: '暂无数据',
         message: '这里什么都没有',
         actionLabel: '去添加',
         onAction: () => _overlay.showInfo('点击了「去添加」'),

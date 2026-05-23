@@ -60,28 +60,28 @@ void main() {
 
   group('ErrorMapper.map: dart:io 标准异常', () {
     test('SocketException → NetworkFailure', () {
-      final e = const SocketException('connection refused');
+      const e = SocketException('connection refused');
       final f = mapper.map(e);
       expect(f, isA<NetworkFailure>());
       expect((f as NetworkFailure).message, 'connection refused');
     });
 
     test('SocketException with empty message → 兜底 message', () {
-      final e = const SocketException('');
+      const e = SocketException('');
       final f = mapper.map(e);
       expect(f, isA<NetworkFailure>());
       expect((f as NetworkFailure).message, 'Network unreachable');
     });
 
     test('HttpException → NetworkFailure', () {
-      final e = const HttpException('bad gateway');
+      const e = HttpException('bad gateway');
       final f = mapper.map(e);
       expect(f, isA<NetworkFailure>());
       expect((f as NetworkFailure).message, 'bad gateway');
     });
 
     test('FormatException → ValidationFailure', () {
-      final e = const FormatException('invalid json');
+      const e = FormatException('invalid json');
       final f = mapper.map(e);
       expect(f, isA<ValidationFailure>());
       expect((f as ValidationFailure).message, 'invalid json');

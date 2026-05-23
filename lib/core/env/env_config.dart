@@ -1,5 +1,6 @@
 import 'package:flutter_claude_app_v2/core/env/app_environment.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meta/meta.dart';
 
 /// 环境配置数据类（T15.1）。
 ///
@@ -11,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// 访问：
 /// - UI 层：`ref.watch(envConfigProvider)`
 /// - 非 widget 层：`getIt<EnvConfig>()`（在入口 [registerEnvConfig] 注册）
+@immutable
 class EnvConfig {
   const EnvConfig({
     required this.environment,
@@ -21,30 +23,6 @@ class EnvConfig {
     required this.enableCrashReporting,
     required this.sentryDsn,
   });
-
-  /// 运行环境标识。
-  final AppEnvironment environment;
-
-  /// 应用显示名（与 flavor 的 appName 对齐）。
-  final String appName;
-
-  /// 应用包名 / Bundle Id（与 flavor 的 applicationId 对齐，信息用途）。
-  final String appId;
-
-  /// API 根地址（敏感/可变，建议走 dart-define-from-file）。
-  final String apiBaseUrl;
-
-  /// 是否输出日志（dev/staging 开，prod 关）。
-  final bool enableLogging;
-
-  /// 是否上报崩溃（dev 关，staging/prod 开）。
-  final bool enableCrashReporting;
-
-  /// Sentry DSN（敏感，必须走 dart-define，不入代码库）。
-  final String sentryDsn;
-
-  static const String _baseAppId =
-      'com.ben.claude_flutter_v2.flutter_claude_app_v2';
 
   /// 每个环境的**非敏感默认值**（纯函数，便于单测）。
   factory EnvConfig.defaults(AppEnvironment env) {
@@ -97,10 +75,38 @@ class EnvConfig {
       apiBaseUrl: apiBaseUrl.isEmpty ? null : apiBaseUrl,
       sentryDsn: sentryDsn.isEmpty ? null : sentryDsn,
       appName: appName.isEmpty ? null : appName,
+      // 注意：勿用 avoid_redundant_argument_values 自动「精简」这两行——
+      // 无 dart-define 构建时 hasLogging/hasCrash 会 const 折叠为 false，
+      // 三元式折叠成 null（= copyWith 默认值）而被误删，导致带 define 的构建
+      // 静默丢失覆盖。该规则已在 analysis_options.yaml 关闭。
       enableLogging: hasLogging ? logging : null,
       enableCrashReporting: hasCrash ? crash : null,
     );
   }
+
+  /// 运行环境标识。
+  final AppEnvironment environment;
+
+  /// 应用显示名（与 flavor 的 appName 对齐）。
+  final String appName;
+
+  /// 应用包名 / Bundle Id（与 flavor 的 applicationId 对齐，信息用途）。
+  final String appId;
+
+  /// API 根地址（敏感/可变，建议走 dart-define-from-file）。
+  final String apiBaseUrl;
+
+  /// 是否输出日志（dev/staging 开，prod 关）。
+  final bool enableLogging;
+
+  /// 是否上报崩溃（dev 关，staging/prod 开）。
+  final bool enableCrashReporting;
+
+  /// Sentry DSN（敏感，必须走 dart-define，不入代码库）。
+  final String sentryDsn;
+
+  static const String _baseAppId =
+      'com.ben.claude_flutter_v2.flutter_claude_app_v2';
 
   EnvConfig copyWith({
     AppEnvironment? environment,

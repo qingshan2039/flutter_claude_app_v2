@@ -35,12 +35,12 @@ class EnvDemoPage extends ConsumerWidget {
             ],
           ),
         ),
-        DemoSection(
+        const DemoSection(
           title: 'T15.2 / T15.4 三套 flavor',
           description: 'dev / staging / prod：不同包名 / AppName / Icon',
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const <Widget>[
+            children: <Widget>[
               DemoResultRow('dev', '…app.dev · CCD Dev'),
               DemoResultRow('staging', '…app.staging · CCD Staging'),
               DemoResultRow('prod', '…app · CCD'),
@@ -52,10 +52,10 @@ class EnvDemoPage extends ConsumerWidget {
             ],
           ),
         ),
-        DemoSection(
+        const DemoSection(
           title: 'T15.3 Dart Define 注入',
           description: '编译期常量：env/<env>.json（敏感值不入库）',
-          child: const Text(
+          child: Text(
             '--dart-define-from-file=env/dev.json\n'
             '键：API_BASE_URL / SENTRY_DSN / APP_NAME / ENABLE_LOGGING / '
             'ENABLE_CRASH_REPORTING',

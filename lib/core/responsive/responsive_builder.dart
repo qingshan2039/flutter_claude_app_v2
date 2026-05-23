@@ -15,8 +15,7 @@ import 'package:flutter_claude_app_v2/core/responsive/breakpoints.dart';
 /// ```
 class ResponsiveBuilder extends StatelessWidget {
   const ResponsiveBuilder({
-    super.key,
-    required this.mobile,
+    required this.mobile, super.key,
     this.tablet,
     this.desktop,
     this.largeDesktop,

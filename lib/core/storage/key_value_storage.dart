@@ -1,3 +1,5 @@
+import 'package:flutter_claude_app_v2/core/storage/database/app_database.dart' show AppDatabase;
+import 'package:flutter_claude_app_v2/core/storage/secure_storage.dart' show SecureStorage;
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -27,7 +27,7 @@ abstract final class KeyboardUtils {
 /// 包在页面 body 外层即可：点输入框以外的区域自动收起键盘。
 /// 用 [HitTestBehavior.translucent] 保证空白区域也能接收点击，且不拦截子组件交互。
 class DismissKeyboardOnTap extends StatelessWidget {
-  const DismissKeyboardOnTap({super.key, required this.child});
+  const DismissKeyboardOnTap({required this.child, super.key});
 
   final Widget child;
 

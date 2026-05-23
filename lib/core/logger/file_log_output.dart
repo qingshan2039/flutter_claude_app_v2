@@ -32,8 +32,7 @@ class LogFileManager {
 
   /// 追加一行日志（自动按需切割 / 滚动）。多次调用按入队顺序串行执行。
   Future<void> append(String line, {DateTime? now}) {
-    _writeQueue = _writeQueue.then((_) => _doAppend(line, now: now));
-    return _writeQueue;
+    return _writeQueue = _writeQueue.then((_) => _doAppend(line, now: now));
   }
 
   Future<void> _doAppend(String line, {DateTime? now}) async {
@@ -111,9 +110,7 @@ class FileLogOutput extends LogOutput {
 
   @override
   void output(OutputEvent event) {
-    // logger 的 output 是同步签名；文件写入 fire-and-forget。
-    for (final line in event.lines) {
-      _manager.append(line);
-    }
+    // logger 的 output 是同步签名；文件写入 fire-and-forget（串行入队）。
+    event.lines.forEach(_manager.append);
   }
 }

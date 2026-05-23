@@ -1,4 +1,6 @@
+import 'package:flutter_claude_app_v2/core/error/failures.dart' show Failure;
 import 'package:flutter_claude_app_v2/core/error/result.dart';
+import 'package:flutter_claude_app_v2/features/auth/data/repositories/auth_repository_impl.dart' show AuthRepositoryImpl;
 import 'package:flutter_claude_app_v2/features/auth/domain/entities/user.dart';
 
 /// 领域层 [User] 访问的抽象（T06.4）。

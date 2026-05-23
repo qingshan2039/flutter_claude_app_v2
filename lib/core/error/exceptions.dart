@@ -1,3 +1,6 @@
+import 'package:flutter_claude_app_v2/core/error/error_mapper.dart' show ErrorMapper;
+import 'package:flutter_claude_app_v2/core/error/failures.dart' show Failure;
+
 /// 应用层异常基类。所有自定义异常继承自此。
 ///
 /// 设计要点（T03.1）：
@@ -28,8 +31,7 @@ abstract class AppException implements Exception {
 /// 由 dio 拦截器（M04 / T04.4）捕获并构造。
 class NetworkException extends AppException {
   const NetworkException({
-    super.code = 'NETWORK',
-    required super.message,
+    required super.message, super.code = 'NETWORK',
     super.cause,
     super.stackTrace,
   });
@@ -57,8 +59,7 @@ class ServerException extends AppException {
 /// 本地缓存读写失败（SharedPreferences、Hive、Isar 等存储抛出）。
 class CacheException extends AppException {
   const CacheException({
-    super.code = 'CACHE',
-    required super.message,
+    required super.message, super.code = 'CACHE',
     super.cause,
     super.stackTrace,
   });
@@ -79,8 +80,7 @@ class UnauthorizedException extends AppException {
 /// 表单/输入校验失败。[field] 记录出错字段名，便于 UI 高亮。
 class ValidationException extends AppException {
   const ValidationException({
-    super.code = 'VALIDATION',
-    required super.message,
+    required super.message, super.code = 'VALIDATION',
     this.field,
     super.cause,
     super.stackTrace,
@@ -96,8 +96,7 @@ class ValidationException extends AppException {
 /// 未明确分类的应用异常。兜底类型。
 class UnknownException extends AppException {
   const UnknownException({
-    super.code = 'UNKNOWN',
-    required super.message,
+    required super.message, super.code = 'UNKNOWN',
     super.cause,
     super.stackTrace,
   });

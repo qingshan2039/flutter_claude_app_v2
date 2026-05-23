@@ -18,7 +18,7 @@ import 'package:injectable/injectable.dart';
 /// 应用路由表（T07.1 主体 + T07.3 Shell + T07.4 guard + T07.6 404 + T07.7 转场 + T07.8 observer）。
 ///
 /// 结构：
-/// ```
+/// ```text
 /// /                    (Shell)
 ///   ├── /              → HomePage    (branch 0)
 ///   ├── /search        → SearchPage  (branch 1)
@@ -41,7 +41,6 @@ GoRouter createAppRouter({
   return GoRouter(
     navigatorKey: rootKey,
     initialLocation: '/',
-    debugLogDiagnostics: false,
     observers: <NavigatorObserver>[observer],
     redirect: (context, state) => authRedirect(container, state),
     errorBuilder: (context, state) => NotFoundPage(

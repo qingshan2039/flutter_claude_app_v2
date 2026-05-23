@@ -4,10 +4,7 @@ import 'package:flutter_claude_app_v2/core/theme/tokens/spacing_tokens.dart';
 /// Showcase demo 页统一脚手架：AppBar + 可滚动的 section 列表。
 class DemoScaffold extends StatelessWidget {
   const DemoScaffold({
-    super.key,
-    required this.title,
-    required this.moduleId,
-    required this.children,
+    required this.title, required this.moduleId, required this.children, super.key,
   });
 
   final String title;
@@ -29,9 +26,7 @@ class DemoScaffold extends StatelessWidget {
 /// 一个带标题/说明的演示分区卡片。
 class DemoSection extends StatelessWidget {
   const DemoSection({
-    super.key,
-    required this.title,
-    required this.child,
+    required this.title, required this.child, super.key,
     this.description,
   });
 

@@ -1,4 +1,5 @@
 import 'package:flutter/animation.dart';
+import 'package:flutter_claude_app_v2/core/router/page_transitions.dart' show PageTransitions;
 
 /// 动效 Token（T10.1）— 统一的曲线 + 时长。
 ///

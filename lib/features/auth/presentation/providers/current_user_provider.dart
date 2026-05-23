@@ -43,7 +43,7 @@ final FutureProvider<User> currentUserProvider = FutureProvider<User>(
     final result = await ref.watch(currentUserResultProvider.future);
     return result.fold<User>(
       (user) => user,
-      (Failure failure) {
+      (failure) {
         // 把 Failure 转为异常，让 Riverpod 自身路由到 error 状态
         throw _FailureException(failure);
       },

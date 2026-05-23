@@ -21,7 +21,7 @@ void main() {
         'message': 'ok',
         'data': 'hello',
       };
-      final r = ApiResponse<String>.fromJson(json, (d) => d as String);
+      final r = ApiResponse<String>.fromJson(json, (d) => d! as String);
       expect(r.code, 0);
       expect(r.message, 'ok');
       expect(r.data, 'hello');
@@ -43,7 +43,7 @@ void main() {
 
     test('fromJson 容忍 data 为 null', () {
       final json = <String, dynamic>{'code': 0, 'data': null};
-      final r = ApiResponse<String>.fromJson(json, (d) => d as String);
+      final r = ApiResponse<String>.fromJson(json, (d) => d! as String);
       expect(r.data, isNull);
     });
   });

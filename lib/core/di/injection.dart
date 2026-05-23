@@ -1,9 +1,8 @@
+import 'package:flutter_claude_app_v2/core/di/injection.config.dart';
 import 'package:flutter_claude_app_v2/core/env/app_environment.dart';
 import 'package:flutter_claude_app_v2/core/env/env_config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-
-import 'injection.config.dart';
 
 /// 全局 [GetIt] 单例。所有依赖通过 [configureDependencies] 在启动时注册。
 ///

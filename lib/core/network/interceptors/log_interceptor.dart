@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_claude_app_v2/core/network/dio_client.dart' show NetworkModule;
 
 /// 应用日志拦截器（T04.2）。
 ///

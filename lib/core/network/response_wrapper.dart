@@ -1,3 +1,5 @@
+import 'package:flutter_claude_app_v2/core/network/interceptors/error_interceptor.dart' show ApiErrorInterceptor;
+
 /// 后端标准响应外壳：`{ code, message, data }`。
 ///
 /// 设计要点（T04.8）：

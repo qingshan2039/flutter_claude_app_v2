@@ -1,3 +1,4 @@
+import 'package:flutter_claude_app_v2/features/auth/data/models/user_model.dart' show UserModel;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';

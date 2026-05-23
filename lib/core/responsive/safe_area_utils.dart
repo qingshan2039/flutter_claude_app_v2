@@ -29,8 +29,7 @@ abstract final class SafeAreaUtils {
 /// - 命名更语义化，便于全项目统一规范
 class AppSafeArea extends StatelessWidget {
   const AppSafeArea({
-    super.key,
-    required this.child,
+    required this.child, super.key,
     this.top = true,
     this.bottom = true,
     this.left = false,

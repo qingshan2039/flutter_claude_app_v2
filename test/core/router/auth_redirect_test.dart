@@ -118,12 +118,10 @@ GoRouterState _stubState(String path) {
     _DummyConfiguration(),
     uri: Uri.parse(path),
     matchedLocation: path,
-    name: null,
     path: path,
     fullPath: path,
     pathParameters: const <String, String>{},
     pageKey: const ValueKey<String>('stub'),
-    error: null,
   );
 }
 

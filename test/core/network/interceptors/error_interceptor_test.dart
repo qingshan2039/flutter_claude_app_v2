@@ -90,11 +90,10 @@ void main() {
   });
 
   test('已附 AppException 的 DioException 透传不被覆盖', () async {
-    final original = const CacheException(message: 'preset');
+    const original = CacheException(message: 'preset');
     final adapter = _ThrowingAdapter(
       DioException(
         requestOptions: RequestOptions(path: '/foo'),
-        type: DioExceptionType.unknown,
         error: original,
       ),
     );

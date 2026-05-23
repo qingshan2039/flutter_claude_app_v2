@@ -12,8 +12,7 @@ import 'package:flutter_claude_app_v2/shared/widgets/states/loading_widget.dart'
 /// 3. **点击空白收起键盘**：默认开启（[dismissKeyboardOnTap]）。
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
-    super.key,
-    required this.body,
+    required this.body, super.key,
     this.title,
     this.titleWidget,
     this.actions,
@@ -72,7 +71,7 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget content = padding != null
+    var content = padding != null
         ? Padding(padding: padding!, child: body)
         : body;
 

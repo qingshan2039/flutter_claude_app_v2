@@ -33,9 +33,7 @@ abstract final class FoldableUtils {
 /// - 有垂直铰链：[start] 占铰链左侧，[end] 占铰链右侧，中间留出铰链宽度避让
 class HingeAwareTwoPane extends StatelessWidget {
   const HingeAwareTwoPane({
-    super.key,
-    required this.start,
-    required this.end,
+    required this.start, required this.end, super.key,
     this.startFlex = 1,
     this.endFlex = 1,
   });

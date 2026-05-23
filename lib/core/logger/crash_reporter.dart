@@ -1,3 +1,4 @@
+import 'package:flutter_claude_app_v2/core/error/global_error_handler.dart' show GlobalErrorHandler;
 import 'package:injectable/injectable.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 

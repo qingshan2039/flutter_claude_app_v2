@@ -46,7 +46,7 @@ void main() {
 
   group('LogFileManager 清理过期', () {
     test('删除早于 retentionDays 的文件', () async {
-      final m = LogFileManager(directory: tempDir, retentionDays: 7);
+      final m = LogFileManager(directory: tempDir);
       final now = DateTime(2026, 5, 18);
 
       // 旧文件（10 天前）+ 新文件（今天）
@@ -64,7 +64,7 @@ void main() {
     });
 
     test('保留期内的文件不删', () async {
-      final m = LogFileManager(directory: tempDir, retentionDays: 7);
+      final m = LogFileManager(directory: tempDir);
       final now = DateTime(2026, 5, 18);
       await m.append('d3', now: now.subtract(const Duration(days: 3)));
 

@@ -1,0 +1,45 @@
+# M16/T16.5 fastlane —— iOS 构建 + TestFlight 上传。
+# 文档：https://docs.fastlane.tools
+#
+# 前置：
+#   gem install fastlane           # 或 bundle
+#   在 App Store Connect 创建 API Key，设环境变量（勿入库）：
+#     ASC_KEY_ID / ASC_ISSUER_ID / ASC_KEY_CONTENT（.p8 内容）
+
+default_platform(:ios)
+
+platform :ios do
+  desc "构建并上传到 TestFlight（用法：fastlane beta flavor:prod）"
+  lane :beta do |options|
+    flavor = options[:flavor] || "prod"
+
+    # 用 Flutter 出 .ipa（flavor + dart-define + 混淆符号）
+    sh(
+      "cd .. && flutter build ipa " \
+      "--flavor #{flavor} -t lib/main_#{flavor}.dart --release " \
+      "--dart-define-from-file=env/#{flavor}.json " \
+      "--obfuscate --split-debug-info=build/symbols/#{flavor}"
+    )
+
+    api_key = app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_content: ENV["ASC_KEY_CONTENT"],
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      ipa: "../build/ios/ipa/#{flavor}.ipa",
+      skip_waiting_for_build_processing: true,
+    )
+  end
+
+  desc "上传 dSYM 符号到 Sentry（崩溃还原，T16.6）"
+  lane :upload_symbols do
+    # 需 sentry-cli + SENTRY_AUTH_TOKEN/ORG/PROJECT 环境变量。
+    sh(
+      "cd .. && sentry-cli debug-files upload --include-sources " \
+      "build/ios/archive build/symbols"
+    )
+  end
+end

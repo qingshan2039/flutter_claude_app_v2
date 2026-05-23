@@ -72,7 +72,7 @@ void main() {
 
     test('类型可变（int → String）', () {
       const Result<int> r = Success(42);
-      final Result<String> r2 = r.map((v) => 'value=$v');
+      final r2 = r.map((v) => 'value=$v');
       expect((r2 as Success<String>).value, 'value=42');
     });
   });

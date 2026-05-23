@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_claude_app_v2/core/responsive/responsive_builder.dart' show ResponsiveBuilder;
 
 /// 屏幕类型（T12.1）。
 enum ScreenType { mobile, tablet, desktop, largeDesktop }

@@ -20,7 +20,7 @@ Future<Directory> setupStorageMocks() async {
   TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
       .setMockMethodCallHandler(
     const MethodChannel('plugins.flutter.io/path_provider'),
-    (MethodCall call) async {
+    (call) async {
       switch (call.method) {
         case 'getApplicationDocumentsDirectory':
         case 'getApplicationSupportDirectory':

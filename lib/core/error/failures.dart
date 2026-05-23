@@ -1,3 +1,5 @@
+import 'package:flutter_claude_app_v2/core/error/error_mapper.dart' show ErrorMapper;
+import 'package:flutter_claude_app_v2/core/error/exceptions.dart' show AppException;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'failures.freezed.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter_claude_app_v2/core/storage/database/database_migrator.dart';
+import 'package:flutter_claude_app_v2/core/storage/key_value_storage.dart' show KeyValueStorage;
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_claude_app_v2/core/theme/app_theme_extension.dart' show AppColorsExtension;
 
 /// 颜色 Token（T10.1）— 语义化命名的原始色板。
 ///

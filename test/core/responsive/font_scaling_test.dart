@@ -5,18 +5,18 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('FontScaling.clamp', () {
     test('超过上限被钳制到 max', () {
-      final scaler = FontScaling.clamp(const TextScaler.linear(2.0), max: 1.4);
+      final scaler = FontScaling.clamp(const TextScaler.linear(2));
       expect(scaler.scale(10), 14.0); // 2.0 → 钳到 1.4
     });
 
     test('低于下限被钳制到 min', () {
-      final scaler = FontScaling.clamp(const TextScaler.linear(0.5), min: 0.8);
+      final scaler = FontScaling.clamp(const TextScaler.linear(0.5));
       expect(scaler.scale(10), 8.0); // 0.5 → 钳到 0.8
     });
 
     test('区间内不变', () {
       final scaler =
-          FontScaling.clamp(const TextScaler.linear(1.1), min: 0.8, max: 1.4);
+          FontScaling.clamp(const TextScaler.linear(1.1));
       expect(scaler.scale(10), closeTo(11.0, 0.001));
     });
 

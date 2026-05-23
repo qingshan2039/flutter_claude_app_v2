@@ -42,7 +42,7 @@ void main() {
       TestDefaultBinaryMessengerBinding
           .instance.defaultBinaryMessenger
           .setMockMethodCallHandler(SystemChannels.platform,
-              (MethodCall call) async {
+              (call) async {
         if (call.method == 'SystemChrome.setPreferredOrientations') {
           calls.add(List<String>.from(call.arguments as List<dynamic>));
         }

@@ -46,6 +46,7 @@ void main() {
 
     test('未注册的类型解析抛 StateError', () async {
       await getIt.reset();
+      // reset 后 AppInfo 未注册，解析应抛 StateError。
       expect(() => getIt<AppInfo>(), throwsStateError);
     });
   });

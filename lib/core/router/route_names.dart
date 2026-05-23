@@ -1,3 +1,5 @@
+import 'package:go_router/go_router.dart' show GoRouter;
+
 /// 路由 name 常量集中表（T07.1）。
 ///
 /// 使用 [GoRouter.goNamed] / [GoRouter.pushNamed] 时引用这些常量而非裸字符串，

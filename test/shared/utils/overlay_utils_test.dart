@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_claude_app_v2/shared/utils/bottom_sheet_utils.dart';
 import 'package:flutter_claude_app_v2/shared/utils/overlay_utils.dart';
@@ -64,7 +66,7 @@ void main() {
       final overlay = OverlayService();
       await tester.pumpWidget(_host(overlay));
 
-      final future = overlay.showConfirm(title: 'T', cancelLabel: '取消');
+      final future = overlay.showConfirm(title: 'T');
       await tester.pumpAndSettle();
       await tester.tap(find.text('取消'));
       await tester.pumpAndSettle();
@@ -96,8 +98,10 @@ void main() {
       final overlay = OverlayService();
       await tester.pumpWidget(_host(overlay));
 
-      overlay.showAppBottomSheet<void>(
-        builder: (_) => const Text('底部内容'),
+      unawaited(
+        overlay.showAppBottomSheet<void>(
+          builder: (_) => const Text('底部内容'),
+        ),
       );
       await tester.pumpAndSettle();
 

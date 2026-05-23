@@ -23,10 +23,7 @@ import 'package:flutter_claude_app_v2/shared/widgets/states/states.dart';
 /// - [hasMore] 为 false 时上拉到底显示「没有更多」（[IndicatorResult.noMore]）。
 class AppRefreshList<T> extends StatelessWidget {
   const AppRefreshList({
-    super.key,
-    required this.items,
-    required this.itemBuilder,
-    required this.onRefresh,
+    required this.items, required this.itemBuilder, required this.onRefresh, super.key,
     this.onLoad,
     this.hasMore = false,
     this.separator,

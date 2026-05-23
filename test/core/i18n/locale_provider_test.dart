@@ -2,8 +2,8 @@ import 'dart:ui' show Locale;
 
 import 'package:flutter_claude_app_v2/core/i18n/locale_provider.dart';
 import 'package:flutter_claude_app_v2/core/storage/key_value_storage.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 /// 内存版 KeyValueStorage，用于隔离测试 LocaleNotifier 的持久化逻辑。
 class _FakeKeyValueStorage implements KeyValueStorage {

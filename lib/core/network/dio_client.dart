@@ -55,7 +55,6 @@ abstract class NetworkModule {
         sendTimeout: const Duration(seconds: 15),
         receiveTimeout: const Duration(seconds: 20),
         contentType: 'application/json',
-        responseType: ResponseType.json,
       ),
     );
 

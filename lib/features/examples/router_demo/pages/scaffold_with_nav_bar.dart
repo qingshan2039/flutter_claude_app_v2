@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 /// branch 切换通过 [StatefulNavigationShell.goBranch] 完成，自动保留各 branch
 /// 内部的导航栈状态。
 class ScaffoldWithNavBar extends StatelessWidget {
-  const ScaffoldWithNavBar({super.key, required this.navigationShell});
+  const ScaffoldWithNavBar({required this.navigationShell, super.key});
 
   final StatefulNavigationShell navigationShell;
 

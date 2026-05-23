@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_claude_app_v2/core/network/dio_client.dart' show NetworkModule;
 import 'package:injectable/injectable.dart';
 
 /// Access/refresh token 持久化抽象（T04.3）。

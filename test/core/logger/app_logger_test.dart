@@ -10,7 +10,7 @@ void main() {
     final logger = Logger(
       level: level,
       filter: ProductionFilter(), // 按 Logger.level 过滤
-      printer: SimplePrinter(printTime: false, colors: false),
+      printer: SimplePrinter(colors: false),
       output: output,
     );
     return (logger: LoggerImpl.withLogger(logger), output: output);
@@ -69,14 +69,14 @@ void main() {
       final out = MemoryOutput(bufferSize: 10);
       final raw = Logger(
         level: Level.trace,
-        printer: SimplePrinter(printTime: false, colors: false),
+        printer: SimplePrinter(colors: false),
         output: out,
       );
       final logger = LoggerImpl.withLogger(
         raw,
         sanitizer: LogSanitizer(
           extraRules: <RedactionRule>[
-            RedactionRule(pattern: RegExp(r'topsecret'), replace: (_) => '###'),
+            RedactionRule(pattern: RegExp('topsecret'), replace: (_) => '###'),
           ],
         ),
       );

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_claude_app_v2/core/network/dio_client.dart' show NetworkModule;
 
 /// 重试拦截器（T04.5）。
 ///

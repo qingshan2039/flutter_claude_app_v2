@@ -1,5 +1,7 @@
 import 'package:flutter_claude_app_v2/core/di/injection.dart';
+import 'package:flutter_claude_app_v2/core/i18n/locale_provider.dart' show LocaleNotifier;
 import 'package:flutter_claude_app_v2/core/storage/key_value_storage.dart';
+import 'package:flutter_claude_app_v2/core/theme/theme_mode_provider.dart' show ThemeModeNotifier;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// 存储层的 Riverpod 桥接 provider（共享）。

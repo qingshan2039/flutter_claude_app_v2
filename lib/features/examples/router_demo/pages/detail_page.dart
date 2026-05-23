@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// 详情页占位 — 演示 path 参数读取（T07.1 / T07.2）。
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key, required this.id});
+  const DetailPage({required this.id, super.key});
 
   final String id;
 

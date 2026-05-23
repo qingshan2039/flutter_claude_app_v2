@@ -81,12 +81,10 @@ void main() {
       _DummyConfig(),
       uri: Uri.parse('/b'),
       matchedLocation: '/b',
-      name: null,
       path: '/b',
       fullPath: '/b',
       pathParameters: const <String, String>{},
       pageKey: const ValueKey<String>('test-key'),
-      error: null,
     );
 
     final page = PageTransitions.fade<void>(

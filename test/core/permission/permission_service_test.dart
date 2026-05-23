@@ -83,7 +83,7 @@ void main() {
 
   group('PermissionServiceImpl', () {
     test('request 委托 gateway 并转换状态', () async {
-      final gateway = _FakeGateway(statusToReturn: PermissionStatus.granted);
+      final gateway = _FakeGateway();
       final service = PermissionServiceImpl(gateway);
 
       final status = await service.request(AppPermission.camera);

@@ -1,5 +1,6 @@
 import 'dart:ui' show Locale;
 
+import 'package:flutter_claude_app_v2/core/storage/key_value_storage.dart' show KeyValueStorage;
 import 'package:flutter_claude_app_v2/core/storage/storage_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

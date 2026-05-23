@@ -23,9 +23,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 ///   旧数据（`AsyncValue.isRefreshing`），避免刷新闪烁。
 class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({
-    super.key,
-    required this.value,
-    required this.data,
+    required this.value, required this.data, super.key,
     this.loading,
     this.error,
     this.onRetry,

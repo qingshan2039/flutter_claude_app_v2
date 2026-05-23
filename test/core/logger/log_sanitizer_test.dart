@@ -17,7 +17,7 @@ void main() {
         sanitizer.sanitize('{"access_token":"xyz"}'),
         contains('"access_token":"***"'),
       );
-      expect(sanitizer.sanitize('secret = mysecret'), contains(r'***'));
+      expect(sanitizer.sanitize('secret = mysecret'), contains('***'));
     });
 
     test('大小写不敏感（Password / TOKEN）', () {

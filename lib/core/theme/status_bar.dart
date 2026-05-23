@@ -41,7 +41,7 @@ abstract final class AppStatusBar {
 ///
 /// 自动读取 `Theme.of(context).brightness`，主题切换时状态栏图标颜色随之翻转。
 class ThemedStatusBar extends StatelessWidget {
-  const ThemedStatusBar({super.key, required this.child});
+  const ThemedStatusBar({required this.child, super.key});
 
   final Widget child;
 

@@ -52,7 +52,7 @@ void main() {
       await tester.pumpWidget(
         _host(
           AsyncValueWidget<int>(
-            value: AsyncError<int>('boom', StackTrace.empty),
+            value: const AsyncError<int>('boom', StackTrace.empty),
             data: (v) => Text('$v'),
             onRetry: () => retried = true,
           ),
