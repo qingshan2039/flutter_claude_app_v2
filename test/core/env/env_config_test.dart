@@ -75,6 +75,14 @@ void main() {
       expect(withDsn.toString(), contains('***'));
       expect(withDsn.toString(), isNot(contains('secret')));
     });
+
+    test('apiKey（T18.1）：默认未配置、可覆盖、toString 脱敏', () {
+      expect(EnvConfig.defaults(AppEnvironment.prod).hasApiKey, isFalse);
+      final withKey = EnvConfig.defaults(AppEnvironment.prod)
+          .copyWith(apiKey: 'sk_live_supersecret');
+      expect(withKey.hasApiKey, isTrue);
+      expect(withKey.toString(), isNot(contains('supersecret')));
+    });
   });
 
   group('envConfigProvider (T15.1)', () {

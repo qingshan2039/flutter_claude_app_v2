@@ -16,10 +16,12 @@
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
 
     <!-- M15/T15.2：android:label 取 flavor 注入的 ${appName}（见 build.gradle.kts
-         productFlavors 的 manifestPlaceholders）。 -->
+         productFlavors 的 manifestPlaceholders）。
+         M18/T18.2：networkSecurityConfig 强制 HTTPS（release）、debug 放开本地明文。 -->
     <application
         android:label="${appName}"
         android:name="${applicationName}"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

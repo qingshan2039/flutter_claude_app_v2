@@ -22,6 +22,7 @@ class EnvConfig {
     required this.enableLogging,
     required this.enableCrashReporting,
     required this.sentryDsn,
+    this.apiKey = '',
   });
 
   /// 每个环境的**非敏感默认值**（纯函数，便于单测）。
@@ -59,11 +60,12 @@ class EnvConfig {
 
   /// 在默认值基础上应用编译期 dart-define 覆盖（T15.3）。
   ///
-  /// 支持的键：`API_BASE_URL`、`SENTRY_DSN`、`APP_NAME`、`ENABLE_LOGGING`(bool)、
-  /// `ENABLE_CRASH_REPORTING`(bool)。未提供的键保留环境默认值。
+  /// 支持的键：`API_BASE_URL`、`SENTRY_DSN`、`APP_KEY`/`API_KEY`、`APP_NAME`、
+  /// `ENABLE_LOGGING`(bool)、`ENABLE_CRASH_REPORTING`(bool)。未提供的键保留环境默认值。
   factory EnvConfig.resolve(AppEnvironment env) {
     const apiBaseUrl = String.fromEnvironment('API_BASE_URL');
     const sentryDsn = String.fromEnvironment('SENTRY_DSN');
+    const apiKey = String.fromEnvironment('API_KEY');
     const appName = String.fromEnvironment('APP_NAME');
     const hasLogging = bool.hasEnvironment('ENABLE_LOGGING');
     const logging = bool.fromEnvironment('ENABLE_LOGGING');
@@ -74,6 +76,7 @@ class EnvConfig {
     return d.copyWith(
       apiBaseUrl: apiBaseUrl.isEmpty ? null : apiBaseUrl,
       sentryDsn: sentryDsn.isEmpty ? null : sentryDsn,
+      apiKey: apiKey.isEmpty ? null : apiKey,
       appName: appName.isEmpty ? null : appName,
       // 注意：勿用 avoid_redundant_argument_values 自动「精简」这两行——
       // 无 dart-define 构建时 hasLogging/hasCrash 会 const 折叠为 false，
@@ -105,6 +108,9 @@ class EnvConfig {
   /// Sentry DSN（敏感，必须走 dart-define，不入代码库）。
   final String sentryDsn;
 
+  /// 第三方 API Key（敏感，必须走 dart-define，不入代码库；T18.1）。
+  final String apiKey;
+
   static const String _baseAppId =
       'com.ben.claude_flutter_v2.flutter_claude_app_v2';
 
@@ -116,6 +122,7 @@ class EnvConfig {
     bool? enableLogging,
     bool? enableCrashReporting,
     String? sentryDsn,
+    String? apiKey,
   }) {
     return EnvConfig(
       environment: environment ?? this.environment,
@@ -125,11 +132,15 @@ class EnvConfig {
       enableLogging: enableLogging ?? this.enableLogging,
       enableCrashReporting: enableCrashReporting ?? this.enableCrashReporting,
       sentryDsn: sentryDsn ?? this.sentryDsn,
+      apiKey: apiKey ?? this.apiKey,
     );
   }
 
   /// 是否配置了 Sentry DSN（决定是否启用真实上报）。
   bool get hasSentryDsn => sentryDsn.isNotEmpty;
+
+  /// 是否配置了 API Key。
+  bool get hasApiKey => apiKey.isNotEmpty;
 
   @override
   bool operator ==(Object other) =>
@@ -140,7 +151,8 @@ class EnvConfig {
       other.apiBaseUrl == apiBaseUrl &&
       other.enableLogging == enableLogging &&
       other.enableCrashReporting == enableCrashReporting &&
-      other.sentryDsn == sentryDsn;
+      other.sentryDsn == sentryDsn &&
+      other.apiKey == apiKey;
 
   @override
   int get hashCode => Object.hash(
@@ -151,14 +163,16 @@ class EnvConfig {
     enableLogging,
     enableCrashReporting,
     sentryDsn,
+    apiKey,
   );
 
-  /// 注意：[sentryDsn] 脱敏，避免日志泄露。
+  /// 注意：[sentryDsn]、[apiKey] 脱敏，避免日志泄露。
   @override
   String toString() =>
       'EnvConfig(${environment.name}, appName: $appName, appId: $appId, '
       'apiBaseUrl: $apiBaseUrl, logging: $enableLogging, '
-      'crash: $enableCrashReporting, sentryDsn: ${hasSentryDsn ? '***' : '(none)'})';
+      'crash: $enableCrashReporting, sentryDsn: ${hasSentryDsn ? '***' : '(none)'}, '
+      'apiKey: ${hasApiKey ? '***' : '(none)'})';
 }
 
 /// 当前环境配置（T15.1）。

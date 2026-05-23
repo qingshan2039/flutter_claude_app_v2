@@ -1,6 +1,7 @@
 {
   "API_BASE_URL": "https://staging-api.example.com",
   "SENTRY_DSN": "",
+  "API_KEY": "",
   "APP_NAME": "CCD Staging",
   "ENABLE_LOGGING": true,
   "ENABLE_CRASH_REPORTING": true

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  M18/T18.2 Android 网络安全配置。
+  通过 AndroidManifest 的 android:networkSecurityConfig 接入。
+-->
+<network-security-config>
+    <!-- 默认：禁止明文 HTTP，强制 HTTPS（release 生效）。 -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- 仅 debug 构建放开：允许明文（本地 localhost）+ 信任用户证书（Charles/抓包）。
+         release 不受影响，仍强制 HTTPS 且不信任用户证书。 -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </debug-overrides>
+
+    <!--
+      证书绑定（Certificate Pinning）示例 —— 上线前按真实域名启用并替换 pin
+      （SHA-256 的 base64 SPKI；务必同时配置备份 pin，避免轮换证书时锁死）。
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">api.example.com</domain>
+        <pin-set expiration="2027-01-01">
+            <pin digest="SHA-256">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</pin>
+            <pin digest="SHA-256">BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=</pin>
+        </pin-set>
+    </domain-config>
+    -->
+</network-security-config>

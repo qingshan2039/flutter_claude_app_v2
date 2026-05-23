@@ -40,6 +40,10 @@ import 'package:flutter_claude_app_v2/core/permission/permission_service.dart'
 import 'package:flutter_claude_app_v2/core/router/app_router.dart' as _i1006;
 import 'package:flutter_claude_app_v2/core/router/router_log_observer.dart'
     as _i273;
+import 'package:flutter_claude_app_v2/core/security/device_integrity.dart'
+    as _i878;
+import 'package:flutter_claude_app_v2/core/security/screen_security.dart'
+    as _i737;
 import 'package:flutter_claude_app_v2/core/storage/database/app_database.dart'
     as _i920;
 import 'package:flutter_claude_app_v2/core/storage/key_value_storage.dart'
@@ -118,6 +122,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => const _i1015.StubTokenRefresher(),
     );
     gh.lazySingleton<_i236.AppLogger>(() => _i236.LoggerImpl());
+    gh.lazySingleton<_i878.DeviceIntegrityService>(
+      () => const _i878.DeviceIntegrityServiceImpl(),
+    );
     gh.lazySingleton<_i830.SecureStorage>(
       () => _i830.FlutterSecureStorageImpl(),
     );
@@ -127,6 +134,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i767.ApiClient>(
       () => _i767.MockApiClient(),
       registerFor: {_dev},
+    );
+    gh.lazySingleton<_i737.ScreenSecurity>(
+      () => const _i737.ScreenSecurityImpl(),
     );
     gh.lazySingleton<_i1015.AuthEvents>(() => const _i1015.NoopAuthEvents());
     gh.lazySingleton<_i1049.AuthRepository>(

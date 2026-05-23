@@ -101,5 +101,25 @@
 		<string>This app uses Bluetooth to connect with nearby devices.</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<!-- M18/T18.3 App Transport Security：默认禁止明文连接（强制 HTTPS）。
+		     如确需放开某域名，请在 NSExceptionDomains 下「按域名最小化」配置，
+		     切勿用 NSAllowsArbitraryLoads=true 全局放开（App Store 会要求说明理由）。 -->
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<false/>
+			<!--
+			<key>NSExceptionDomains</key>
+			<dict>
+				<key>api.example.com</key>
+				<dict>
+					<key>NSIncludesSubdomains</key>
+					<true/>
+					<key>NSExceptionMinimumTLSVersion</key>
+					<string>TLSv1.2</string>
+				</dict>
+			</dict>
+			-->
+		</dict>
 	</dict>
 </plist>
