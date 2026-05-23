@@ -31,6 +31,8 @@ import 'package:flutter_claude_app_v2/core/network/interceptors/retry_intercepto
     as _i260;
 import 'package:flutter_claude_app_v2/core/observer/provider_observer.dart'
     as _i666;
+import 'package:flutter_claude_app_v2/core/permission/permission_service.dart'
+    as _i14;
 import 'package:flutter_claude_app_v2/core/router/app_router.dart' as _i1006;
 import 'package:flutter_claude_app_v2/core/router/router_log_observer.dart'
     as _i273;
@@ -103,6 +105,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i830.SecureStorage>(
       () => _i830.FlutterSecureStorageImpl(),
     );
+    gh.lazySingleton<_i14.PermissionGateway>(
+      () => const _i14.PermissionHandlerGateway(),
+    );
     gh.lazySingleton<_i260.RetryInterceptor>(
       () => _i260.RetryInterceptor(
         maxRetries: gh<int>(),
@@ -133,6 +138,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i1015.TokenStorage>(
       () => _i8.SecureTokenStorage(gh<_i830.SecureStorage>()),
+    );
+    gh.lazySingleton<_i14.PermissionService>(
+      () => _i14.PermissionServiceImpl(gh<_i14.PermissionGateway>()),
     );
     gh.lazySingleton<_i361.Dio>(
       () => networkModule.provideDio(

@@ -5,8 +5,8 @@ project: flutter_claude_app_v2
 project_path: /Users/ben/ai_project/flutter_claude_app_v2
 last_updated: 2026-05-18
 total_tasks_in_spec: 180
-completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5, T04.1, T04.2, T04.3, T04.4, T04.5, T04.6, T04.7, T04.8, T04.9, T05.1, T05.2, T05.3, T05.4, T06.1, T06.2, T06.3, T06.4, T07.1, T07.2, T07.3, T07.4, T07.5, T07.6, T07.7, T07.8, T08.1, T08.2, T08.3, T08.4, T08.5, T08.6]
-completed_modules: [M01, M02, M03, M04, M05, M06, M07, M08]
+completed_tasks: [T01.1, T01.2, T01.3, T02.1, T02.2, T02.3, T03.1, T03.2, T03.3, T03.4, T03.5, T04.1, T04.2, T04.3, T04.4, T04.5, T04.6, T04.7, T04.8, T04.9, T05.1, T05.2, T05.3, T05.4, T06.1, T06.2, T06.3, T06.4, T07.1, T07.2, T07.3, T07.4, T07.5, T07.6, T07.7, T07.8, T08.1, T08.2, T08.3, T08.4, T08.5, T08.6, T09.1, T09.2, T09.3, T09.4]
+completed_modules: [M01, M02, M03, M04, M05, M06, M07, M08, M09]
 audience: [human_developers, ai_agents, rag_systems]
 ---
 
@@ -138,6 +138,10 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 | T08.4 | 运行时语言切换 | M08 | P0 | ✅ completed | 2026-05-18 | [T08.4.md](./T08.4.md) |
 | T08.5 | 语言选择持久化 | M08 | P0 | ✅ completed | 2026-05-18 | [T08.5.md](./T08.5.md) |
 | T08.6 | 新增语言文档 | M08 | P0 | ✅ completed | 2026-05-18 | [T08.6.md](./T08.6.md) |
+| T09.1 | 封装 PermissionService | M09 | P0 | ✅ completed | 2026-05-18 | [T09.1.md](./T09.1.md) |
+| T09.2 | 覆盖常用权限 | M09 | P0 | ✅ completed | 2026-05-18 | [T09.2.md](./T09.2.md) |
+| T09.3 | 永久拒绝处理 | M09 | P0 | ✅ completed | 2026-05-18 | [T09.3.md](./T09.3.md) |
+| T09.4 | iOS / Android 差异封装 | M09 | P0 | ✅ completed | 2026-05-18 | [T09.4.md](./T09.4.md) |
 
 **模块进度**：
 - M01 项目骨架与目录结构 ✅ 已完成（3/3）
@@ -148,6 +152,7 @@ Flutter / Dart / OS / Xcode / Android SDK 版本（便于复现）。
 - M06 状态管理 ✅ 已完成（4/4）
 - M07 路由管理 ✅ 已完成（8/8）
 - M08 国际化 ✅ 已完成（6/6）
+- M09 权限管理 ✅ 已完成（4/4）
 
 ## 工作流
 

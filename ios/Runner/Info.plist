@@ -85,5 +85,19 @@
 	</array>
 	<!-- M07/T07.5 Universal Links 由 Runner.entitlements 的 com.apple.developer.associated-domains
 	     条目配置（applinks:app.example.com）；详见 docs/router/DEEP_LINKING.md -->
+	<!-- M09/T09.4 权限用途说明（iOS 必须，缺失会导致 App Store 审核拒绝 / 运行崩溃）。
+	     按需裁剪：删除 app 实际不用的权限说明。文案需面向终端用户、说明用途。 -->
+	<key>NSCameraUsageDescription</key>
+	<string>This app uses the camera to take photos and scan codes.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app accesses your photo library to let you pick and upload images.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app uses the microphone to record audio.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses your location to provide nearby content.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>This app uses Bluetooth to connect with nearby devices.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This app uses Bluetooth to connect with nearby devices.</string>
 </dict>
 </plist>
