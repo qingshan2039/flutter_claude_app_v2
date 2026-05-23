@@ -17,6 +17,20 @@ import 'package:injectable/injectable.dart';
 /// `baseUrl` 与超时参数：M15/T15.1 完成后从 `EnvConfig` 读取；目前用编译常量占位。
 @module
 abstract class NetworkModule {
+  /// 提供 [LoggingInterceptor]（用默认构造，[LoggingInterceptor.enabled] =
+  /// `kDebugMode`）。
+  ///
+  /// 不在类上标 `@lazySingleton`：那样 injectable 会把默认值参数 `enabled`
+  /// 当成需注入的依赖，生成 `gh<bool>()` 解析一个未注册的 bool 而在解析 Dio
+  /// 时抛 `Object/factory with type bool is not registered`。
+  @lazySingleton
+  LoggingInterceptor provideLoggingInterceptor() => LoggingInterceptor();
+
+  /// 提供 [RetryInterceptor]（用默认构造：maxRetries=3、baseDelay=500ms）。
+  /// 同 [provideLoggingInterceptor]：避免 injectable 把默认值参数当依赖注入。
+  @lazySingleton
+  RetryInterceptor provideRetryInterceptor() => RetryInterceptor();
+
   /// 默认 base URL；M15/T15.1 完成后由 EnvConfig.apiBaseUrl 替换。
   ///
   /// 通过 `--dart-define API_BASE_URL=https://api.example.com` 可在编译期覆盖。

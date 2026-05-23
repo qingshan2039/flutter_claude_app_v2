@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:injectable/injectable.dart';
 
 /// 应用日志拦截器（T04.2）。
 ///
@@ -13,7 +12,10 @@ import 'package:injectable/injectable.dart';
 /// - 输出格式：单行 method+url + headers + body 多行；JSON body 时美化
 ///
 /// M11/T11.4 完成后，可注入 `AppLogger`/Sentry breadcrumb 替代 [debugPrint]。
-@lazySingleton
+///
+/// DI：本类不直接标注 `@lazySingleton`（构造参数 [enabled] 默认 `kDebugMode`，
+/// 若让 injectable 自动注入会生成 `gh<bool>()` 解析一个未注册的 bool 而抛错）。
+/// 改由 [NetworkModule.provideLoggingInterceptor] 用默认构造提供。
 class LoggingInterceptor extends Interceptor {
   LoggingInterceptor({
     this.enabled = kDebugMode,

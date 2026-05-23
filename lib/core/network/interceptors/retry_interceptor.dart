@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
 
 /// 重试拦截器（T04.5）。
 ///
@@ -15,7 +14,10 @@ import 'package:injectable/injectable.dart';
 ///
 /// 实际重发请求需要持有 [Dio] 引用：通过 [dio] setter 在 [NetworkModule] 构造完成
 /// 之后注入（避免 DI 循环依赖）。
-@lazySingleton
+///
+/// DI：不直接标 `@lazySingleton`（构造参数 [maxRetries]/[baseDelay] 有默认值，
+/// 让 injectable 自动注入会生成 `gh<int>()` / `gh<Duration>()` 解析未注册的
+/// 基元类型而抛错）。改由 [NetworkModule.provideRetryInterceptor] 用默认构造提供。
 class RetryInterceptor extends Interceptor {
   RetryInterceptor({
     this.maxRetries = 3,

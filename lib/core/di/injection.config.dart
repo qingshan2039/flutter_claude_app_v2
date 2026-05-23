@@ -69,9 +69,9 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final networkModule = _$NetworkModule();
     final databaseModule = _$DatabaseModule();
     final sharedPreferencesModule = _$SharedPreferencesModule();
-    final networkModule = _$NetworkModule();
     final exampleApiModule = _$ExampleApiModule();
     gh.factory<_i237.FactoryService>(() => _i237.FactoryService());
     gh.singleton<_i591.EagerSingletonService>(
@@ -80,6 +80,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i20.ErrorMapper>(() => const _i20.ErrorMapper());
     gh.lazySingleton<_i462.CancelTokenManager>(
       () => _i462.CancelTokenManager(),
+    );
+    gh.lazySingleton<_i860.LoggingInterceptor>(
+      () => networkModule.provideLoggingInterceptor(),
+    );
+    gh.lazySingleton<_i260.RetryInterceptor>(
+      () => networkModule.provideRetryInterceptor(),
     );
     gh.lazySingleton<_i942.ApiErrorInterceptor>(
       () => const _i942.ApiErrorInterceptor(),
@@ -114,12 +120,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i14.PermissionGateway>(
       () => const _i14.PermissionHandlerGateway(),
     );
-    gh.lazySingleton<_i260.RetryInterceptor>(
-      () => _i260.RetryInterceptor(
-        maxRetries: gh<int>(),
-        baseDelay: gh<Duration>(),
-      ),
-    );
     gh.lazySingleton<_i767.ApiClient>(
       () => _i767.MockApiClient(),
       registerFor: {_dev},
@@ -127,13 +127,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1015.AuthEvents>(() => const _i1015.NoopAuthEvents());
     gh.factory<_i5.GetCurrentUserUseCase>(
       () => _i5.GetCurrentUserUseCase(gh<_i1049.AuthRepository>()),
-    );
-    gh.lazySingleton<_i860.LoggingInterceptor>(
-      () => _i860.LoggingInterceptor(
-        enabled: gh<bool>(),
-        extraSensitiveHeaders: gh<Set<String>>(),
-        extraSensitiveBodyKeys: gh<Set<String>>(),
-      ),
     );
     gh.lazySingleton<_i767.ApiClient>(
       () => _i767.RealApiClient(),
@@ -168,10 +161,10 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
+class _$NetworkModule extends _i29.NetworkModule {}
+
 class _$DatabaseModule extends _i920.DatabaseModule {}
 
 class _$SharedPreferencesModule extends _i858.SharedPreferencesModule {}
-
-class _$NetworkModule extends _i29.NetworkModule {}
 
 class _$ExampleApiModule extends _i958.ExampleApiModule {}
