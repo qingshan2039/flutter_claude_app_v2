@@ -66,6 +66,10 @@ dependencies:
   # Permissions (M09 / T09.x)
   permission_handler: ^11.3.0
 
+  # Logging & monitoring (M11 / T11.x)
+  logger: ^2.4.0
+  sentry_flutter: ^9.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
