@@ -58,6 +58,11 @@ dependencies:
   # Routing (M07 / T07.x)
   go_router: ^15.0.0
 
+  # Internationalization (M08 / T08.x)
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -84,6 +89,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  # M08/T08.1: 启用 flutter gen-l10n 在 lib/l10n/ 下生成 AppLocalizations
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:

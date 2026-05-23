@@ -1,0 +1,11 @@
+# M08/T08.1 — flutter gen-l10n 配置
+#
+# 运行 `flutter gen-l10n`（或 `flutter pub get` 触发 generate: true）会读取本文件，
+# 把 lib/l10n/*.arb 编译为强类型 AppLocalizations 类。
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+# 生成代码落到 arb-dir（lib/l10n/），可被 import（Flutter 新版默认非 synthetic package）
+# 非空 getter：AppLocalizations.of(context) 返回 non-null（配合 MaterialApp 正确配置）
+nullable-getter: false
