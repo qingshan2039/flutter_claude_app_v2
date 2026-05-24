@@ -15,6 +15,7 @@ import 'package:flutter_claude_app_v2/features/showcase/pages/state_demo_page.da
 import 'package:flutter_claude_app_v2/features/showcase/pages/storage_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/theme_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/ui_kit_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/update_demo_page.dart';
 
 /// 单个模块在画廊中的条目。
 class ShowcaseEntry {
@@ -141,6 +142,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '最小点击区域 · 语义 · 对比度 · 焦点',
     icon: Icons.accessibility_new,
     builder: (_) => const A11yDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M23',
+    title: '应用内更新',
+    subtitle: '版本检查 · 强制/提示/静默 · Android/iOS/APK',
+    icon: Icons.system_update,
+    builder: (_) => const UpdateDemoPage(),
   ),
 ];
 

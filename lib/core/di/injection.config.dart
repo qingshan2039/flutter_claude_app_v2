@@ -52,6 +52,15 @@ import 'package:flutter_claude_app_v2/core/storage/secure_storage.dart'
     as _i830;
 import 'package:flutter_claude_app_v2/core/storage/secure_token_storage.dart'
     as _i8;
+import 'package:flutter_claude_app_v2/core/update/platform/android_in_app_update.dart'
+    as _i53;
+import 'package:flutter_claude_app_v2/core/update/platform/apk_updater.dart'
+    as _i123;
+import 'package:flutter_claude_app_v2/core/update/platform/store_launcher.dart'
+    as _i600;
+import 'package:flutter_claude_app_v2/core/update/update_manager.dart' as _i731;
+import 'package:flutter_claude_app_v2/core/update/version_check_service.dart'
+    as _i50;
 import 'package:flutter_claude_app_v2/core/utils/app_info.dart' as _i642;
 import 'package:flutter_claude_app_v2/features/auth/data/datasources/auth_remote_data_source.dart'
     as _i143;
@@ -141,6 +150,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i878.DeviceIntegrityService>(
       () => const _i878.DeviceIntegrityServiceImpl(),
     );
+    gh.lazySingleton<_i50.VersionCheckService>(
+      () => const _i50.StubVersionCheckService(),
+    );
     gh.lazySingleton<_i830.SecureStorage>(
       () => _i830.FlutterSecureStorageImpl(),
     );
@@ -155,12 +167,22 @@ extension GetItInjectableX on _i174.GetIt {
       () => const _i737.ScreenSecurityImpl(),
     );
     gh.lazySingleton<_i1015.AuthEvents>(() => const _i1015.NoopAuthEvents());
+    gh.lazySingleton<_i600.StoreLauncher>(
+      () => const _i600.StoreLauncherImpl(),
+    );
+    gh.lazySingleton<_i53.AndroidInAppUpdate>(
+      () => const _i53.AndroidInAppUpdateImpl(),
+    );
+    gh.lazySingleton<_i123.ApkUpdater>(() => _i123.ApkUpdaterImpl());
     gh.lazySingleton<_i767.ApiClient>(
       () => _i767.RealApiClient(),
       registerFor: {_prod},
     );
     gh.lazySingleton<_i858.KeyValueStorage>(
       () => _i858.SharedPreferencesStorage(gh<_i460.SharedPreferences>()),
+    );
+    gh.lazySingleton<_i731.UpdateManager>(
+      () => _i731.UpdateManager(gh<_i50.VersionCheckService>()),
     );
     gh.lazySingleton<_i851.PerformanceMonitor>(
       () => _i851.PerformanceMonitorImpl(gh<_i236.AppLogger>()),
