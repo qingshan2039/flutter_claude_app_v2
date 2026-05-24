@@ -15,6 +15,13 @@ import 'package:flutter_claude_app_v2/core/analytics/analytics_route_observer.da
     as _i463;
 import 'package:flutter_claude_app_v2/core/analytics/logging_analytics.dart'
     as _i453;
+import 'package:flutter_claude_app_v2/core/debug/cache_cleaner.dart' as _i789;
+import 'package:flutter_claude_app_v2/core/debug/debug_log_store.dart' as _i842;
+import 'package:flutter_claude_app_v2/core/debug/debug_overrides.dart' as _i856;
+import 'package:flutter_claude_app_v2/core/debug/device_info_service.dart'
+    as _i936;
+import 'package:flutter_claude_app_v2/core/debug/network_inspector.dart'
+    as _i320;
 import 'package:flutter_claude_app_v2/core/di/examples/eager_singleton_service.dart'
     as _i591;
 import 'package:flutter_claude_app_v2/core/di/examples/environment_aware_service.dart'
@@ -132,6 +139,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i591.EagerSingletonService>(
       () => _i591.EagerSingletonService(),
     );
+    gh.lazySingleton<_i842.DebugLogStore>(() => _i842.DebugLogStore());
+    gh.lazySingleton<_i936.DeviceInfoService>(
+      () => const _i936.DeviceInfoService(),
+    );
+    gh.lazySingleton<_i320.NetworkInspector>(() => _i320.NetworkInspector());
     gh.lazySingleton<_i20.ErrorMapper>(() => const _i20.ErrorMapper());
     gh.lazySingleton<_i462.CancelTokenManager>(
       () => _i462.CancelTokenManager(),
@@ -233,6 +245,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i851.PerformanceMonitor>(
       () => _i851.PerformanceMonitorImpl(gh<_i236.AppLogger>()),
     );
+    gh.lazySingleton<_i856.DebugOverrides>(
+      () => _i856.DebugOverrides(gh<_i858.KeyValueStorage>()),
+    );
     gh.lazySingleton<_i518.SyncQueue>(
       () => _i518.SyncQueue(gh<_i858.KeyValueStorage>()),
     );
@@ -247,6 +262,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i1015.TokenStorage>(
       () => _i8.SecureTokenStorage(gh<_i830.SecureStorage>()),
+    );
+    gh.lazySingleton<_i789.CacheCleaner>(
+      () => _i789.CacheCleaner(
+        gh<_i858.KeyValueStorage>(),
+        gh<_i830.SecureStorage>(),
+      ),
     );
     gh.lazySingleton<_i14.PermissionService>(
       () => _i14.PermissionServiceImpl(gh<_i14.PermissionGateway>()),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_claude_app_v2/core/theme/tokens/spacing_tokens.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/a11y_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/analytics_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/debug_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/di_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/env_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/error_demo_page.dart';
@@ -189,6 +190,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '远程配置 · 灰度 · Kill Switch · 缓存刷新',
     icon: Icons.toggle_on_outlined,
     builder: (_) => const RemoteConfigDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M29',
+    title: '内置 Debug 面板',
+    subtitle: '入口 · 环境切换 · 日志 · 网络 · 缓存 · 设备',
+    icon: Icons.bug_report_outlined,
+    builder: (_) => const DebugDemoPage(),
   ),
 ];
 
