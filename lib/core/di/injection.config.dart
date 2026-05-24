@@ -29,6 +29,10 @@ import 'package:flutter_claude_app_v2/core/di/examples/environment_aware_service
 import 'package:flutter_claude_app_v2/core/di/examples/factory_service.dart'
     as _i237;
 import 'package:flutter_claude_app_v2/core/error/error_mapper.dart' as _i20;
+import 'package:flutter_claude_app_v2/core/experiment/experiment_rollback.dart'
+    as _i793;
+import 'package:flutter_claude_app_v2/core/experiment/experiment_service.dart'
+    as _i977;
 import 'package:flutter_claude_app_v2/core/logger/app_logger.dart' as _i236;
 import 'package:flutter_claude_app_v2/core/logger/crash_reporter.dart' as _i13;
 import 'package:flutter_claude_app_v2/core/logger/performance_monitor.dart'
@@ -248,6 +252,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i856.DebugOverrides>(
       () => _i856.DebugOverrides(gh<_i858.KeyValueStorage>()),
     );
+    gh.lazySingleton<_i793.ExperimentRollback>(
+      () => _i793.ExperimentRollback(gh<_i858.KeyValueStorage>()),
+    );
     gh.lazySingleton<_i518.SyncQueue>(
       () => _i518.SyncQueue(gh<_i858.KeyValueStorage>()),
     );
@@ -292,6 +299,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i860.LoggingInterceptor>(),
         gh<_i260.RetryInterceptor>(),
         gh<_i942.ApiErrorInterceptor>(),
+      ),
+    );
+    gh.lazySingleton<_i977.ExperimentService>(
+      () => _i977.ExperimentService(
+        gh<_i765.Analytics>(),
+        gh<_i793.ExperimentRollback>(),
       ),
     );
     gh.lazySingleton<_i562.AccountDeletionService>(

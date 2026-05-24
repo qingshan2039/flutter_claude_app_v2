@@ -6,6 +6,7 @@ import 'package:flutter_claude_app_v2/features/showcase/pages/debug_demo_page.da
 import 'package:flutter_claude_app_v2/features/showcase/pages/di_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/env_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/error_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/experiment_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/i18n_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/logging_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/native_demo_page.dart';
@@ -197,6 +198,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '入口 · 环境切换 · 日志 · 网络 · 缓存 · 设备',
     icon: Icons.bug_report_outlined,
     builder: (_) => const DebugDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M31',
+    title: '灰度发布与 A/B Test',
+    subtitle: '用户分桶 · 变体分发 · 一键回滚',
+    icon: Icons.science_outlined,
+    builder: (_) => const ExperimentDemoPage(),
   ),
 ];
 

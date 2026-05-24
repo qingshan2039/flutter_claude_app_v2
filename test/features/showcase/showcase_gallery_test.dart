@@ -38,12 +38,12 @@ void main() {
   }
 
   testWidgets(
-      '画廊列出全部 22 个模块（M02-M12, M14, M15, M21-M29）',
+      '画廊列出全部 23 个模块（M02-M12, M14, M15, M21-M29, M31）',
       (tester) async {
     await pumpApp(tester);
 
     expect(find.byType(ShowcaseGalleryPage), findsOneWidget);
-    expect(kShowcaseEntries.length, 22);
+    expect(kShowcaseEntries.length, 23);
     // 抽查若干模块标题可见（ListView 顶部）
     expect(find.textContaining('M02'), findsOneWidget);
     expect(find.textContaining('M03'), findsOneWidget);
