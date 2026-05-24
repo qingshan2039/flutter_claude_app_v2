@@ -25,4 +25,18 @@ abstract final class MotionTokens {
 
   /// 弹性（用于微交互 / 强调反馈）
   static const Curve bounce = Curves.elasticOut;
+
+  // ── M34 动效系统补充（T34.1）──────────────────
+  /// Material 3「强调」标准曲线：表现力更强的进出（页面转场 / 入场动画）。
+  static const Curve emphasized = Cubic(0.2, 0, 0, 1);
+
+  /// 按压反馈曲线（微交互按下/回弹，T34.5）。
+  static const Curve pressable = Curves.easeOut;
+
+  // ── 交错（stagger）────────────────────────────
+  /// 列表项逐个入场时，相邻项之间的延迟步长（T34.1 / T34.5）。
+  static const Duration staggerStep = Duration(milliseconds: 50);
+
+  /// 第 [index] 个列表项的入场延迟（用于交错动画 stagger）。
+  static Duration staggerDelay(int index) => staggerStep * index;
 }

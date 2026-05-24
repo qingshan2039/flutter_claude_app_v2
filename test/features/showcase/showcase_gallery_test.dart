@@ -38,12 +38,12 @@ void main() {
   }
 
   testWidgets(
-      '画廊列出全部 24 个模块（M02-M12, M14, M15, M21-M29, M31, M32）',
+      '画廊列出全部 25 个模块（M02-M12, M14, M15, M21-M29, M31, M32, M34）',
       (tester) async {
     await pumpApp(tester);
 
     expect(find.byType(ShowcaseGalleryPage), findsOneWidget);
-    expect(kShowcaseEntries.length, 24);
+    expect(kShowcaseEntries.length, 25);
     // 抽查若干模块标题可见（ListView 顶部）
     expect(find.textContaining('M02'), findsOneWidget);
     expect(find.textContaining('M03'), findsOneWidget);
@@ -112,10 +112,10 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(tile);
 
-      if (entry.moduleId == 'M14') {
-        // M14 含异步加载（AsyncValueWidget 400ms）与网络图片（CachedNetworkImage），
-        // 不能 pumpAndSettle（会等永不停止的加载/动画）。用有界 pump 完成转场即可，
-        // 仍能捕获渲染期布局异常（本守卫的核心目的）。
+      if (entry.moduleId == 'M14' || entry.moduleId == 'M34') {
+        // M14 含异步加载（AsyncValueWidget 400ms）与网络图片（CachedNetworkImage）；
+        // M34 含 LottieView 占位的无限循环动画（repeat）。两者都不能 pumpAndSettle
+        //（会等永不停止的加载/动画）。用有界 pump 完成转场即可，仍能捕获渲染期布局异常。
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 700));
       } else {

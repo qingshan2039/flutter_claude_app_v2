@@ -10,6 +10,7 @@ import 'package:flutter_claude_app_v2/features/showcase/pages/error_demo_page.da
 import 'package:flutter_claude_app_v2/features/showcase/pages/experiment_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/i18n_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/logging_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/motion_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/native_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/network_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/offline_demo_page.dart';
@@ -213,6 +214,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: 'LLM 抽象 · 流式响应 · 多模态附件 · AI 辅助开发配置',
     icon: Icons.smart_toy_outlined,
     builder: (_) => const AiDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M34',
+    title: '动效系统',
+    subtitle: '动效 Token · 转场 · Hero · Lottie seam · 微交互',
+    icon: Icons.animation,
+    builder: (_) => const MotionDemoPage(),
   ),
 ];
 
