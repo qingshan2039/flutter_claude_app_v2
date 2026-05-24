@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_claude_app_v2/core/theme/tokens/spacing_tokens.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/a11y_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/ai_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/analytics_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/debug_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/di_demo_page.dart';
@@ -205,6 +206,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '用户分桶 · 变体分发 · 一键回滚',
     icon: Icons.science_outlined,
     builder: (_) => const ExperimentDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M32',
+    title: 'AI 能力集成预留',
+    subtitle: 'LLM 抽象 · 流式响应 · 多模态附件 · AI 辅助开发配置',
+    icon: Icons.smart_toy_outlined,
+    builder: (_) => const AiDemoPage(),
   ),
 ];
 

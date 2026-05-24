@@ -10,6 +10,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_claude_app_v2/core/ai/llm_client.dart' as _i1008;
+import 'package:flutter_claude_app_v2/core/ai/media_picker.dart' as _i741;
 import 'package:flutter_claude_app_v2/core/analytics/analytics.dart' as _i765;
 import 'package:flutter_claude_app_v2/core/analytics/analytics_route_observer.dart'
     as _i463;
@@ -187,6 +189,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1006.RouterDeps(gh<_i273.RouterLogObserver>()),
     );
     gh.lazySingleton<_i13.CrashReporter>(() => const _i13.NoopCrashReporter());
+    gh.lazySingleton<_i741.MediaPicker>(() => const _i741.StubMediaPicker());
     gh.lazySingleton<_i1015.TokenRefresher>(
       () => const _i1015.StubTokenRefresher(),
     );
@@ -224,6 +227,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => const _i737.ScreenSecurityImpl(),
     );
     gh.lazySingleton<_i1015.AuthEvents>(() => const _i1015.NoopAuthEvents());
+    gh.lazySingleton<_i1008.LlmClient>(() => const _i1008.StubLlmClient());
     gh.lazySingleton<_i600.StoreLauncher>(
       () => const _i600.StoreLauncherImpl(),
     );
