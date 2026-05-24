@@ -13,6 +13,7 @@ import 'package:flutter_claude_app_v2/features/showcase/pages/offline_demo_page.
 import 'package:flutter_claude_app_v2/features/showcase/pages/performance_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/permission_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/privacy_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/remote_config_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/responsive_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/routing_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/state_demo_page.dart';
@@ -181,6 +182,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '埋点抽象 · 页面/曝光自动上报 · 事件 API',
     icon: Icons.insights,
     builder: (_) => const AnalyticsDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M28',
+    title: '远程配置与 Feature Flag',
+    subtitle: '远程配置 · 灰度 · Kill Switch · 缓存刷新',
+    icon: Icons.toggle_on_outlined,
+    builder: (_) => const RemoteConfigDemoPage(),
   ),
 ];
 

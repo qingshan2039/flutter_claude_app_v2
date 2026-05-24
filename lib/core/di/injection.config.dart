@@ -58,6 +58,14 @@ import 'package:flutter_claude_app_v2/core/privacy/sdk_initializer.dart'
     as _i587;
 import 'package:flutter_claude_app_v2/core/privacy/user_data_eraser.dart'
     as _i405;
+import 'package:flutter_claude_app_v2/core/remote_config/default_remote_config.dart'
+    as _i685;
+import 'package:flutter_claude_app_v2/core/remote_config/feature_flags.dart'
+    as _i495;
+import 'package:flutter_claude_app_v2/core/remote_config/kill_switch.dart'
+    as _i669;
+import 'package:flutter_claude_app_v2/core/remote_config/remote_config.dart'
+    as _i977;
 import 'package:flutter_claude_app_v2/core/router/app_router.dart' as _i1006;
 import 'package:flutter_claude_app_v2/core/router/router_log_observer.dart'
     as _i273;
@@ -180,6 +188,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i50.VersionCheckService>(
       () => const _i50.StubVersionCheckService(),
     );
+    gh.lazySingleton<_i977.RemoteConfigClient>(
+      () => const _i977.StubRemoteConfigClient(),
+    );
     gh.lazySingleton<_i830.SecureStorage>(
       () => _i830.FlutterSecureStorageImpl(),
     );
@@ -246,6 +257,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i830.SecureStorage>(),
       ),
     );
+    gh.lazySingleton<_i977.RemoteConfig>(
+      () => _i685.DefaultRemoteConfig(
+        gh<_i977.RemoteConfigClient>(),
+        gh<_i858.KeyValueStorage>(),
+      ),
+    );
     gh.lazySingleton<_i361.Dio>(
       () => networkModule.provideDio(
         gh<_i1015.TokenStorage>(),
@@ -268,6 +285,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i1015.TokenStorage>(),
         gh<_i20.ErrorMapper>(),
       ),
+    );
+    gh.lazySingleton<_i495.FeatureFlags>(
+      () => _i495.FeatureFlags(gh<_i977.RemoteConfig>()),
+    );
+    gh.lazySingleton<_i669.KillSwitch>(
+      () => _i669.KillSwitch(gh<_i977.RemoteConfig>()),
     );
     gh.lazySingleton<_i958.ExampleApiService>(
       () => exampleApiModule.exampleApi(gh<_i361.Dio>()),
