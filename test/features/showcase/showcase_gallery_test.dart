@@ -34,12 +34,12 @@ void main() {
   }
 
   testWidgets(
-      '画廊列出全部 18 个模块（M02-M12, M14, M15, M21, M22, M23, M24, M25）',
+      '画廊列出全部 19 个模块（M02-M12, M14, M15, M21-M26）',
       (tester) async {
     await pumpApp(tester);
 
     expect(find.byType(ShowcaseGalleryPage), findsOneWidget);
-    expect(kShowcaseEntries.length, 18);
+    expect(kShowcaseEntries.length, 19);
     // 抽查若干模块标题可见（ListView 顶部）
     expect(find.textContaining('M02'), findsOneWidget);
     expect(find.textContaining('M03'), findsOneWidget);
@@ -103,6 +103,9 @@ void main() {
 
       final tile = find.text('${entry.moduleId} · ${entry.title}');
       await tester.scrollUntilVisible(tile, 120);
+      // 末尾条目滚动后中心可能仍在视口外，确保完全可见再点，避免 tap 落空。
+      await tester.ensureVisible(tile);
+      await tester.pumpAndSettle();
       await tester.tap(tile);
 
       if (entry.moduleId == 'M14') {

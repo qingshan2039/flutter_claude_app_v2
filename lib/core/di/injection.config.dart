@@ -21,6 +21,8 @@ import 'package:flutter_claude_app_v2/core/logger/app_logger.dart' as _i236;
 import 'package:flutter_claude_app_v2/core/logger/crash_reporter.dart' as _i13;
 import 'package:flutter_claude_app_v2/core/logger/performance_monitor.dart'
     as _i851;
+import 'package:flutter_claude_app_v2/core/native/battery_monitor.dart' as _i78;
+import 'package:flutter_claude_app_v2/core/native/device_bridge.dart' as _i600;
 import 'package:flutter_claude_app_v2/core/network/api_service.dart' as _i958;
 import 'package:flutter_claude_app_v2/core/network/cancel_token_manager.dart'
     as _i462;
@@ -190,9 +192,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i600.StoreLauncher>(
       () => const _i600.StoreLauncherImpl(),
     );
+    gh.lazySingleton<_i78.BatteryMonitor>(() => _i78.BatteryMonitorImpl());
     gh.lazySingleton<_i53.AndroidInAppUpdate>(
       () => const _i53.AndroidInAppUpdateImpl(),
     );
+    gh.lazySingleton<_i600.DeviceBridge>(() => _i600.DeviceBridgeImpl());
     gh.lazySingleton<_i123.ApkUpdater>(() => _i123.ApkUpdaterImpl());
     gh.lazySingleton<_i767.ApiClient>(
       () => _i767.RealApiClient(),
