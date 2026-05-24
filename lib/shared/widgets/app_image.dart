@@ -35,19 +35,25 @@ class AppImage extends StatelessWidget {
     this.cacheHeight,
     this.maxWidthDiskCache,
     this.maxHeightDiskCache,
+    this.semanticLabel,
   });
 
   /// 圆形（头像）便捷构造。默认按 [size] 限制解码尺寸（头像无需大位图）。
-  AppImage.circle(this.url, {super.key, double size = 48, this.placeholder})
-    : width = size,
-      height = size,
-      fit = BoxFit.cover,
-      borderRadius = BorderRadius.circular(size / 2),
-      errorWidget = null,
-      cacheWidth = size.round(),
-      cacheHeight = size.round(),
-      maxWidthDiskCache = null,
-      maxHeightDiskCache = null;
+  AppImage.circle(
+    this.url, {
+    super.key,
+    double size = 48,
+    this.placeholder,
+    this.semanticLabel,
+  }) : width = size,
+       height = size,
+       fit = BoxFit.cover,
+       borderRadius = BorderRadius.circular(size / 2),
+       errorWidget = null,
+       cacheWidth = size.round(),
+       cacheHeight = size.round(),
+       maxWidthDiskCache = null,
+       maxHeightDiskCache = null;
 
   /// 缩略图构造（T21.4「缩略图与原图分离」）：按展示 [size] 解码进内存，
   /// 并把磁盘缓存原图限制到 2×[size]，显著降低长列表的内存与磁盘占用。
@@ -59,6 +65,7 @@ class AppImage extends StatelessWidget {
     this.borderRadius = RadiusTokens.allSm,
     this.placeholder,
     this.errorWidget,
+    this.semanticLabel,
   }) : width = size,
        height = size,
        cacheWidth = size.round(),
@@ -89,6 +96,10 @@ class AppImage extends StatelessWidget {
 
   /// 自定义错误图。默认是 broken_image 图标。
   final Widget? errorWidget;
+
+  /// 无障碍标签（T22.1）：提供后用 `Semantics(image: true, label: ...)` 包裹，
+  /// 供屏幕阅读器朗读。有意义的图片应提供；纯装饰图留 null（不朗读）。
+  final String? semanticLabel;
 
   Widget _defaultPlaceholder(BuildContext context) => ColoredBox(
     color: Theme.of(context).colorScheme.surfaceContainerHighest,
@@ -123,8 +134,12 @@ class AppImage extends StatelessWidget {
       errorWidget: (context, _, _) => errorWidget ?? _defaultError(context),
     );
 
-    if (borderRadius == BorderRadius.zero) return image;
-    return ClipRRect(borderRadius: borderRadius, child: image);
+    final clipped = borderRadius == BorderRadius.zero
+        ? image
+        : ClipRRect(borderRadius: borderRadius, child: image);
+
+    if (semanticLabel == null) return clipped;
+    return Semantics(image: true, label: semanticLabel, child: clipped);
   }
 }
 

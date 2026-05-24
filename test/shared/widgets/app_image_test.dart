@@ -100,6 +100,35 @@ void main() {
       expect(cni.memCacheWidth, isNull);
       expect(cni.memCacheHeight, isNull);
     });
+
+    testWidgets('semanticLabel → 包裹 Semantics(image, label) (T22.1)',
+        (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: AppImage(
+            'https://example.com/a.png',
+            width: 50,
+            height: 50,
+            semanticLabel: '产品封面',
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(
+        tester.getSemantics(find.byType(AppImage)),
+        matchesSemantics(label: '产品封面', isImage: true),
+      );
+    });
+
+    testWidgets('不提供 semanticLabel → 不额外加图片语义', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(home: AppImage('https://example.com/a.png')),
+      );
+      await tester.pump();
+      // 没有带 label 的 image 语义节点
+      expect(find.bySemanticsLabel('产品封面'), findsNothing);
+    });
   });
 
   group('RoundedClipX (T14.3)', () {

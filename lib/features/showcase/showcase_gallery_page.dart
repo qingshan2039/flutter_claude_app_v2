@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_claude_app_v2/core/theme/tokens/spacing_tokens.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/a11y_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/di_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/env_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/error_demo_page.dart';
@@ -133,6 +134,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '启动埋点 · 高性能长列表 · 图片缓存',
     icon: Icons.speed,
     builder: (_) => const PerformanceDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M22',
+    title: '无障碍（a11y）',
+    subtitle: '最小点击区域 · 语义 · 对比度 · 焦点',
+    icon: Icons.accessibility_new,
+    builder: (_) => const A11yDemoPage(),
   ),
 ];
 
