@@ -37,6 +37,14 @@ import 'package:flutter_claude_app_v2/core/observer/provider_observer.dart'
     as _i666;
 import 'package:flutter_claude_app_v2/core/permission/permission_service.dart'
     as _i14;
+import 'package:flutter_claude_app_v2/core/privacy/account_deletion.dart'
+    as _i562;
+import 'package:flutter_claude_app_v2/core/privacy/consent_store.dart' as _i88;
+import 'package:flutter_claude_app_v2/core/privacy/data_export.dart' as _i655;
+import 'package:flutter_claude_app_v2/core/privacy/sdk_initializer.dart'
+    as _i587;
+import 'package:flutter_claude_app_v2/core/privacy/user_data_eraser.dart'
+    as _i405;
 import 'package:flutter_claude_app_v2/core/router/app_router.dart' as _i1006;
 import 'package:flutter_claude_app_v2/core/router/router_log_observer.dart'
     as _i273;
@@ -119,6 +127,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i666.AppProviderObserver>(
       () => _i666.AppProviderObserver(),
     );
+    gh.lazySingleton<_i655.DataExportService>(() => _i655.DataExportService());
+    gh.lazySingleton<_i587.SdkInitializer>(() => _i587.SdkInitializer());
     gh.lazySingleton<_i273.RouterLogObserver>(() => _i273.RouterLogObserver());
     await gh.lazySingletonAsync<_i920.AppDatabase>(
       () => databaseModule.provideAppDatabase(),
@@ -187,11 +197,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i851.PerformanceMonitor>(
       () => _i851.PerformanceMonitorImpl(gh<_i236.AppLogger>()),
     );
+    gh.lazySingleton<_i88.ConsentStore>(
+      () => _i88.ConsentStore(gh<_i858.KeyValueStorage>()),
+    );
     gh.lazySingleton<_i1015.TokenStorage>(
       () => _i8.SecureTokenStorage(gh<_i830.SecureStorage>()),
     );
     gh.lazySingleton<_i14.PermissionService>(
       () => _i14.PermissionServiceImpl(gh<_i14.PermissionGateway>()),
+    );
+    gh.lazySingleton<_i405.UserDataEraser>(
+      () => _i405.DefaultUserDataEraser(
+        gh<_i858.KeyValueStorage>(),
+        gh<_i830.SecureStorage>(),
+      ),
     );
     gh.lazySingleton<_i361.Dio>(
       () => networkModule.provideDio(
@@ -201,6 +220,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i860.LoggingInterceptor>(),
         gh<_i260.RetryInterceptor>(),
         gh<_i942.ApiErrorInterceptor>(),
+      ),
+    );
+    gh.lazySingleton<_i562.AccountDeletionService>(
+      () => _i562.AccountDeletionService(
+        gh<_i858.KeyValueStorage>(),
+        gh<_i405.UserDataEraser>(),
       ),
     );
     gh.lazySingleton<_i1049.AuthRepository>(

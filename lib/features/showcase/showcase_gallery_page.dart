@@ -9,6 +9,7 @@ import 'package:flutter_claude_app_v2/features/showcase/pages/logging_demo_page.
 import 'package:flutter_claude_app_v2/features/showcase/pages/network_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/performance_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/permission_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/privacy_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/responsive_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/routing_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/state_demo_page.dart';
@@ -149,6 +150,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '版本检查 · 强制/提示/静默 · Android/iOS/APK',
     icon: Icons.system_update,
     builder: (_) => const UpdateDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M24',
+    title: '隐私合规',
+    subtitle: '同意管理 · SDK 分级 · 注销冷静期 · 数据导出',
+    icon: Icons.privacy_tip_outlined,
+    builder: (_) => const PrivacyDemoPage(),
   ),
 ];
 
