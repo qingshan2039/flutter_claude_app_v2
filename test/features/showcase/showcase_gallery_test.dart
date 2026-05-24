@@ -11,6 +11,7 @@ import 'package:flutter_claude_app_v2/features/showcase/showcase_gallery_page.da
 import 'package:flutter_claude_app_v2/features/showcase/widgets/demo_scaffold.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../_helpers/storage_test_setup.dart';
 
@@ -21,6 +22,9 @@ void main() {
     tempDir = await setupStorageMocks();
     await getIt.reset();
     await configureDependencies(environment: 'dev');
+    // M27 demo 含 VisibilityDetector（曝光埋点）；置 0 避免遗留 500ms 定时器
+    // 在 widget 树销毁后仍 pending 触发断言。
+    VisibilityDetectorController.instance.updateInterval = Duration.zero;
   });
 
   tearDown(() async {
@@ -34,12 +38,12 @@ void main() {
   }
 
   testWidgets(
-      '画廊列出全部 19 个模块（M02-M12, M14, M15, M21-M26）',
+      '画廊列出全部 20 个模块（M02-M12, M14, M15, M21-M27）',
       (tester) async {
     await pumpApp(tester);
 
     expect(find.byType(ShowcaseGalleryPage), findsOneWidget);
-    expect(kShowcaseEntries.length, 19);
+    expect(kShowcaseEntries.length, 20);
     // 抽查若干模块标题可见（ListView 顶部）
     expect(find.textContaining('M02'), findsOneWidget);
     expect(find.textContaining('M03'), findsOneWidget);

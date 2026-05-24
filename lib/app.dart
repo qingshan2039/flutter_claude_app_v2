@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_claude_app_v2/core/analytics/analytics_route_observer.dart';
 import 'package:flutter_claude_app_v2/core/di/injection.dart';
 import 'package:flutter_claude_app_v2/core/i18n/locale_provider.dart';
 import 'package:flutter_claude_app_v2/core/lifecycle/app_lifecycle.dart';
@@ -41,6 +42,8 @@ class _AppState extends ConsumerState<App> {
       container: ProviderScope.containerOf(context, listen: false),
       observer: getIt<RouterLogObserver>(),
       rootNavigatorKey: getIt<OverlayService>().navigatorKey,
+      // M27/T27.2：页面浏览自动埋点。
+      extraObservers: <NavigatorObserver>[getIt<AnalyticsRouteObserver>()],
     );
     // 生命周期监听（T13.5）
     _lifecycleObserver = AppLifecycleObserver(logger: getIt<AppLogger>());

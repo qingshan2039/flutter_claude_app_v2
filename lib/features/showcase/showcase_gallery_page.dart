@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_claude_app_v2/core/theme/tokens/spacing_tokens.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/a11y_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/analytics_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/di_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/env_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/error_demo_page.dart';
@@ -173,6 +174,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: 'MethodChannel · EventChannel · Pigeon · PlatformView',
     icon: Icons.cable,
     builder: (_) => const NativeDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M27',
+    title: '数据埋点',
+    subtitle: '埋点抽象 · 页面/曝光自动上报 · 事件 API',
+    icon: Icons.insights,
+    builder: (_) => const AnalyticsDemoPage(),
   ),
 ];
 

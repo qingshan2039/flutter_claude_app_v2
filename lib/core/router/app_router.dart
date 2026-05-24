@@ -33,6 +33,7 @@ GoRouter createAppRouter({
   required ProviderContainer container,
   required RouterLogObserver observer,
   GlobalKey<NavigatorState>? rootNavigatorKey,
+  List<NavigatorObserver> extraObservers = const <NavigatorObserver>[],
 }) {
   // 允许外部传入根 NavigatorKey（M14/T14.5：OverlayService 用它脱离 context 弹
   // Dialog / BottomSheet）；未传则内部新建。
@@ -42,7 +43,8 @@ GoRouter createAppRouter({
   return GoRouter(
     navigatorKey: rootKey,
     initialLocation: '/',
-    observers: <NavigatorObserver>[observer],
+    // M27/T27.2：extraObservers 用于挂 AnalyticsRouteObserver 等（页面自动埋点）。
+    observers: <NavigatorObserver>[observer, ...extraObservers],
     redirect: (context, state) => authRedirect(container, state),
     errorBuilder: (context, state) => NotFoundPage(
       error: state.error,

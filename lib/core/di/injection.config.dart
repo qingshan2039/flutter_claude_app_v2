@@ -10,6 +10,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_claude_app_v2/core/analytics/analytics.dart' as _i765;
+import 'package:flutter_claude_app_v2/core/analytics/analytics_route_observer.dart'
+    as _i463;
+import 'package:flutter_claude_app_v2/core/analytics/logging_analytics.dart'
+    as _i453;
 import 'package:flutter_claude_app_v2/core/di/examples/eager_singleton_service.dart'
     as _i591;
 import 'package:flutter_claude_app_v2/core/di/examples/environment_aware_service.dart'
@@ -185,6 +190,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i767.MockApiClient(),
       registerFor: {_dev},
     );
+    gh.lazySingleton<_i765.Analytics>(
+      () => _i453.LoggingAnalytics(gh<_i236.AppLogger>()),
+    );
     gh.lazySingleton<_i737.ScreenSecurity>(
       () => const _i737.ScreenSecurityImpl(),
     );
@@ -198,6 +206,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i600.DeviceBridge>(() => _i600.DeviceBridgeImpl());
     gh.lazySingleton<_i123.ApkUpdater>(() => _i123.ApkUpdaterImpl());
+    gh.lazySingleton<_i463.AnalyticsRouteObserver>(
+      () => _i463.AnalyticsRouteObserver(gh<_i765.Analytics>()),
+    );
     gh.lazySingleton<_i767.ApiClient>(
       () => _i767.RealApiClient(),
       registerFor: {_prod},
