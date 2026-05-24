@@ -35,6 +35,12 @@ import 'package:flutter_claude_app_v2/core/network/interceptors/retry_intercepto
     as _i260;
 import 'package:flutter_claude_app_v2/core/observer/provider_observer.dart'
     as _i666;
+import 'package:flutter_claude_app_v2/core/offline/cache_store.dart' as _i83;
+import 'package:flutter_claude_app_v2/core/offline/cached_fetcher.dart'
+    as _i489;
+import 'package:flutter_claude_app_v2/core/offline/connectivity_service.dart'
+    as _i489;
+import 'package:flutter_claude_app_v2/core/offline/sync_queue.dart' as _i518;
 import 'package:flutter_claude_app_v2/core/permission/permission_service.dart'
     as _i14;
 import 'package:flutter_claude_app_v2/core/privacy/account_deletion.dart'
@@ -160,6 +166,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i878.DeviceIntegrityService>(
       () => const _i878.DeviceIntegrityServiceImpl(),
     );
+    gh.lazySingleton<_i489.ConnectivityService>(
+      () => _i489.ConnectivityServiceImpl(),
+      dispose: (i) => i.dispose(),
+    );
     gh.lazySingleton<_i50.VersionCheckService>(
       () => const _i50.StubVersionCheckService(),
     );
@@ -197,8 +207,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i851.PerformanceMonitor>(
       () => _i851.PerformanceMonitorImpl(gh<_i236.AppLogger>()),
     );
+    gh.lazySingleton<_i518.SyncQueue>(
+      () => _i518.SyncQueue(gh<_i858.KeyValueStorage>()),
+    );
     gh.lazySingleton<_i88.ConsentStore>(
       () => _i88.ConsentStore(gh<_i858.KeyValueStorage>()),
+    );
+    gh.lazySingleton<_i83.CacheStore>(
+      () => _i83.KeyValueCacheStore(gh<_i858.KeyValueStorage>()),
+    );
+    gh.lazySingleton<_i489.CachedFetcher>(
+      () => _i489.CachedFetcher(gh<_i83.CacheStore>()),
     );
     gh.lazySingleton<_i1015.TokenStorage>(
       () => _i8.SecureTokenStorage(gh<_i830.SecureStorage>()),

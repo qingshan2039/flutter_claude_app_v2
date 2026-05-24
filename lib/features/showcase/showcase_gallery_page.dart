@@ -7,6 +7,7 @@ import 'package:flutter_claude_app_v2/features/showcase/pages/error_demo_page.da
 import 'package:flutter_claude_app_v2/features/showcase/pages/i18n_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/logging_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/network_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/offline_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/performance_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/permission_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/privacy_demo_page.dart';
@@ -157,6 +158,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: '同意管理 · SDK 分级 · 注销冷静期 · 数据导出',
     icon: Icons.privacy_tip_outlined,
     builder: (_) => const PrivacyDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M25',
+    title: '离线优先架构',
+    subtitle: '缓存策略 · 同步队列 · 乐观更新 · 网络状态',
+    icon: Icons.cloud_off_outlined,
+    builder: (_) => const OfflineDemoPage(),
   ),
 ];
 
