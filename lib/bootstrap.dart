@@ -8,6 +8,7 @@ import 'package:flutter_claude_app_v2/core/env/env_config.dart';
 import 'package:flutter_claude_app_v2/core/error/global_error_handler.dart';
 import 'package:flutter_claude_app_v2/core/logger/app_logger.dart';
 import 'package:flutter_claude_app_v2/core/logger/crash_reporter.dart';
+import 'package:flutter_claude_app_v2/core/logger/startup_tracker.dart';
 import 'package:flutter_claude_app_v2/core/observer/provider_observer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,10 +26,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 void bootstrap(AppEnvironment environment) {
   runZonedGuarded<Future<void>>(
     () async {
+      // T21.1：启动耗时埋点——尽早开始计时（DI 本身的耗时也要测）。
+      final startup = StartupTracker.instance..begin();
+
       WidgetsFlutterBinding.ensureInitialized();
+      startup.mark('binding');
 
       // ── 关键路径 1：依赖注入（含存储 @preResolve）──
       await configureDependencies(environment: environment.injectableName);
+      startup.mark('di');
 
       // M15/T15.1：注册当前环境配置（dart-define 覆盖默认值）。
       final envConfig = registerEnvConfig(environment);
@@ -45,6 +51,7 @@ void bootstrap(AppEnvironment environment) {
       registerGlobalErrorHandlers(reporter: report);
       listenIsolateErrors(reporter: report);
       await crashReporter.setTag('environment', environment.name);
+      startup.mark('errorHandlers');
 
       logger.i('Bootstrapping app in ${environment.name} environment');
 
@@ -58,9 +65,13 @@ void bootstrap(AppEnvironment environment) {
           child: const App(),
         ),
       );
+      startup.mark('runApp');
 
       // ── 非关键路径：首帧后延迟，不阻塞启动（T13.3）──
       WidgetsBinding.instance.addPostFrameCallback((_) {
+        // T21.1：记录首帧并输出启动耗时摘要。
+        startup.markFirstFrame();
+        logger.i(startup.summary());
         unawaited(_initDeferred(logger));
       });
     },

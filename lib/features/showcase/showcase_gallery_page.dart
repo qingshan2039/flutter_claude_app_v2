@@ -6,6 +6,7 @@ import 'package:flutter_claude_app_v2/features/showcase/pages/error_demo_page.da
 import 'package:flutter_claude_app_v2/features/showcase/pages/i18n_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/logging_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/network_demo_page.dart';
+import 'package:flutter_claude_app_v2/features/showcase/pages/performance_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/permission_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/responsive_demo_page.dart';
 import 'package:flutter_claude_app_v2/features/showcase/pages/routing_demo_page.dart';
@@ -125,6 +126,13 @@ final List<ShowcaseEntry> kShowcaseEntries = <ShowcaseEntry>[
     subtitle: 'EnvConfig · flavor · dart-define · flutter_gen',
     icon: Icons.tune,
     builder: (_) => const EnvDemoPage(),
+  ),
+  ShowcaseEntry(
+    moduleId: 'M21',
+    title: '性能优化体系',
+    subtitle: '启动埋点 · 高性能长列表 · 图片缓存',
+    icon: Icons.speed,
+    builder: (_) => const PerformanceDemoPage(),
   ),
 ];
 

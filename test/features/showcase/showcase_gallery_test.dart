@@ -33,11 +33,11 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('画廊列出全部 13 个模块（M02-M12, M14, M15）', (tester) async {
+  testWidgets('画廊列出全部 14 个模块（M02-M12, M14, M15, M21）', (tester) async {
     await pumpApp(tester);
 
     expect(find.byType(ShowcaseGalleryPage), findsOneWidget);
-    expect(kShowcaseEntries.length, 13);
+    expect(kShowcaseEntries.length, 14);
     // 抽查若干模块标题可见（ListView 顶部）
     expect(find.textContaining('M02'), findsOneWidget);
     expect(find.textContaining('M03'), findsOneWidget);

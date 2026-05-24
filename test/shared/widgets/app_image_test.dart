@@ -41,6 +41,65 @@ void main() {
       final clip = tester.widget<ClipRRect>(find.byType(ClipRRect));
       expect(clip.borderRadius, BorderRadius.circular(20));
     });
+
+    testWidgets('cacheWidth/Height → 按 DPR 换算成 memCacheWidth/Height (T21.4)',
+        (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: AppImage(
+            'https://example.com/a.png',
+            width: 100,
+            height: 100,
+            cacheWidth: 100,
+            cacheHeight: 80,
+          ),
+        ),
+      );
+      await tester.pump();
+
+      final dpr = tester.view.devicePixelRatio;
+      final cni = tester.widget<CachedNetworkImage>(
+        find.byType(CachedNetworkImage),
+      );
+      expect(cni.memCacheWidth, (100 * dpr).round());
+      expect(cni.memCacheHeight, (80 * dpr).round());
+    });
+
+    testWidgets('thumbnail 构造 → 限制内存解码 + 限制磁盘缓存尺寸 (T21.4)',
+        (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: AppImage.thumbnail('https://example.com/a.png', size: 96),
+        ),
+      );
+      await tester.pump();
+
+      final dpr = tester.view.devicePixelRatio;
+      final cni = tester.widget<CachedNetworkImage>(
+        find.byType(CachedNetworkImage),
+      );
+      // 内存解码尺寸按 DPR 换算
+      expect(cni.memCacheWidth, (96 * dpr).round());
+      // 磁盘缓存原图尺寸 = 2×size（原始像素，不乘 DPR）
+      expect(cni.maxWidthDiskCache, 192);
+      expect(cni.maxHeightDiskCache, 192);
+      // allSm 圆角 → 套 ClipRRect
+      expect(find.byType(ClipRRect), findsWidgets);
+    });
+
+    testWidgets('默认构造不设 cache → memCacheWidth 为 null (按原图解码)',
+        (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(home: AppImage('https://example.com/a.png')),
+      );
+      await tester.pump();
+
+      final cni = tester.widget<CachedNetworkImage>(
+        find.byType(CachedNetworkImage),
+      );
+      expect(cni.memCacheWidth, isNull);
+      expect(cni.memCacheHeight, isNull);
+    });
   });
 
   group('RoundedClipX (T14.3)', () {
